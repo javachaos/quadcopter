@@ -15,7 +15,7 @@ using namespace std;
 
 class Controller: public Agent {
 public:
-	Controller(volatile sig_atomic_t &stopSig);
+	Controller();
 protected:
 	void init();
 	~Controller();

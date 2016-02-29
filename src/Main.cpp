@@ -82,13 +82,16 @@ int main(void) {
 
 	create_pidfile();
 	/* Daemon-specific initialization goes here */
-	Controller *controller = new Controller(term);
+	Controller *controller = new Controller;
 
 	std::signal(SIGINT, signal_handler);
 	std::signal(SIGHUP, signal_handler);
 	std::signal(SIGTERM, signal_handler);
 
 	controller->start();
+	while(!term) {
+		controller->update();
+	}
 
 	closelog();
 	exit(EXIT_SUCCESS);

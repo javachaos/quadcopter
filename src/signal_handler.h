@@ -17,16 +17,14 @@ extern volatile sig_atomic_t term;
 void signal_handler(int sig) {
 
     switch(sig) {
+        case SIGINT:
+    	    break;
         case SIGHUP:
-        	std::clog << kLogNotice << "Received SIGHUP signal." << std::endl;
             break;
         case SIGTERM:
-        	std::clog << kLogNotice << "Received SIGTERM signal." << std::endl;
             term = true;
-            exit(0);
             break;
         default:
-        	std::clog << kLogNotice << "Unhandled signal." << std::endl;
             break;
     }
 }

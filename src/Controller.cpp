@@ -15,10 +15,12 @@
 using namespace std;
 
 //Controller Ctor
-Controller::Controller(volatile sig_atomic_t &stopSig) :
-		Agent("Controller", stopSig) {
+Controller::Controller() :
+		Agent("Controller") {
 }
-
+void Agent::activate() {
+	std::clog << kLogNotice << "Controller activated." << std::endl;
+}
 void Agent::update() {
 	std::clog << kLogNotice << "updating." << std::endl;
 	sleep(15);

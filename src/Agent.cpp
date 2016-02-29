@@ -10,8 +10,7 @@ using std::string;
 using namespace std;
 
 //Agent ctor given name
-Agent::Agent(string name, volatile sig_atomic_t &stopSig):
-	done(stopSig) {
+Agent::Agent(string name){
 	this->name = name;
 	isActivated = false;
 }
@@ -23,18 +22,8 @@ void Agent::start() {
 	}
 }
 
-bool Agent::isRunning() {
-	return this->done;
-}
-
 string Agent::getName() {
 	return name;
-}
-
-void Agent::activate() {
-	while(!done) {
-		update();
-	}
 }
 
 Agent::~Agent() {

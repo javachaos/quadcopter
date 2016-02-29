@@ -17,16 +17,14 @@ using namespace std;
 
 class Agent {
 public:
-	Agent(string name,volatile sig_atomic_t &stopSig);
+	Agent(string name);
 	string getName();
 	void start();
-	bool isRunning();
+	virtual void update();
 protected:
 	virtual void activate();
-	virtual void update();
 	~Agent();
 private:
-	volatile sig_atomic_t done;
 	string name;
 	bool isActivated;
 };
