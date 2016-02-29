@@ -12,28 +12,19 @@ using namespace std;
 //Agent ctor given name
 Agent::Agent(string name, volatile sig_atomic_t &stopSig) {
 	this->name = name;
-	running = stopSig;
+	done = stopSig;
 	isActivated = false;
 }
 
 void Agent::start() {
-	running = true;
 	if(!isActivated) {
 		activate();
 		isActivated = true;
 	}
 }
 
-void Agent::stop() {
-	running = false;
-}
-
-void Agent::restart() {
-	Agent::stop();
-	Agent::start();
-}
 bool Agent::isRunning() {
-	return this->running;
+	return this->done;
 }
 
 string Agent::getName() {
@@ -41,13 +32,9 @@ string Agent::getName() {
 }
 
 void Agent::activate() {
-	while(running) {
+	while(!done) {
 		update();
 	}
-}
-
-void Agent::setSignal(sig_atomic_t sig) {
-	this->running = sig;
 }
 
 Agent::~Agent() {

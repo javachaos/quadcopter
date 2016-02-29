@@ -21,10 +21,9 @@ Controller::Controller(volatile sig_atomic_t &stopSig) :
 
 void Agent::update() {
 	std::clog << kLogNotice << "updating." << std::endl;
-	sleep(60);
+	sleep(15);
 }
 
 Controller::~Controller() {
-	stop();
 }
 
