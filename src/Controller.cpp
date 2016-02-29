@@ -7,6 +7,7 @@
 
 #include "Controller.h"
 
+#include <unistd.h>
 #include <iostream>
 
 #include "Log.h"
@@ -20,6 +21,7 @@ Controller::Controller() :
 
 void Agent::update() {
 	std::clog << kLogNotice << "updating." << std::endl;
+	sleep(60);
 }
 
 Controller::~Controller() {
