@@ -11,10 +11,8 @@
 #include <syslog.h>
 #include <unistd.h>
 #include <csignal>
-#include <cstdio>
-#include <cstring>
-#include <iostream>
 #include <fstream>
+#include <iostream>
 
 #include "constants.h"
 #include "Controller.h"
@@ -24,7 +22,9 @@
 using namespace std;
 
 static void create_pidfile(void);
-volatile sig_atomic_t term = false;
+
+volatile std::sig_atomic_t term;
+
 
 static void
 create_pidfile(void)
@@ -59,7 +59,8 @@ int main(void) {
 
 	/* Open syslog */
 	std::clog.rdbuf(new Log(DAEMON_NAME, LOG_LOCAL0));
-	syslog(LOG_INFO, "Program started by User %d", getuid());
+	std::clog << kLogNotice << "Program started by User: "
+			+ getuid() << std::endl;
 
 	/* Create a new SID for the child process */
 	sid = setsid();
@@ -70,7 +71,7 @@ int main(void) {
 
 	/* Change the current working directory */
 	if ((chdir("/")) < 0) {
-		syslog(LOG_ERR, "Failed to change the cwd.");
+		std::clog << kLogNotice << "Failed to change the cwd." << std::endl;
 		exit(EXIT_FAILURE);
 	}
 
@@ -83,11 +84,9 @@ int main(void) {
 	/* Daemon-specific initialization goes here */
 	Controller *controller = new Controller(term);
 
-	struct sigaction action;
-	action.sa_handler = signal_handler;
-	sigemptyset(&action.sa_mask);
-	action.sa_flags = 0;
-	sigaction(SIGTERM, &action, NULL);
+	std::signal(SIGINT, signal_handler);
+	std::signal(SIGHUP, signal_handler);
+	std::signal(SIGTERM, signal_handler);
 
 	controller->start();
 
