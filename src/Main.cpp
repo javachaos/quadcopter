@@ -17,7 +17,6 @@
 #include "constants.h"
 #include "Controller.h"
 #include "Log.h"
-#include "signal_handler.h"
 
 using namespace std;
 
@@ -25,6 +24,18 @@ static void create_pidfile(void);
 
 volatile std::sig_atomic_t term;
 
+static void signal_handler(int sig) {
+
+    switch(sig) {
+        case SIGINT:
+        case SIGHUP:
+        case SIGTERM:
+            term = true;
+            break;
+        default:
+            break;
+    }
+}
 
 static void
 create_pidfile(void)
@@ -59,8 +70,9 @@ int main(void) {
 
 	/* Open syslog */
 	std::clog.rdbuf(new Log(DAEMON_NAME, LOG_LOCAL0));
-	std::clog << kLogNotice << "Program started by User: "
-			+ getuid() << std::endl;
+	std::clog << kLogNotice
+			  << "Program started by User: "
+			  << getuid() << std::endl;
 
 	/* Create a new SID for the child process */
 	sid = setsid();
