@@ -22,8 +22,7 @@ void Agent::activate() {
 	std::clog << kLogNotice << "Controller activated." << std::endl;
 }
 void Agent::update() {
-	std::clog << kLogNotice << "updating." << std::endl;
-	sleep(15);
+
 }
 
 Controller::~Controller() {
