@@ -16,29 +16,14 @@
 
 #include "Controller.h"
 #include "Log.h"
-
+#include "signal_handler.h"
+#include "constants.h"
 using namespace std;
 
-#define DAEMON_NAME "quadcopter"
-#define CWD "/opt/" + DAEMON_NAME
 
-volatile sig_atomic_t done = 0;
-
-void terminate(int signum)
-{
-    done = 1;
-}
-
+volatile sig_atomic_t term = false;
 int main(void) {
 
-
-	/* Daemon-specific initialization goes here */
-	Controller *controller = new Controller(done);
-
-	struct sigaction action;
-	memset(&action, 0, sizeof(struct sigaction));
-	action.sa_handler = terminate;
-	sigaction(SIGTERM, &action, NULL);
 
 	/* Our process ID and Session ID */
 	pid_t pid, sid;
@@ -80,6 +65,14 @@ int main(void) {
 	close(STDIN_FILENO);
 	close(STDOUT_FILENO);
 	close(STDERR_FILENO);
+
+	/* Daemon-specific initialization goes here */
+	Controller *controller = new Controller(term);
+
+	struct sigaction action;
+	memset(&action, 0, sizeof(struct sigaction));
+	action.sa_handler = signal_handler;
+	sigaction(SIGTERM, &action, NULL);
 
 	controller->start();
 
