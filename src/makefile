@@ -9,10 +9,10 @@ SRCS=Agent.cpp Controller.cpp Log.cpp Main.cpp signalHandler.cpp
 OBJS=$(subst .cpp,.o,$(SRCS))
 EXEC=quadcopter
 
-all: $(EXEC)
+all:	$(EXEC)
 
 $(EXEC): $(OBJS)
-    $(CXX) $(LDFLAGS) -o $(EXEC) $(OBJS) $(LDLIBS) 
+	$(CXX) $(LDFLAGS) -o $(EXEC) $(OBJS) $(LDLIBS) 
 
 depend: .depend
 
