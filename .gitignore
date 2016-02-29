@@ -1,3 +1,15 @@
 # exclude everything except directory /src
 /Default/src/*
 /Default/Quadcopter
+quadcopter
+
+#files being edited
+*~
+
+# make and build files
+*.lst
+*.o
+*.eep
+*.lss
+*.map
+*.sym
