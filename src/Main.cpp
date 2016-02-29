@@ -28,8 +28,14 @@ static void signal_handler(int sig) {
 
     switch(sig) {
         case SIGINT:
+    		std::clog << kLogNotice << "Received SIGINT." << std::endl;
+    		break;
         case SIGHUP:
+    		std::clog << kLogNotice << "Received SIGHUP Exiting." << std::endl;
+            term = true;
+    		break;
         case SIGTERM:
+    		std::clog << kLogNotice << "Received SIGTERM Exiting." << std::endl;
             term = true;
             break;
         default:
