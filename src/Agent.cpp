@@ -4,21 +4,24 @@
  *  Created on: Feb 28, 2016
  *      Author: alfred
  */
+
 #include "Agent.h"
-#include <string>
 using std::string;
 using namespace std;
 
 //Agent ctor given name
-Agent::Agent(string name) {
+Agent::Agent(string name, volatile sig_atomic_t &stopSig) {
 	this->name = name;
-	running = false;
+	running = stopSig;
+	isActivated = false;
 }
-
 
 void Agent::start() {
 	running = true;
-	activate();
+	if(!isActivated) {
+		activate();
+		isActivated = true;
+	}
 }
 
 void Agent::stop() {
@@ -41,6 +44,10 @@ void Agent::activate() {
 	while(running) {
 		update();
 	}
+}
+
+void Agent::setSignal(sig_atomic_t sig) {
+	this->running = sig;
 }
 
 Agent::~Agent() {

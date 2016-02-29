@@ -7,26 +7,31 @@
 
 #ifndef AGENT_H_
 #define AGENT_H_
+
+#include <csignal>
 #include <string>
+
 using std::string;
 
 using namespace std;
 
 class Agent {
 public:
-	Agent(string name);
+	Agent(string name,volatile sig_atomic_t &stopSig);
 	string getName();
 	void start();
 	void stop();
 	void restart();
 	bool isRunning();
+	void setSignal(sig_atomic_t sig);
 protected:
 	virtual void activate();
 	virtual void update();
 	~Agent();
 private:
-	bool running;
+	volatile sig_atomic_t running;
 	string name;
+	bool isActivated;
 };
 
 

@@ -15,8 +15,8 @@
 using namespace std;
 
 //Controller Ctor
-Controller::Controller() :
-		Agent("Controller") {
+Controller::Controller(volatile sig_atomic_t &stopSig) :
+		Agent("Controller", stopSig) {
 }
 
 void Agent::update() {
