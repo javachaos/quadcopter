@@ -11,17 +11,30 @@
 #include <syslog.h>
 #include <unistd.h>
 #include <csignal>
+#include <cstdio>
 #include <cstring>
 #include <iostream>
+#include <fstream>
 
+#include "constants.h"
 #include "Controller.h"
 #include "Log.h"
 #include "signal_handler.h"
-#include "constants.h"
+
 using namespace std;
 
-
+static void create_pidfile(void);
 volatile sig_atomic_t term = false;
+
+static void
+create_pidfile(void)
+{
+	unlink(PIDFILE);
+	std::ofstream outfile (PIDFILE);
+	outfile << getpid() << std::endl;
+	outfile.close();
+}
+
 int main(void) {
 
 
@@ -66,6 +79,7 @@ int main(void) {
 	close(STDOUT_FILENO);
 	close(STDERR_FILENO);
 
+	create_pidfile();
 	/* Daemon-specific initialization goes here */
 	Controller *controller = new Controller(term);
 

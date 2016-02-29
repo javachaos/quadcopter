@@ -9,6 +9,7 @@
 #define CONSTANTS_H_
 
 #define DAEMON_NAME "quadcopter"
-#define CWD "/opt/" + DAEMON_NAME
-
+#define CWD         "/opt/"      + DAEMON_NAME
+#define PIDFILE     "/var/run/quadcopter.pid"
+#define LOCKFILE	"/var/lock/" + DAEMON_NAME
 #endif /* CONSTANTS_H_ */
