@@ -5,7 +5,7 @@ CPPFLAGS=-g $(shell root-config --cflags)
 LDFLAGS=-g $(shell root-config --ldflags)
 LDLIBS=$(shell root-config --libs)
 
-SRCS=Agent.cpp Controller.cpp Log.cpp Main.cpp signalHandler.cpp
+SRCS=Agent.cpp Controller.cpp Log.cpp Main.cpp
 OBJS=$(subst .cpp,.o,$(SRCS))
 EXEC=quadcopter
 
