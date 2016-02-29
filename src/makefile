@@ -17,13 +17,13 @@ $(EXEC): $(OBJS)
 depend: .depend
 
 .depend: $(SRCS)
-    rm -f ./.depend
-    $(CXX) $(CPPFLAGS) -MM $^>>./.depend;
+	rm -f ./.depend
+	$(CXX) $(CPPFLAGS) -MM $^>>./.depend;
 
 clean:
-    $(RM) $(OBJS)
+	$(RM) $(OBJS)
 
 dist-clean: clean
-    $(RM) *~ .depend
+	$(RM) *~ .depend
 
 include .depend

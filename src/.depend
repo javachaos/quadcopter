@@ -1,0 +1,5 @@
+Agent.o: Agent.cpp Agent.h
+Controller.o: Controller.cpp Controller.h Device.h Agent.h Log.h
+Log.o: Log.cpp Log.h
+Main.o: Main.cpp Controller.h Device.h Agent.h Log.h
+signalHandler.o: signalHandler.cpp signalHandler.h
