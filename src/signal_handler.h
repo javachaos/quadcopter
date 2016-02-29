@@ -18,14 +18,15 @@ void signal_handler(int sig) {
 
     switch(sig) {
         case SIGHUP:
-            syslog(LOG_WARNING, "Received SIGHUP signal.");
+        	std::clog << kLogNotice << "Received SIGHUP signal." << std::endl;
             break;
         case SIGTERM:
-            syslog(LOG_WARNING, "Received SIGTERM signal.");
+        	std::clog << kLogNotice << "Received SIGTERM signal." << std::endl;
             term = true;
+            exit(0);
             break;
         default:
-            syslog(LOG_WARNING, "Unhandled signal.");
+        	std::clog << kLogNotice << "Unhandled signal." << std::endl;
             break;
     }
 }
