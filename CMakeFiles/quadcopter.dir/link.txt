@@ -1,0 +1,1 @@
+/usr/bin/c++   -g -Wall    CMakeFiles/quadcopter.dir/src/OLED.cpp.o CMakeFiles/quadcopter.dir/src/Log.cpp.o CMakeFiles/quadcopter.dir/src/Quadcopter.cpp.o CMakeFiles/quadcopter.dir/src/Controller.cpp.o  -o quadcopter -rdynamic src/c_drivers/libc_drivers.a 

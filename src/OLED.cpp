@@ -7,22 +7,28 @@
 
 #include "OLED.h"
 
-#include <boost/python.hpp>
 #include <iostream>
+#include "../Log.h"
+#include "c_drivers/oled.h"
+using namespace std;
 
-using namespace boost::python;
-OLED::OLED() {
-//	 Py_Initialize();
-//	 PyObject* filename = PyString_FromString((char*)"memory_leak_test");
-//	     PyObject* imp = PyImport_Import(filename);
-//	     PyObject* func = PyObject_GetAttrString(imp,(char*)"begin");
-//	     PyObject* args = PyTuple_Pack(1,PyString_FromString("CacheSetup"));
-//	     PyObject* retured_value = PyObject_CallObject(func, args); // if you have arg
-//	     double retured_value = PyFloat_AsDouble(myResult);
-//	 std::cout << result << std::endl;
-//	 Py_Finalize();
+namespace Quadcopter {
+
+OLED::OLED() : Device("OLED") {
+}
+
+void OLED::init() {
+	clog << kLogNotice << "OLED Device initialized." << endl;
+}
+
+void OLED::update(string data) {
+	write(data);
+}
+void OLED::write(string data) {
+	write_str(data.c_str());
 }
 
 OLED::~OLED() {
 }
 
+}

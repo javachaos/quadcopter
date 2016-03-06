@@ -1,0 +1,2 @@
+/home/fred/dev/quadcopter/src/c_drivers/CMakeFiles/c_drivers.dir
+/home/fred/dev/quadcopter/CMakeFiles/quadcopter.dir

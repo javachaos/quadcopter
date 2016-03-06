@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/fred/dev/quadcopter/src/c_drivers/pwm.c
+stdio.h
+-
+stdlib.h
+-
+sys/types.h
+-
+string.h
+-
+fcntl.h
+-
+unistd.h
+-
+dirent.h
+-
+pwm.h
+/home/fred/dev/quadcopter/src/c_drivers/pwm.h
+
+/home/fred/dev/quadcopter/src/c_drivers/pwm.h
+

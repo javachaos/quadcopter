@@ -1,0 +1,7 @@
+Controller.o: Controller.cpp Controller.h devices/Device.h Agent.h Log.h
+Log.o: Log.cpp Log.h
+Main.o: Main.cpp Constants.h Controller.h devices/Device.h Agent.h \
+ devices/OLED.h devices/Device.h Log.h
+OLED.o: devices/OLED.cpp devices/OLED.h devices/Device.h devices/../Log.h
+oled.o: c_drivers/oled.c c_drivers/oled.h
+pwm.o: c_drivers/pwm.c c_drivers/pwm.h

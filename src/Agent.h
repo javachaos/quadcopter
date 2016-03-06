@@ -10,24 +10,30 @@
 
 #include <csignal>
 #include <string>
-
 using std::string;
 
-using namespace std;
-
+namespace Quadcopter {
 class Agent {
 public:
-	Agent(string name);
-	string getName();
-	void start();
-	virtual void update();
+	Agent(string name) : name(name), activated(false) {};
+	string getName() { return name; }
+	void start() {
+		if (!isActivated()) {
+			activate();
+			activated = true;
+		}
+	}
+	virtual void update() = 0;
+	bool isActivated() { return activated; }
+	virtual ~Agent() = 0;
 protected:
-	virtual void activate();
-	~Agent();
+	virtual void activate() = 0;
 private:
 	string name;
-	bool isActivated;
+	bool activated;
 };
 
+inline Agent::~Agent() {}
 
+}
 #endif /* AGENT_H_ */

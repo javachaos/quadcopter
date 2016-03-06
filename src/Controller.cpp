@@ -9,22 +9,48 @@
 
 #include <unistd.h>
 #include <iostream>
-
+#include <vector>
 #include "Log.h"
 
 using namespace std;
+using std::clog;
+using std::endl;
+using std::vector;
+
+namespace Quadcopter {
 
 //Controller Ctor
-Controller::Controller() :
-		Agent("Controller") {
+Controller::Controller() : Agent("Controller") {
 }
-void Agent::activate() {
-	std::clog << kLogNotice << "Controller activated." << std::endl;
-}
-void Agent::update() {
 
+void Controller::activate() {
+	clog << kLogNotice << "Controller activated." << endl;
+
+	//Initialize devices
+	for (vector<Device*>::iterator it = devices.begin(); it != devices.end();
+			++it) {
+		(*it)->init();
+	}
+}
+
+void Controller::addDevice(Device *device) {
+	//Device * t = dynamic_cast<Device *>(d);
+	clog << kLogNotice << "Device: " << device->getName() << " added to Controller." << endl;
+	devices.push_back(device);
+
+	//delete (device);
+}
+void Controller::update() {
+	for (vector<Device*>::iterator it = devices.begin(); it != devices.end();
+			++it) {
+		(*it)->update("");
+	}
 }
 
 Controller::~Controller() {
+	for (vector<Device*>::iterator it = devices.begin(); it != devices.end();
+			++it) {
+		(*it)->~Device();
+	}
 }
-
+}

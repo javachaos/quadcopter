@@ -5,22 +5,26 @@
  *      Author: alfred
  */
 
+#include <string>
+
 #ifndef DEVICE_H_
 #define DEVICE_H_
 
-using namespace std;
+using std::string;
+namespace Quadcopter {
+
 class Device {
-	virtual ~Device();
+	public:
+		Device(string n) : name(n) , isInit(true) {}
+		bool isInitialized() { return isInit; }
+		virtual void init() = 0;
+		string getName() const { return name; }
+		virtual void update(string value) = 0;
+		virtual ~Device();
+	private:
+		string name;
+		bool isInit;
 };
-
-template<class T>
-class Sensor: Device {
-public:
-	Sensor();
-	void init() const;
-	void update(const T) const;
-	bool isInitialized() const;
-	virtual ~Sensor();
-};
-
+inline Device::~Device() {}
+}
 #endif /* DEVICE_H_ */

@@ -1,0 +1,2 @@
+/usr/bin/ar cr libc_drivers.a  CMakeFiles/c_drivers.dir/pwm.c.o CMakeFiles/c_drivers.dir/main.c.o
+/usr/bin/ranlib libc_drivers.a

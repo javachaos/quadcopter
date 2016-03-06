@@ -4,24 +4,28 @@
  *  Created on: Feb 28, 2016
  *      Author: alfred
  */
-#include <string.h>
-#include <map>
-#include "Device.h"
-#include "Agent.h"
-using namespace std;
 
 #ifndef CONTROLLER_H_
 #define CONTROLLER_H_
-
+#include <string.h>
+#include "Device.h"
+#include "Agent.h"
+#include <vector>
+using std::string;
+using std::vector;
+namespace Quadcopter {
 class Controller: public Agent {
 public:
-	Controller();
+    Controller();
+	void update();
+	void addDevice(Device*);
+	virtual ~Controller();
 protected:
 	void init();
-	~Controller();
+	void activate();
 private:
-	//std::map<string, Device> devices;
+	vector<Device*> devices;
 };
-
+}
 #endif /* CONTROLLER_H_ */
 

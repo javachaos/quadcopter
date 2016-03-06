@@ -6,54 +6,57 @@
 // Description : Quadcopter service in C++, Ansi-style
 //============================================================================
 
-#include <stdlib.h>
 #include <sys/stat.h>
 #include <syslog.h>
 #include <unistd.h>
 #include <csignal>
+#include <cstdlib>
 #include <fstream>
 #include <iostream>
+#include <string>
 
-#include "constants.h"
+#include "Constants.h"
 #include "Controller.h"
+#include "OLED.h"
 #include "Log.h"
 
-using namespace std;
+using std::string;
+using std::endl;
+using std::clog;
+using std::sig_atomic_t;
+using std::ofstream;
+namespace Quadcopter {
 
 static void create_pidfile(void);
-
-volatile std::sig_atomic_t term;
+volatile sig_atomic_t term;
 
 static void signal_handler(int sig) {
 
-    switch(sig) {
-        case SIGINT:
-    		std::clog << kLogNotice << "Received SIGINT." << std::endl;
-    		break;
-        case SIGHUP:
-    		std::clog << kLogNotice << "Received SIGHUP Exiting." << std::endl;
-            term = true;
-    		break;
-        case SIGTERM:
-    		std::clog << kLogNotice << "Received SIGTERM Exiting." << std::endl;
-            term = true;
-            break;
-        default:
-            break;
-    }
+	switch (sig) {
+	case SIGINT:
+		clog << kLogNotice << "Received SIGINT." << endl;
+		break;
+	case SIGHUP:
+		clog << kLogNotice << "Received SIGHUP Exiting." << endl;
+		term = true;
+		break;
+	case SIGTERM:
+		clog << kLogNotice << "Received SIGTERM Exiting." << endl;
+		term = true;
+		break;
+	default:
+		break;
+	}
 }
 
-static void
-create_pidfile(void)
-{
+static void create_pidfile(void) {
 	unlink(PIDFILE);
-	std::ofstream outfile (PIDFILE);
-	outfile << getpid() << std::endl;
+	ofstream outfile(PIDFILE);
+	outfile << getpid() << endl;
 	outfile.close();
 }
 
 int main(void) {
-
 
 	/* Our process ID and Session ID */
 	pid_t pid, sid;
@@ -75,10 +78,9 @@ int main(void) {
 	umask(0);
 
 	/* Open syslog */
-	std::clog.rdbuf(new Log(DAEMON_NAME, LOG_LOCAL0));
-	std::clog << kLogNotice
-			  << "Program started by User: "
-			  << getuid() << std::endl;
+	clog.rdbuf(new Log(DAEMON_NAME, LOG_LOCAL0));
+	clog << kLogNotice << "Program started by User: " << getuid()
+			<< endl;
 
 	/* Create a new SID for the child process */
 	sid = setsid();
@@ -89,7 +91,7 @@ int main(void) {
 
 	/* Change the current working directory */
 	if ((chdir("/")) < 0) {
-		std::clog << kLogNotice << "Failed to change the cwd." << std::endl;
+		clog << kLogNotice << "Failed to change the cwd." << endl;
 		exit(EXIT_FAILURE);
 	}
 
@@ -106,12 +108,16 @@ int main(void) {
 	std::signal(SIGHUP, signal_handler);
 	std::signal(SIGTERM, signal_handler);
 
+	Device *oled = new OLED;
+	controller->addDevice(oled);
+	//TODO add more devices
 	controller->start();
-	while(!term) {
+	while (!term) {
 		controller->update();
 	}
 
+	controller->~Controller();
 	closelog();
 	exit(EXIT_SUCCESS);
 }
-
+}
