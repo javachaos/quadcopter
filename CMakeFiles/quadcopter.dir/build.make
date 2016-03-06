@@ -35,10 +35,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/fred/dev/quadcopter
+CMAKE_SOURCE_DIR = /root/quadcopter
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/fred/dev/quadcopter
+CMAKE_BINARY_DIR = /root/quadcopter
 
 # Include any dependencies generated for this target.
 include CMakeFiles/quadcopter.dir/depend.make
@@ -49,65 +49,19 @@ include CMakeFiles/quadcopter.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/quadcopter.dir/flags.make
 
-CMakeFiles/quadcopter.dir/src/OLED.cpp.o: CMakeFiles/quadcopter.dir/flags.make
-CMakeFiles/quadcopter.dir/src/OLED.cpp.o: src/OLED.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/fred/dev/quadcopter/CMakeFiles $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/quadcopter.dir/src/OLED.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/quadcopter.dir/src/OLED.cpp.o -c /home/fred/dev/quadcopter/src/OLED.cpp
-
-CMakeFiles/quadcopter.dir/src/OLED.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/quadcopter.dir/src/OLED.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/fred/dev/quadcopter/src/OLED.cpp > CMakeFiles/quadcopter.dir/src/OLED.cpp.i
-
-CMakeFiles/quadcopter.dir/src/OLED.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/quadcopter.dir/src/OLED.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/fred/dev/quadcopter/src/OLED.cpp -o CMakeFiles/quadcopter.dir/src/OLED.cpp.s
-
-CMakeFiles/quadcopter.dir/src/OLED.cpp.o.requires:
-.PHONY : CMakeFiles/quadcopter.dir/src/OLED.cpp.o.requires
-
-CMakeFiles/quadcopter.dir/src/OLED.cpp.o.provides: CMakeFiles/quadcopter.dir/src/OLED.cpp.o.requires
-	$(MAKE) -f CMakeFiles/quadcopter.dir/build.make CMakeFiles/quadcopter.dir/src/OLED.cpp.o.provides.build
-.PHONY : CMakeFiles/quadcopter.dir/src/OLED.cpp.o.provides
-
-CMakeFiles/quadcopter.dir/src/OLED.cpp.o.provides.build: CMakeFiles/quadcopter.dir/src/OLED.cpp.o
-
-CMakeFiles/quadcopter.dir/src/Log.cpp.o: CMakeFiles/quadcopter.dir/flags.make
-CMakeFiles/quadcopter.dir/src/Log.cpp.o: src/Log.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/fred/dev/quadcopter/CMakeFiles $(CMAKE_PROGRESS_2)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/quadcopter.dir/src/Log.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/quadcopter.dir/src/Log.cpp.o -c /home/fred/dev/quadcopter/src/Log.cpp
-
-CMakeFiles/quadcopter.dir/src/Log.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/quadcopter.dir/src/Log.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/fred/dev/quadcopter/src/Log.cpp > CMakeFiles/quadcopter.dir/src/Log.cpp.i
-
-CMakeFiles/quadcopter.dir/src/Log.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/quadcopter.dir/src/Log.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/fred/dev/quadcopter/src/Log.cpp -o CMakeFiles/quadcopter.dir/src/Log.cpp.s
-
-CMakeFiles/quadcopter.dir/src/Log.cpp.o.requires:
-.PHONY : CMakeFiles/quadcopter.dir/src/Log.cpp.o.requires
-
-CMakeFiles/quadcopter.dir/src/Log.cpp.o.provides: CMakeFiles/quadcopter.dir/src/Log.cpp.o.requires
-	$(MAKE) -f CMakeFiles/quadcopter.dir/build.make CMakeFiles/quadcopter.dir/src/Log.cpp.o.provides.build
-.PHONY : CMakeFiles/quadcopter.dir/src/Log.cpp.o.provides
-
-CMakeFiles/quadcopter.dir/src/Log.cpp.o.provides.build: CMakeFiles/quadcopter.dir/src/Log.cpp.o
-
 CMakeFiles/quadcopter.dir/src/Quadcopter.cpp.o: CMakeFiles/quadcopter.dir/flags.make
 CMakeFiles/quadcopter.dir/src/Quadcopter.cpp.o: src/Quadcopter.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/fred/dev/quadcopter/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /root/quadcopter/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/quadcopter.dir/src/Quadcopter.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/quadcopter.dir/src/Quadcopter.cpp.o -c /home/fred/dev/quadcopter/src/Quadcopter.cpp
+	/usr/bin/g++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/quadcopter.dir/src/Quadcopter.cpp.o -c /root/quadcopter/src/Quadcopter.cpp
 
 CMakeFiles/quadcopter.dir/src/Quadcopter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/quadcopter.dir/src/Quadcopter.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/fred/dev/quadcopter/src/Quadcopter.cpp > CMakeFiles/quadcopter.dir/src/Quadcopter.cpp.i
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -E /root/quadcopter/src/Quadcopter.cpp > CMakeFiles/quadcopter.dir/src/Quadcopter.cpp.i
 
 CMakeFiles/quadcopter.dir/src/Quadcopter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/quadcopter.dir/src/Quadcopter.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/fred/dev/quadcopter/src/Quadcopter.cpp -o CMakeFiles/quadcopter.dir/src/Quadcopter.cpp.s
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -S /root/quadcopter/src/Quadcopter.cpp -o CMakeFiles/quadcopter.dir/src/Quadcopter.cpp.s
 
 CMakeFiles/quadcopter.dir/src/Quadcopter.cpp.o.requires:
 .PHONY : CMakeFiles/quadcopter.dir/src/Quadcopter.cpp.o.requires
@@ -118,19 +72,42 @@ CMakeFiles/quadcopter.dir/src/Quadcopter.cpp.o.provides: CMakeFiles/quadcopter.d
 
 CMakeFiles/quadcopter.dir/src/Quadcopter.cpp.o.provides.build: CMakeFiles/quadcopter.dir/src/Quadcopter.cpp.o
 
+CMakeFiles/quadcopter.dir/src/OLED.cpp.o: CMakeFiles/quadcopter.dir/flags.make
+CMakeFiles/quadcopter.dir/src/OLED.cpp.o: src/OLED.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /root/quadcopter/CMakeFiles $(CMAKE_PROGRESS_2)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/quadcopter.dir/src/OLED.cpp.o"
+	/usr/bin/g++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/quadcopter.dir/src/OLED.cpp.o -c /root/quadcopter/src/OLED.cpp
+
+CMakeFiles/quadcopter.dir/src/OLED.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/quadcopter.dir/src/OLED.cpp.i"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -E /root/quadcopter/src/OLED.cpp > CMakeFiles/quadcopter.dir/src/OLED.cpp.i
+
+CMakeFiles/quadcopter.dir/src/OLED.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/quadcopter.dir/src/OLED.cpp.s"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -S /root/quadcopter/src/OLED.cpp -o CMakeFiles/quadcopter.dir/src/OLED.cpp.s
+
+CMakeFiles/quadcopter.dir/src/OLED.cpp.o.requires:
+.PHONY : CMakeFiles/quadcopter.dir/src/OLED.cpp.o.requires
+
+CMakeFiles/quadcopter.dir/src/OLED.cpp.o.provides: CMakeFiles/quadcopter.dir/src/OLED.cpp.o.requires
+	$(MAKE) -f CMakeFiles/quadcopter.dir/build.make CMakeFiles/quadcopter.dir/src/OLED.cpp.o.provides.build
+.PHONY : CMakeFiles/quadcopter.dir/src/OLED.cpp.o.provides
+
+CMakeFiles/quadcopter.dir/src/OLED.cpp.o.provides.build: CMakeFiles/quadcopter.dir/src/OLED.cpp.o
+
 CMakeFiles/quadcopter.dir/src/Controller.cpp.o: CMakeFiles/quadcopter.dir/flags.make
 CMakeFiles/quadcopter.dir/src/Controller.cpp.o: src/Controller.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/fred/dev/quadcopter/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /root/quadcopter/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/quadcopter.dir/src/Controller.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/quadcopter.dir/src/Controller.cpp.o -c /home/fred/dev/quadcopter/src/Controller.cpp
+	/usr/bin/g++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/quadcopter.dir/src/Controller.cpp.o -c /root/quadcopter/src/Controller.cpp
 
 CMakeFiles/quadcopter.dir/src/Controller.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/quadcopter.dir/src/Controller.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/fred/dev/quadcopter/src/Controller.cpp > CMakeFiles/quadcopter.dir/src/Controller.cpp.i
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -E /root/quadcopter/src/Controller.cpp > CMakeFiles/quadcopter.dir/src/Controller.cpp.i
 
 CMakeFiles/quadcopter.dir/src/Controller.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/quadcopter.dir/src/Controller.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/fred/dev/quadcopter/src/Controller.cpp -o CMakeFiles/quadcopter.dir/src/Controller.cpp.s
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -S /root/quadcopter/src/Controller.cpp -o CMakeFiles/quadcopter.dir/src/Controller.cpp.s
 
 CMakeFiles/quadcopter.dir/src/Controller.cpp.o.requires:
 .PHONY : CMakeFiles/quadcopter.dir/src/Controller.cpp.o.requires
@@ -141,23 +118,46 @@ CMakeFiles/quadcopter.dir/src/Controller.cpp.o.provides: CMakeFiles/quadcopter.d
 
 CMakeFiles/quadcopter.dir/src/Controller.cpp.o.provides.build: CMakeFiles/quadcopter.dir/src/Controller.cpp.o
 
+CMakeFiles/quadcopter.dir/src/Log.cpp.o: CMakeFiles/quadcopter.dir/flags.make
+CMakeFiles/quadcopter.dir/src/Log.cpp.o: src/Log.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /root/quadcopter/CMakeFiles $(CMAKE_PROGRESS_4)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/quadcopter.dir/src/Log.cpp.o"
+	/usr/bin/g++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/quadcopter.dir/src/Log.cpp.o -c /root/quadcopter/src/Log.cpp
+
+CMakeFiles/quadcopter.dir/src/Log.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/quadcopter.dir/src/Log.cpp.i"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -E /root/quadcopter/src/Log.cpp > CMakeFiles/quadcopter.dir/src/Log.cpp.i
+
+CMakeFiles/quadcopter.dir/src/Log.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/quadcopter.dir/src/Log.cpp.s"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -S /root/quadcopter/src/Log.cpp -o CMakeFiles/quadcopter.dir/src/Log.cpp.s
+
+CMakeFiles/quadcopter.dir/src/Log.cpp.o.requires:
+.PHONY : CMakeFiles/quadcopter.dir/src/Log.cpp.o.requires
+
+CMakeFiles/quadcopter.dir/src/Log.cpp.o.provides: CMakeFiles/quadcopter.dir/src/Log.cpp.o.requires
+	$(MAKE) -f CMakeFiles/quadcopter.dir/build.make CMakeFiles/quadcopter.dir/src/Log.cpp.o.provides.build
+.PHONY : CMakeFiles/quadcopter.dir/src/Log.cpp.o.provides
+
+CMakeFiles/quadcopter.dir/src/Log.cpp.o.provides.build: CMakeFiles/quadcopter.dir/src/Log.cpp.o
+
 # Object files for target quadcopter
 quadcopter_OBJECTS = \
-"CMakeFiles/quadcopter.dir/src/OLED.cpp.o" \
-"CMakeFiles/quadcopter.dir/src/Log.cpp.o" \
 "CMakeFiles/quadcopter.dir/src/Quadcopter.cpp.o" \
-"CMakeFiles/quadcopter.dir/src/Controller.cpp.o"
+"CMakeFiles/quadcopter.dir/src/OLED.cpp.o" \
+"CMakeFiles/quadcopter.dir/src/Controller.cpp.o" \
+"CMakeFiles/quadcopter.dir/src/Log.cpp.o"
 
 # External object files for target quadcopter
 quadcopter_EXTERNAL_OBJECTS =
 
-quadcopter: CMakeFiles/quadcopter.dir/src/OLED.cpp.o
-quadcopter: CMakeFiles/quadcopter.dir/src/Log.cpp.o
 quadcopter: CMakeFiles/quadcopter.dir/src/Quadcopter.cpp.o
+quadcopter: CMakeFiles/quadcopter.dir/src/OLED.cpp.o
 quadcopter: CMakeFiles/quadcopter.dir/src/Controller.cpp.o
+quadcopter: CMakeFiles/quadcopter.dir/src/Log.cpp.o
 quadcopter: CMakeFiles/quadcopter.dir/build.make
 quadcopter: src/c_drivers/libc_drivers.so
-quadcopter: /usr/lib/x86_64-linux-gnu/libpython2.7.so
+quadcopter: /usr/lib/libpython2.7.so
 quadcopter: CMakeFiles/quadcopter.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable quadcopter"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/quadcopter.dir/link.txt --verbose=$(VERBOSE)
@@ -166,10 +166,10 @@ quadcopter: CMakeFiles/quadcopter.dir/link.txt
 CMakeFiles/quadcopter.dir/build: quadcopter
 .PHONY : CMakeFiles/quadcopter.dir/build
 
-CMakeFiles/quadcopter.dir/requires: CMakeFiles/quadcopter.dir/src/OLED.cpp.o.requires
-CMakeFiles/quadcopter.dir/requires: CMakeFiles/quadcopter.dir/src/Log.cpp.o.requires
 CMakeFiles/quadcopter.dir/requires: CMakeFiles/quadcopter.dir/src/Quadcopter.cpp.o.requires
+CMakeFiles/quadcopter.dir/requires: CMakeFiles/quadcopter.dir/src/OLED.cpp.o.requires
 CMakeFiles/quadcopter.dir/requires: CMakeFiles/quadcopter.dir/src/Controller.cpp.o.requires
+CMakeFiles/quadcopter.dir/requires: CMakeFiles/quadcopter.dir/src/Log.cpp.o.requires
 .PHONY : CMakeFiles/quadcopter.dir/requires
 
 CMakeFiles/quadcopter.dir/clean:
@@ -177,6 +177,6 @@ CMakeFiles/quadcopter.dir/clean:
 .PHONY : CMakeFiles/quadcopter.dir/clean
 
 CMakeFiles/quadcopter.dir/depend:
-	cd /home/fred/dev/quadcopter && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/fred/dev/quadcopter /home/fred/dev/quadcopter /home/fred/dev/quadcopter /home/fred/dev/quadcopter /home/fred/dev/quadcopter/CMakeFiles/quadcopter.dir/DependInfo.cmake --color=$(COLOR)
+	cd /root/quadcopter && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /root/quadcopter /root/quadcopter /root/quadcopter /root/quadcopter /root/quadcopter/CMakeFiles/quadcopter.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/quadcopter.dir/depend
 

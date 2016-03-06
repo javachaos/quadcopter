@@ -6,7 +6,3 @@
 
 #IncludeRegexTransform: 
 
-/root/quadcopter/src/c_drivers/main.c
-stdio.h
--
-

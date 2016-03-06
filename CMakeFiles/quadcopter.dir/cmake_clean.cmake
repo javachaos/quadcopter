@@ -1,8 +1,8 @@
 FILE(REMOVE_RECURSE
-  "CMakeFiles/quadcopter.dir/src/OLED.cpp.o"
-  "CMakeFiles/quadcopter.dir/src/Log.cpp.o"
   "CMakeFiles/quadcopter.dir/src/Quadcopter.cpp.o"
+  "CMakeFiles/quadcopter.dir/src/OLED.cpp.o"
   "CMakeFiles/quadcopter.dir/src/Controller.cpp.o"
+  "CMakeFiles/quadcopter.dir/src/Log.cpp.o"
   "quadcopter.pdb"
   "quadcopter"
 )

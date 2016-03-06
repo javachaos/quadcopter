@@ -25,7 +25,7 @@ using std::endl;
 using std::clog;
 using std::sig_atomic_t;
 using std::ofstream;
-namespace Quadcopter {
+using namespace Quadcopter;
 
 static void create_pidfile(void);
 volatile sig_atomic_t term;
@@ -56,7 +56,7 @@ static void create_pidfile(void) {
 	outfile.close();
 }
 
-int main(void) {
+int main(int argc, char* argv[]) {
 
 	/* Our process ID and Session ID */
 	pid_t pid, sid;
@@ -120,4 +120,4 @@ int main(void) {
 	closelog();
 	exit(EXIT_SUCCESS);
 }
-}
+

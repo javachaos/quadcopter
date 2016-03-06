@@ -39,10 +39,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/fred/dev/quadcopter
+CMAKE_SOURCE_DIR = /root/quadcopter
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/fred/dev/quadcopter
+CMAKE_BINARY_DIR = /root/quadcopter
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -69,14 +69,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/fred/dev/quadcopter && $(CMAKE_COMMAND) -E cmake_progress_start /home/fred/dev/quadcopter/CMakeFiles /home/fred/dev/quadcopter/src/c_drivers/CMakeFiles/progress.marks
-	cd /home/fred/dev/quadcopter && $(MAKE) -f CMakeFiles/Makefile2 src/c_drivers/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fred/dev/quadcopter/CMakeFiles 0
+	cd /root/quadcopter && $(CMAKE_COMMAND) -E cmake_progress_start /root/quadcopter/CMakeFiles /root/quadcopter/src/c_drivers/CMakeFiles/progress.marks
+	cd /root/quadcopter && $(MAKE) -f CMakeFiles/Makefile2 src/c_drivers/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/quadcopter/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/fred/dev/quadcopter && $(MAKE) -f CMakeFiles/Makefile2 src/c_drivers/clean
+	cd /root/quadcopter && $(MAKE) -f CMakeFiles/Makefile2 src/c_drivers/clean
 .PHONY : clean
 
 # The main clean target
@@ -85,22 +85,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/fred/dev/quadcopter && $(MAKE) -f CMakeFiles/Makefile2 src/c_drivers/preinstall
+	cd /root/quadcopter && $(MAKE) -f CMakeFiles/Makefile2 src/c_drivers/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/fred/dev/quadcopter && $(MAKE) -f CMakeFiles/Makefile2 src/c_drivers/preinstall
+	cd /root/quadcopter && $(MAKE) -f CMakeFiles/Makefile2 src/c_drivers/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/fred/dev/quadcopter && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /root/quadcopter && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/c_drivers/CMakeFiles/c_drivers.dir/rule:
-	cd /home/fred/dev/quadcopter && $(MAKE) -f CMakeFiles/Makefile2 src/c_drivers/CMakeFiles/c_drivers.dir/rule
+	cd /root/quadcopter && $(MAKE) -f CMakeFiles/Makefile2 src/c_drivers/CMakeFiles/c_drivers.dir/rule
 .PHONY : src/c_drivers/CMakeFiles/c_drivers.dir/rule
 
 # Convenience name for target.
@@ -109,39 +109,15 @@ c_drivers: src/c_drivers/CMakeFiles/c_drivers.dir/rule
 
 # fast build rule for target.
 c_drivers/fast:
-	cd /home/fred/dev/quadcopter && $(MAKE) -f src/c_drivers/CMakeFiles/c_drivers.dir/build.make src/c_drivers/CMakeFiles/c_drivers.dir/build
+	cd /root/quadcopter && $(MAKE) -f src/c_drivers/CMakeFiles/c_drivers.dir/build.make src/c_drivers/CMakeFiles/c_drivers.dir/build
 .PHONY : c_drivers/fast
-
-main.o: main.c.o
-.PHONY : main.o
-
-# target to build an object file
-main.c.o:
-	cd /home/fred/dev/quadcopter && $(MAKE) -f src/c_drivers/CMakeFiles/c_drivers.dir/build.make src/c_drivers/CMakeFiles/c_drivers.dir/main.c.o
-.PHONY : main.c.o
-
-main.i: main.c.i
-.PHONY : main.i
-
-# target to preprocess a source file
-main.c.i:
-	cd /home/fred/dev/quadcopter && $(MAKE) -f src/c_drivers/CMakeFiles/c_drivers.dir/build.make src/c_drivers/CMakeFiles/c_drivers.dir/main.c.i
-.PHONY : main.c.i
-
-main.s: main.c.s
-.PHONY : main.s
-
-# target to generate assembly for a file
-main.c.s:
-	cd /home/fred/dev/quadcopter && $(MAKE) -f src/c_drivers/CMakeFiles/c_drivers.dir/build.make src/c_drivers/CMakeFiles/c_drivers.dir/main.c.s
-.PHONY : main.c.s
 
 oled.o: oled.c.o
 .PHONY : oled.o
 
 # target to build an object file
 oled.c.o:
-	cd /home/fred/dev/quadcopter && $(MAKE) -f src/c_drivers/CMakeFiles/c_drivers.dir/build.make src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o
+	cd /root/quadcopter && $(MAKE) -f src/c_drivers/CMakeFiles/c_drivers.dir/build.make src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o
 .PHONY : oled.c.o
 
 oled.i: oled.c.i
@@ -149,7 +125,7 @@ oled.i: oled.c.i
 
 # target to preprocess a source file
 oled.c.i:
-	cd /home/fred/dev/quadcopter && $(MAKE) -f src/c_drivers/CMakeFiles/c_drivers.dir/build.make src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.i
+	cd /root/quadcopter && $(MAKE) -f src/c_drivers/CMakeFiles/c_drivers.dir/build.make src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.i
 .PHONY : oled.c.i
 
 oled.s: oled.c.s
@@ -157,7 +133,7 @@ oled.s: oled.c.s
 
 # target to generate assembly for a file
 oled.c.s:
-	cd /home/fred/dev/quadcopter && $(MAKE) -f src/c_drivers/CMakeFiles/c_drivers.dir/build.make src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.s
+	cd /root/quadcopter && $(MAKE) -f src/c_drivers/CMakeFiles/c_drivers.dir/build.make src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.s
 .PHONY : oled.c.s
 
 pwm.o: pwm.c.o
@@ -165,7 +141,7 @@ pwm.o: pwm.c.o
 
 # target to build an object file
 pwm.c.o:
-	cd /home/fred/dev/quadcopter && $(MAKE) -f src/c_drivers/CMakeFiles/c_drivers.dir/build.make src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.o
+	cd /root/quadcopter && $(MAKE) -f src/c_drivers/CMakeFiles/c_drivers.dir/build.make src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.o
 .PHONY : pwm.c.o
 
 pwm.i: pwm.c.i
@@ -173,7 +149,7 @@ pwm.i: pwm.c.i
 
 # target to preprocess a source file
 pwm.c.i:
-	cd /home/fred/dev/quadcopter && $(MAKE) -f src/c_drivers/CMakeFiles/c_drivers.dir/build.make src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.i
+	cd /root/quadcopter && $(MAKE) -f src/c_drivers/CMakeFiles/c_drivers.dir/build.make src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.i
 .PHONY : pwm.c.i
 
 pwm.s: pwm.c.s
@@ -181,7 +157,7 @@ pwm.s: pwm.c.s
 
 # target to generate assembly for a file
 pwm.c.s:
-	cd /home/fred/dev/quadcopter && $(MAKE) -f src/c_drivers/CMakeFiles/c_drivers.dir/build.make src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.s
+	cd /root/quadcopter && $(MAKE) -f src/c_drivers/CMakeFiles/c_drivers.dir/build.make src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.s
 .PHONY : pwm.c.s
 
 # Help Target
@@ -193,9 +169,6 @@ help:
 	@echo "... c_drivers"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
 	@echo "... oled.o"
 	@echo "... oled.i"
 	@echo "... oled.s"
@@ -213,6 +186,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/fred/dev/quadcopter && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /root/quadcopter && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

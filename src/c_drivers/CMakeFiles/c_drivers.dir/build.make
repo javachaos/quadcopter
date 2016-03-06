@@ -35,10 +35,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/fred/dev/quadcopter
+CMAKE_SOURCE_DIR = /root/quadcopter
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/fred/dev/quadcopter
+CMAKE_BINARY_DIR = /root/quadcopter
 
 # Include any dependencies generated for this target.
 include src/c_drivers/CMakeFiles/c_drivers.dir/depend.make
@@ -51,17 +51,17 @@ include src/c_drivers/CMakeFiles/c_drivers.dir/flags.make
 
 src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o: src/c_drivers/CMakeFiles/c_drivers.dir/flags.make
 src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o: src/c_drivers/oled.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/fred/dev/quadcopter/CMakeFiles $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o"
-	cd /home/fred/dev/quadcopter/src/c_drivers && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/c_drivers.dir/oled.c.o   -c /home/fred/dev/quadcopter/src/c_drivers/oled.c
+	$(CMAKE_COMMAND) -E cmake_progress_report /root/quadcopter/CMakeFiles $(CMAKE_PROGRESS_1)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o"
+	cd /root/quadcopter/src/c_drivers && /usr/bin/g++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/c_drivers.dir/oled.c.o -c /root/quadcopter/src/c_drivers/oled.c
 
 src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/c_drivers.dir/oled.c.i"
-	cd /home/fred/dev/quadcopter/src/c_drivers && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/fred/dev/quadcopter/src/c_drivers/oled.c > CMakeFiles/c_drivers.dir/oled.c.i
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/c_drivers.dir/oled.c.i"
+	cd /root/quadcopter/src/c_drivers && /usr/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -E /root/quadcopter/src/c_drivers/oled.c > CMakeFiles/c_drivers.dir/oled.c.i
 
 src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/c_drivers.dir/oled.c.s"
-	cd /home/fred/dev/quadcopter/src/c_drivers && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/fred/dev/quadcopter/src/c_drivers/oled.c -o CMakeFiles/c_drivers.dir/oled.c.s
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/c_drivers.dir/oled.c.s"
+	cd /root/quadcopter/src/c_drivers && /usr/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -S /root/quadcopter/src/c_drivers/oled.c -o CMakeFiles/c_drivers.dir/oled.c.s
 
 src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o.requires:
 .PHONY : src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o.requires
@@ -74,17 +74,17 @@ src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o.provides.build: src/c_drivers/CM
 
 src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.o: src/c_drivers/CMakeFiles/c_drivers.dir/flags.make
 src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.o: src/c_drivers/pwm.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/fred/dev/quadcopter/CMakeFiles $(CMAKE_PROGRESS_2)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.o"
-	cd /home/fred/dev/quadcopter/src/c_drivers && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/c_drivers.dir/pwm.c.o   -c /home/fred/dev/quadcopter/src/c_drivers/pwm.c
+	$(CMAKE_COMMAND) -E cmake_progress_report /root/quadcopter/CMakeFiles $(CMAKE_PROGRESS_2)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.o"
+	cd /root/quadcopter/src/c_drivers && /usr/bin/g++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/c_drivers.dir/pwm.c.o -c /root/quadcopter/src/c_drivers/pwm.c
 
 src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/c_drivers.dir/pwm.c.i"
-	cd /home/fred/dev/quadcopter/src/c_drivers && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/fred/dev/quadcopter/src/c_drivers/pwm.c > CMakeFiles/c_drivers.dir/pwm.c.i
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/c_drivers.dir/pwm.c.i"
+	cd /root/quadcopter/src/c_drivers && /usr/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -E /root/quadcopter/src/c_drivers/pwm.c > CMakeFiles/c_drivers.dir/pwm.c.i
 
 src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/c_drivers.dir/pwm.c.s"
-	cd /home/fred/dev/quadcopter/src/c_drivers && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/fred/dev/quadcopter/src/c_drivers/pwm.c -o CMakeFiles/c_drivers.dir/pwm.c.s
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/c_drivers.dir/pwm.c.s"
+	cd /root/quadcopter/src/c_drivers && /usr/bin/g++  $(CXX_DEFINES) $(CXX_FLAGS) -S /root/quadcopter/src/c_drivers/pwm.c -o CMakeFiles/c_drivers.dir/pwm.c.s
 
 src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.o.requires:
 .PHONY : src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.o.requires
@@ -95,46 +95,21 @@ src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.o.provides: src/c_drivers/CMakeFile
 
 src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.o.provides.build: src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.o
 
-src/c_drivers/CMakeFiles/c_drivers.dir/main.c.o: src/c_drivers/CMakeFiles/c_drivers.dir/flags.make
-src/c_drivers/CMakeFiles/c_drivers.dir/main.c.o: src/c_drivers/main.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/fred/dev/quadcopter/CMakeFiles $(CMAKE_PROGRESS_3)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object src/c_drivers/CMakeFiles/c_drivers.dir/main.c.o"
-	cd /home/fred/dev/quadcopter/src/c_drivers && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/c_drivers.dir/main.c.o   -c /home/fred/dev/quadcopter/src/c_drivers/main.c
-
-src/c_drivers/CMakeFiles/c_drivers.dir/main.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/c_drivers.dir/main.c.i"
-	cd /home/fred/dev/quadcopter/src/c_drivers && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/fred/dev/quadcopter/src/c_drivers/main.c > CMakeFiles/c_drivers.dir/main.c.i
-
-src/c_drivers/CMakeFiles/c_drivers.dir/main.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/c_drivers.dir/main.c.s"
-	cd /home/fred/dev/quadcopter/src/c_drivers && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/fred/dev/quadcopter/src/c_drivers/main.c -o CMakeFiles/c_drivers.dir/main.c.s
-
-src/c_drivers/CMakeFiles/c_drivers.dir/main.c.o.requires:
-.PHONY : src/c_drivers/CMakeFiles/c_drivers.dir/main.c.o.requires
-
-src/c_drivers/CMakeFiles/c_drivers.dir/main.c.o.provides: src/c_drivers/CMakeFiles/c_drivers.dir/main.c.o.requires
-	$(MAKE) -f src/c_drivers/CMakeFiles/c_drivers.dir/build.make src/c_drivers/CMakeFiles/c_drivers.dir/main.c.o.provides.build
-.PHONY : src/c_drivers/CMakeFiles/c_drivers.dir/main.c.o.provides
-
-src/c_drivers/CMakeFiles/c_drivers.dir/main.c.o.provides.build: src/c_drivers/CMakeFiles/c_drivers.dir/main.c.o
-
 # Object files for target c_drivers
 c_drivers_OBJECTS = \
 "CMakeFiles/c_drivers.dir/oled.c.o" \
-"CMakeFiles/c_drivers.dir/pwm.c.o" \
-"CMakeFiles/c_drivers.dir/main.c.o"
+"CMakeFiles/c_drivers.dir/pwm.c.o"
 
 # External object files for target c_drivers
 c_drivers_EXTERNAL_OBJECTS =
 
 src/c_drivers/libc_drivers.so: src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o
 src/c_drivers/libc_drivers.so: src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.o
-src/c_drivers/libc_drivers.so: src/c_drivers/CMakeFiles/c_drivers.dir/main.c.o
 src/c_drivers/libc_drivers.so: src/c_drivers/CMakeFiles/c_drivers.dir/build.make
-src/c_drivers/libc_drivers.so: /usr/lib/x86_64-linux-gnu/libpython2.7.so
+src/c_drivers/libc_drivers.so: /usr/lib/libpython2.7.so
 src/c_drivers/libc_drivers.so: src/c_drivers/CMakeFiles/c_drivers.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking C shared library libc_drivers.so"
-	cd /home/fred/dev/quadcopter/src/c_drivers && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/c_drivers.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX shared library libc_drivers.so"
+	cd /root/quadcopter/src/c_drivers && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/c_drivers.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 src/c_drivers/CMakeFiles/c_drivers.dir/build: src/c_drivers/libc_drivers.so
@@ -142,14 +117,13 @@ src/c_drivers/CMakeFiles/c_drivers.dir/build: src/c_drivers/libc_drivers.so
 
 src/c_drivers/CMakeFiles/c_drivers.dir/requires: src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o.requires
 src/c_drivers/CMakeFiles/c_drivers.dir/requires: src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.o.requires
-src/c_drivers/CMakeFiles/c_drivers.dir/requires: src/c_drivers/CMakeFiles/c_drivers.dir/main.c.o.requires
 .PHONY : src/c_drivers/CMakeFiles/c_drivers.dir/requires
 
 src/c_drivers/CMakeFiles/c_drivers.dir/clean:
-	cd /home/fred/dev/quadcopter/src/c_drivers && $(CMAKE_COMMAND) -P CMakeFiles/c_drivers.dir/cmake_clean.cmake
+	cd /root/quadcopter/src/c_drivers && $(CMAKE_COMMAND) -P CMakeFiles/c_drivers.dir/cmake_clean.cmake
 .PHONY : src/c_drivers/CMakeFiles/c_drivers.dir/clean
 
 src/c_drivers/CMakeFiles/c_drivers.dir/depend:
-	cd /home/fred/dev/quadcopter && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/fred/dev/quadcopter /home/fred/dev/quadcopter/src/c_drivers /home/fred/dev/quadcopter /home/fred/dev/quadcopter/src/c_drivers /home/fred/dev/quadcopter/src/c_drivers/CMakeFiles/c_drivers.dir/DependInfo.cmake --color=$(COLOR)
+	cd /root/quadcopter && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /root/quadcopter /root/quadcopter/src/c_drivers /root/quadcopter /root/quadcopter/src/c_drivers /root/quadcopter/src/c_drivers/CMakeFiles/c_drivers.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : src/c_drivers/CMakeFiles/c_drivers.dir/depend
 

@@ -14,7 +14,7 @@ CMakeFiles/quadcopter.dir/src/OLED.cpp.o: src/Device.h
 CMakeFiles/quadcopter.dir/src/OLED.cpp.o: src/OLED.cpp
 CMakeFiles/quadcopter.dir/src/OLED.cpp.o: src/OLED.h
 CMakeFiles/quadcopter.dir/src/OLED.cpp.o: src/c_drivers/oled.h
-CMakeFiles/quadcopter.dir/src/OLED.cpp.o: src/Log.h
+CMakeFiles/quadcopter.dir/src/OLED.cpp.o: src/c_drivers/../Log.h
 
 CMakeFiles/quadcopter.dir/src/Quadcopter.cpp.o: src/Agent.h
 CMakeFiles/quadcopter.dir/src/Quadcopter.cpp.o: src/Constants.h

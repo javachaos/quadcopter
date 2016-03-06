@@ -1,5 +1,12 @@
 cmake_minimum_required (VERSION 2.6)
+
+SET(CMAKE_BUILD_TYPE distribution)
+SET(CMAKE_CXX_FLAGS_DISTRIBUTION "-O3")
+SET(CMAKE_C_FLAGS_DISTRIBUTION "-O3")
+SET(CMAKE_CXX_COMPILER "g++")
+
 project (Quadcopter)
+
 
 # The version number.
 set (Quadcopter_VERSION_MAJOR 0)
@@ -16,6 +23,9 @@ include_directories (
 add_subdirectory (src/c_drivers)
 
 file(GLOB SOURCES "src/*.cpp")
+
+set_source_files_properties(${SOURCES} PROPERTIES LANGUAGE CXX )
+
 add_executable (quadcopter ${SOURCES})
 
 target_link_libraries (quadcopter c_drivers)

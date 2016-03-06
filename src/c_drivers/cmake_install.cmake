@@ -1,4 +1,4 @@
-# Install script for directory: /home/fred/dev/quadcopter/src/c_drivers
+# Install script for directory: /root/quadcopter/src/c_drivers
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)

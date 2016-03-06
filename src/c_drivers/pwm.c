@@ -287,7 +287,7 @@ int pwm_start(const char *key, float duty, float freq, int polarity)
     }
 
     // add to list
-    new_pwm = malloc(sizeof(struct pwm_exp));
+    new_pwm = (struct pwm_exp*)malloc(sizeof(struct pwm_exp));
     if (new_pwm == 0) {
         return -1; // out of memory
     }
