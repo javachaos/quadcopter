@@ -22,7 +22,7 @@ void OLED::init() {
 }
 
 void OLED::update(string data) {
-	write(data);
+	OLED::write(data);
 }
 void OLED::write(string data) {
 	write_str(data.c_str());

@@ -6,3 +6,11 @@
 
 #IncludeRegexTransform: 
 
+/root/quadcopter/src/c_drivers/oled.c
+oled.h
+/root/quadcopter/src/c_drivers/oled.h
+
+/root/quadcopter/src/c_drivers/oled.h
+python2.7/Python.h
+/root/quadcopter/src/c_drivers/python2.7/Python.h
+
