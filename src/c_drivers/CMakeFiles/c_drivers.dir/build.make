@@ -131,6 +131,7 @@ src/c_drivers/libc_drivers.so: src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o
 src/c_drivers/libc_drivers.so: src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.o
 src/c_drivers/libc_drivers.so: src/c_drivers/CMakeFiles/c_drivers.dir/main.c.o
 src/c_drivers/libc_drivers.so: src/c_drivers/CMakeFiles/c_drivers.dir/build.make
+src/c_drivers/libc_drivers.so: /usr/lib/x86_64-linux-gnu/libpython2.7.so
 src/c_drivers/libc_drivers.so: src/c_drivers/CMakeFiles/c_drivers.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking C shared library libc_drivers.so"
 	cd /home/fred/dev/quadcopter/src/c_drivers && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/c_drivers.dir/link.txt --verbose=$(VERBOSE)

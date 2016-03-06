@@ -14,7 +14,7 @@ extern "C" {
 #endif
 
 PyObject* module;
-PyObject* create_oled();
+PyObject* create_oled(void);
 extern void write_str(const char* str);
 extern void scroll_text(const char* str);
 

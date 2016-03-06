@@ -29,10 +29,15 @@ SOFTWARE.
 
 Modified By: Fred Laderoute 2016
 */
+
+#include <time.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 int build_path(const char *partial_path, const char *prefix, char *full_path, size_t full_path_len);
+int load_device_tree(const char *name);
+int unload_device_tree(const char *name);
 int pwm_start(const char *key, float duty, float freq, int polarity);
 int pwm_disable(const char *key);
 int pwm_set_frequency(const char *key, float freq);

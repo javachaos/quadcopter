@@ -212,8 +212,8 @@ _ECLIPSE_VERSION:UNINITIALIZED=4.4
 //Value Computed by CMake
 c_drivers_BINARY_DIR:STATIC=/home/fred/dev/quadcopter/src/c_drivers
 
-//Dependencies for target
-c_drivers_LIB_DEPENDS:STATIC=
+//Dependencies for the target
+c_drivers_LIB_DEPENDS:STATIC=general;/usr/lib/x86_64-linux-gnu/libpython2.7.so;
 
 //Value Computed by CMake
 c_drivers_SOURCE_DIR:STATIC=/home/fred/dev/quadcopter/src/c_drivers
@@ -354,7 +354,7 @@ CMAKE_USE_RELATIVE_PATHS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding PythonLibs
-FIND_PACKAGE_MESSAGE_DETAILS_PythonLibs:INTERNAL=[/usr/lib/x86_64-linux-gnu/libpython2.7.so][/usr/include/python2.7;/usr/include/x86_64-linux-gnu/python2.7][v2.7.6()]
+FIND_PACKAGE_MESSAGE_DETAILS_PythonLibs:INTERNAL=[/usr/lib/x86_64-linux-gnu/libpython2.7.so][/usr/include/python2.7;/usr/include/x86_64-linux-gnu/python2.7][v2.7.6(2.7)]
 //ADVANCED property for variable: PYTHON_INCLUDE_DIR
 PYTHON_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PYTHON_INCLUDE_DIR2

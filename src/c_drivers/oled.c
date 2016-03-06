@@ -1,6 +1,6 @@
 #include "oled.h"
 
-PyObject* create_module() {
+PyObject* create_module(void) {
     Py_Initialize();
     PyObject* pName = PyString_FromString("OLED");
     PyObject* pModule = PyImport_Import(pName);
