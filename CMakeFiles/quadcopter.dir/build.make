@@ -156,7 +156,7 @@ quadcopter: CMakeFiles/quadcopter.dir/src/Log.cpp.o
 quadcopter: CMakeFiles/quadcopter.dir/src/Quadcopter.cpp.o
 quadcopter: CMakeFiles/quadcopter.dir/src/Controller.cpp.o
 quadcopter: CMakeFiles/quadcopter.dir/build.make
-quadcopter: src/c_drivers/libc_drivers.a
+quadcopter: src/c_drivers/libc_drivers.so
 quadcopter: CMakeFiles/quadcopter.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable quadcopter"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/quadcopter.dir/link.txt --verbose=$(VERBOSE)

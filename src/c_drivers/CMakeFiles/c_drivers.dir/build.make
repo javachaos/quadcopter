@@ -49,9 +49,32 @@ include src/c_drivers/CMakeFiles/c_drivers.dir/progress.make
 # Include the compile flags for this target's objects.
 include src/c_drivers/CMakeFiles/c_drivers.dir/flags.make
 
+src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o: src/c_drivers/CMakeFiles/c_drivers.dir/flags.make
+src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o: src/c_drivers/oled.c
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/fred/dev/quadcopter/CMakeFiles $(CMAKE_PROGRESS_1)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o"
+	cd /home/fred/dev/quadcopter/src/c_drivers && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/c_drivers.dir/oled.c.o   -c /home/fred/dev/quadcopter/src/c_drivers/oled.c
+
+src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/c_drivers.dir/oled.c.i"
+	cd /home/fred/dev/quadcopter/src/c_drivers && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/fred/dev/quadcopter/src/c_drivers/oled.c > CMakeFiles/c_drivers.dir/oled.c.i
+
+src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/c_drivers.dir/oled.c.s"
+	cd /home/fred/dev/quadcopter/src/c_drivers && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/fred/dev/quadcopter/src/c_drivers/oled.c -o CMakeFiles/c_drivers.dir/oled.c.s
+
+src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o.requires:
+.PHONY : src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o.requires
+
+src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o.provides: src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o.requires
+	$(MAKE) -f src/c_drivers/CMakeFiles/c_drivers.dir/build.make src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o.provides.build
+.PHONY : src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o.provides
+
+src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o.provides.build: src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o
+
 src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.o: src/c_drivers/CMakeFiles/c_drivers.dir/flags.make
 src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.o: src/c_drivers/pwm.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/fred/dev/quadcopter/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/fred/dev/quadcopter/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.o"
 	cd /home/fred/dev/quadcopter/src/c_drivers && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/c_drivers.dir/pwm.c.o   -c /home/fred/dev/quadcopter/src/c_drivers/pwm.c
 
@@ -74,7 +97,7 @@ src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.o.provides.build: src/c_drivers/CMa
 
 src/c_drivers/CMakeFiles/c_drivers.dir/main.c.o: src/c_drivers/CMakeFiles/c_drivers.dir/flags.make
 src/c_drivers/CMakeFiles/c_drivers.dir/main.c.o: src/c_drivers/main.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/fred/dev/quadcopter/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/fred/dev/quadcopter/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object src/c_drivers/CMakeFiles/c_drivers.dir/main.c.o"
 	cd /home/fred/dev/quadcopter/src/c_drivers && /usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/c_drivers.dir/main.c.o   -c /home/fred/dev/quadcopter/src/c_drivers/main.c
 
@@ -97,24 +120,26 @@ src/c_drivers/CMakeFiles/c_drivers.dir/main.c.o.provides.build: src/c_drivers/CM
 
 # Object files for target c_drivers
 c_drivers_OBJECTS = \
+"CMakeFiles/c_drivers.dir/oled.c.o" \
 "CMakeFiles/c_drivers.dir/pwm.c.o" \
 "CMakeFiles/c_drivers.dir/main.c.o"
 
 # External object files for target c_drivers
 c_drivers_EXTERNAL_OBJECTS =
 
-src/c_drivers/libc_drivers.a: src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.o
-src/c_drivers/libc_drivers.a: src/c_drivers/CMakeFiles/c_drivers.dir/main.c.o
-src/c_drivers/libc_drivers.a: src/c_drivers/CMakeFiles/c_drivers.dir/build.make
-src/c_drivers/libc_drivers.a: src/c_drivers/CMakeFiles/c_drivers.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking C static library libc_drivers.a"
-	cd /home/fred/dev/quadcopter/src/c_drivers && $(CMAKE_COMMAND) -P CMakeFiles/c_drivers.dir/cmake_clean_target.cmake
+src/c_drivers/libc_drivers.so: src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o
+src/c_drivers/libc_drivers.so: src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.o
+src/c_drivers/libc_drivers.so: src/c_drivers/CMakeFiles/c_drivers.dir/main.c.o
+src/c_drivers/libc_drivers.so: src/c_drivers/CMakeFiles/c_drivers.dir/build.make
+src/c_drivers/libc_drivers.so: src/c_drivers/CMakeFiles/c_drivers.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking C shared library libc_drivers.so"
 	cd /home/fred/dev/quadcopter/src/c_drivers && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/c_drivers.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-src/c_drivers/CMakeFiles/c_drivers.dir/build: src/c_drivers/libc_drivers.a
+src/c_drivers/CMakeFiles/c_drivers.dir/build: src/c_drivers/libc_drivers.so
 .PHONY : src/c_drivers/CMakeFiles/c_drivers.dir/build
 
+src/c_drivers/CMakeFiles/c_drivers.dir/requires: src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o.requires
 src/c_drivers/CMakeFiles/c_drivers.dir/requires: src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.o.requires
 src/c_drivers/CMakeFiles/c_drivers.dir/requires: src/c_drivers/CMakeFiles/c_drivers.dir/main.c.o.requires
 .PHONY : src/c_drivers/CMakeFiles/c_drivers.dir/requires

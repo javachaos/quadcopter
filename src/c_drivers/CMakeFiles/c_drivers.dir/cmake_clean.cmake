@@ -1,8 +1,9 @@
 FILE(REMOVE_RECURSE
+  "CMakeFiles/c_drivers.dir/oled.c.o"
   "CMakeFiles/c_drivers.dir/pwm.c.o"
   "CMakeFiles/c_drivers.dir/main.c.o"
   "libc_drivers.pdb"
-  "libc_drivers.a"
+  "libc_drivers.so"
 )
 
 # Per-language clean rules from dependency scanning.

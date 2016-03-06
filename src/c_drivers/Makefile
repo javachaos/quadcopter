@@ -136,6 +136,30 @@ main.c.s:
 	cd /home/fred/dev/quadcopter && $(MAKE) -f src/c_drivers/CMakeFiles/c_drivers.dir/build.make src/c_drivers/CMakeFiles/c_drivers.dir/main.c.s
 .PHONY : main.c.s
 
+oled.o: oled.c.o
+.PHONY : oled.o
+
+# target to build an object file
+oled.c.o:
+	cd /home/fred/dev/quadcopter && $(MAKE) -f src/c_drivers/CMakeFiles/c_drivers.dir/build.make src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o
+.PHONY : oled.c.o
+
+oled.i: oled.c.i
+.PHONY : oled.i
+
+# target to preprocess a source file
+oled.c.i:
+	cd /home/fred/dev/quadcopter && $(MAKE) -f src/c_drivers/CMakeFiles/c_drivers.dir/build.make src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.i
+.PHONY : oled.c.i
+
+oled.s: oled.c.s
+.PHONY : oled.s
+
+# target to generate assembly for a file
+oled.c.s:
+	cd /home/fred/dev/quadcopter && $(MAKE) -f src/c_drivers/CMakeFiles/c_drivers.dir/build.make src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.s
+.PHONY : oled.c.s
+
 pwm.o: pwm.c.o
 .PHONY : pwm.o
 
@@ -172,6 +196,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... oled.o"
+	@echo "... oled.i"
+	@echo "... oled.s"
 	@echo "... pwm.o"
 	@echo "... pwm.i"
 	@echo "... pwm.s"

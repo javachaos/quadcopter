@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/fred/dev/quadcopter
 CMakeFiles/quadcopter.dir/all: src/c_drivers/CMakeFiles/c_drivers.dir/all
 	$(MAKE) -f CMakeFiles/quadcopter.dir/build.make CMakeFiles/quadcopter.dir/depend
 	$(MAKE) -f CMakeFiles/quadcopter.dir/build.make CMakeFiles/quadcopter.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/fred/dev/quadcopter/CMakeFiles  3 4 5 6
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/fred/dev/quadcopter/CMakeFiles  4 5 6 7
 	@echo "Built target quadcopter"
 .PHONY : CMakeFiles/quadcopter.dir/all
 
@@ -69,7 +69,7 @@ all: CMakeFiles/quadcopter.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/quadcopter.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fred/dev/quadcopter/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fred/dev/quadcopter/CMakeFiles 7
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/quadcopter.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/fred/dev/quadcopter/CMakeFiles 0
 .PHONY : CMakeFiles/quadcopter.dir/rule
@@ -109,7 +109,7 @@ src/c_drivers/preinstall:
 src/c_drivers/CMakeFiles/c_drivers.dir/all:
 	$(MAKE) -f src/c_drivers/CMakeFiles/c_drivers.dir/build.make src/c_drivers/CMakeFiles/c_drivers.dir/depend
 	$(MAKE) -f src/c_drivers/CMakeFiles/c_drivers.dir/build.make src/c_drivers/CMakeFiles/c_drivers.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/fred/dev/quadcopter/CMakeFiles  1 2
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/fred/dev/quadcopter/CMakeFiles  1 2 3
 	@echo "Built target c_drivers"
 .PHONY : src/c_drivers/CMakeFiles/c_drivers.dir/all
 
@@ -119,7 +119,7 @@ all: src/c_drivers/CMakeFiles/c_drivers.dir/all
 
 # Build rule for subdir invocation for target.
 src/c_drivers/CMakeFiles/c_drivers.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fred/dev/quadcopter/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fred/dev/quadcopter/CMakeFiles 3
 	$(MAKE) -f CMakeFiles/Makefile2 src/c_drivers/CMakeFiles/c_drivers.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/fred/dev/quadcopter/CMakeFiles 0
 .PHONY : src/c_drivers/CMakeFiles/c_drivers.dir/rule
