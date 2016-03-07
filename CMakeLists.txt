@@ -17,7 +17,7 @@ set (Quadcopter_VERSION_PATCH 0)
 set (Quadcopter_VERSION ${Quadcopter_VERSION_MAJOR}.${Quadcopter_VERSION_MINOR}.${Quadcopter_VERSION_PATCH})
 
 SET(SYSTEM_D_LOADER "${PROJECT_SOURCE_DIR}/src/${SERVICE_FILE}")
-SET(SHARED_LIBS "${PROJECT_SOURCE_DIR}/src/c_drivers/libc_drivers.so")
+SET(SHARED_LIBS "${PROJECT_BINARY_DIR}/src/c_drivers/libc_drivers.so")
 SET(LIB_INSTALL_HOME "/usr/local/lib/")
 
 configure_file (
