@@ -128,7 +128,9 @@ int load_device_tree(const char *name)
     fclose(file);
 
     //0.2 second delay
-    nanosleep((struct timespec[]){{0, 200000000}}, NULL);
+    struct timespec ts;
+    ts.tv_nsec = 200000000;
+    nanosleep(&ts, NULL);
 
     return 1;
 }

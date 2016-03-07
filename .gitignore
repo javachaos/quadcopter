@@ -2,6 +2,7 @@
 /Default/src/*
 /Default/Quadcopter
 */CMakeFiles/*
+/build/*
 quadcopter
 Makefile
 CMakeCache.txt
