@@ -19,12 +19,14 @@ public:
     Controller();
 	void update();
 	void addDevice(Device*);
+        void setExit(bool);
 	virtual ~Controller();
 protected:
 	void init();
 	void activate();
 private:
 	vector<Device*> devices;
+        bool isExit;
 };
 }
 #endif /* CONTROLLER_H_ */

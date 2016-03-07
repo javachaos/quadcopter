@@ -8,6 +8,7 @@ SET(PY_INSTALL_HOME "/usr/local/lib/python2.7/dist-packages/")
 SET(SYSCTL "systemctl")
 SET(SERVICE_FILE "quadcopter.service")
 SET(SYSTEM_D_HOME   "/etc/systemd/system/")
+
 project (Quadcopter)
 
 # The version number.
@@ -16,6 +17,7 @@ set (Quadcopter_VERSION_MINOR 1)
 set (Quadcopter_VERSION_PATCH 0)
 set (Quadcopter_VERSION ${Quadcopter_VERSION_MAJOR}.${Quadcopter_VERSION_MINOR}.${Quadcopter_VERSION_PATCH})
 
+#SET(CMAKE_VERBOSE_MAKEFILE 1)
 SET(SYSTEM_D_LOADER "${PROJECT_SOURCE_DIR}/src/${SERVICE_FILE}")
 SET(SHARED_LIBS "${PROJECT_BINARY_DIR}/src/c_drivers/libc_drivers.so")
 SET(LIB_INSTALL_HOME "/usr/local/lib/")

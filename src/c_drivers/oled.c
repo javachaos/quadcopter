@@ -26,8 +26,10 @@ void write_str(const char* str) {
     if (pModule != NULL) {
         pCons = PyObject_GetAttrString(pModule, "OLED");
         pCons = PyObject_CallObject(pCons, NULL);
+        char func[] = "write_str";
+        char string[] = "s";
         /* pFunc is a new reference */
-        PyObject_CallMethod(pCons, "write_str", "s", str);
+        PyObject_CallMethod(pCons, func, string, str);
         Py_DECREF(pCons);
         Py_DECREF(pModule);
     }

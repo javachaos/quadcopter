@@ -40,11 +40,20 @@ void Controller::addDevice(Device *device) {
 }
 
 void Controller::update() {
+
 	for (vector<Device*>::iterator it = devices.begin(); it != devices.end();
 			++it) {
-		(*it)->update("ping");
+                if (!this->isExit) {
+		    (*it)->update("ping");
+                } else {
+                    (*it)->update("EXITED");
+                }
 	}
-        sleep(5);
+        sleep(1);
+}
+
+void Controller::setExit(bool exit) {
+    this->isExit = exit;
 }
 
 Controller::~Controller() {

@@ -115,6 +115,8 @@ int main(int argc, char* argv[]) {
 	while (!term) {
 		controller->update();
 	}
+        controller->setExit(true);
+        controller->update();
 
 	controller->~Controller();
 	closelog();
