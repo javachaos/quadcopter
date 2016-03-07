@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 2.8.9)
 project(c_drivers)
 
-set(CMAKE_C_FLAGS "-fPIC -Wl -c -shared -DDYNAMIC_ANNOTATIONS_ENABLED=1 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -march=armv7 -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -lpthread -ldl -lutil -lm -lpython2.7 -Xlinker -export-dynamic")
+set(CMAKE_C_FLAGS "-fPIC -Wl -c -shared -DDYNAMIC_ANNOTATIONS_ENABLED=1 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -march=armv7 -O2 -pipe -fstack-protector
+-mcpu=cortex-a8 -mfpu=neon -mfloat-abi=hard --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -lpthread -ldl -lutil -lm -lpython2.7 -Xlinker -export-dynamic")
  
 #However, the file(GLOB...) allows for wildcard additions:
 file(GLOB CSOURCES "*.c")

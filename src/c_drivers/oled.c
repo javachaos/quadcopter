@@ -1,31 +1,46 @@
+#include <syslog.h>
 #include "oled.h"
+#include "Constants.h"
 
-PyObject* create_module(void) {
+void init_c(void) {
     Py_Initialize();
-    PyObject* pName = PyString_FromString("oled.py");
-    PyObject* pModule = PyImport_Import(pName);
-    Py_DECREF(pName);
-   return pModule;
+    openlog (DAEMON_NAME, LOG_CONS | LOG_PID | LOG_NDELAY, LOG_LOCAL1);
+    syslog (LOG_NOTICE, "oled.c initailized.");
 }
 
-void close_module(PyObject* module) {
-    Py_XDECREF(module);
+void destroy_c(void) {
     Py_Finalize();
+    closelog();
 }
 
 void write_str(const char* str) {
-    PyObject* module = create_module();
-    PyObject* pStr = PyString_FromString(str);
-    PyObject* clazz = PyObject_GetAttrString(module,"OLED");
-    PyObject_CallObject(clazz, NULL);
-    PyObject* pFunc = PyObject_GetAttrString(clazz,".write_str");
 
-    if (pFunc && PyCallable_Check(pFunc)) {
-        PyObject_CallObject(pFunc, pStr);
+    PyObject *pName, *pModule, *pFunc, *pWrite, *pCons;
+    pName = PyString_FromString("oled");
+
+    /* Error checking of pName left out */
+    pModule = PyImport_Import(pName);
+    Py_DECREF(pName);
+
+    if (pModule != NULL) {
+        pFunc = PyObject_GetAttrString(pModule, "write_str");
+        /* pFunc is a new reference */
+
+        if (pFunc && PyCallable_Check(pFunc)) {
+            PyObject* string = PyString_FromString(str);
+            syslog (LOG_NOTICE, "OLED: %s\n", str);
+            PyObject_CallObject(pFunc, string);
+            Py_DECREF(string);
+        } else {
+            if (PyErr_Occurred())
+                PyErr_Print();
+            syslog (LOG_NOTICE, "Cannot find class OLED.\n");
+        }
+        Py_XDECREF(pFunc);
+        Py_DECREF(pModule);
     }
-    Py_XDECREF(clazz);
-    Py_DECREF(pStr);
-    Py_XDECREF(pFunc);
-    close_module(module);
-    Py_Finalize();
+    else {
+        PyErr_Print();
+        syslog (LOG_NOTICE, "Failed to load OLED.\n");
+    }
 }

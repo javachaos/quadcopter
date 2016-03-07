@@ -1,1 +1,1 @@
-/usr/bin/g++  -fPIC -O3 -gstabs   -shared -Wl,-soname,libc_drivers.so -o libc_drivers.so CMakeFiles/c_drivers.dir/oled.c.o CMakeFiles/c_drivers.dir/pwm.c.o -lpython2.7 
+/usr/bin/g++  -fPIC -O3 -mcpu=cortex-a8 -mfpu=neon -mfloat-abi=hard   -shared -Wl,-soname,libc_drivers.so -o libc_drivers.so CMakeFiles/c_drivers.dir/oled.c.o CMakeFiles/c_drivers.dir/pwm.c.o -lpython2.7 

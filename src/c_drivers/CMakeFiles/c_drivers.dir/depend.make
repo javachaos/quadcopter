@@ -3,6 +3,7 @@
 
 src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o: src/c_drivers/oled.c
 src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o: src/c_drivers/oled.h
+src/c_drivers/CMakeFiles/c_drivers.dir/oled.c.o: src/Constants.h
 
 src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.o: src/c_drivers/pwm.c
 src/c_drivers/CMakeFiles/c_drivers.dir/pwm.c.o: src/c_drivers/pwm.h

@@ -1,0 +1,4 @@
+/usr/sbin/quadcopter
+/usr/local/lib/libc_drivers.so
+/etc/systemd/system/quadcopter.service
+/usr/local/lib/python2.7/dist-packages/oled.py

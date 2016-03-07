@@ -8,8 +8,9 @@
 #include "OLED.h"
 
 #include <iostream>
-#include "../Log.h"
+#include "Log.h"
 #include "c_drivers/oled.h"
+
 using namespace std;
 
 namespace Quadcopter {
@@ -18,17 +19,21 @@ OLED::OLED() : Device("OLED") {
 }
 
 void OLED::init() {
-	clog << kLogNotice << "OLED Device initialized." << endl;
+    clog << kLogNotice << "OLED Device initialized." << endl;
+    init_c();
 }
 
 void OLED::update(string data) {
-	OLED::write(data);
+    clog << kLogNotice << "pong." << endl;
+    OLED::write(data);
 }
+
 void OLED::write(string data) {
-	write_str(data.c_str());
+    write_str(data.c_str());
 }
 
 OLED::~OLED() {
+    destroy_c();
 }
 
 }

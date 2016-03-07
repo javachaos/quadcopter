@@ -13,11 +13,12 @@
 extern "C" {
 #endif
 
-PyObject* module;
-PyObject* create_oled(void);
-extern void write_str(const char* str);
-extern void scroll_text(const char* str);
-
+//PyObject* module;
+//PyObject* create_oled(void);
+void write_str(const char* str);
+//void scroll_text(const char* str);
+void init_c(void);
+void destroy_c(void);
 #ifdef __cplusplus
 }
 #endif

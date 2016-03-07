@@ -34,17 +34,17 @@ void Controller::activate() {
 }
 
 void Controller::addDevice(Device *device) {
-	//Device * t = dynamic_cast<Device *>(d);
+
 	clog << kLogNotice << "Device: " << device->getName() << " added to Controller." << endl;
 	devices.push_back(device);
-
-	//delete (device);
 }
+
 void Controller::update() {
 	for (vector<Device*>::iterator it = devices.begin(); it != devices.end();
 			++it) {
-		(*it)->update("");
+		(*it)->update("ping");
 	}
+        sleep(5);
 }
 
 Controller::~Controller() {

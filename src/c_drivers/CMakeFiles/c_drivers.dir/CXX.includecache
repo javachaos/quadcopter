@@ -7,10 +7,16 @@
 #IncludeRegexTransform: 
 
 /root/quadcopter/src/c_drivers/oled.c
+syslog.h
+-
 oled.h
 /root/quadcopter/src/c_drivers/oled.h
+Constants.h
+/root/quadcopter/src/c_drivers/Constants.h
 
 /root/quadcopter/src/c_drivers/oled.h
 python2.7/Python.h
 /root/quadcopter/src/c_drivers/python2.7/Python.h
+
+src/Constants.h
 

@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import time
 import Adafruit_GPIO.SPI as SPI
 import Adafruit_SSD1306
@@ -86,3 +88,6 @@ class OLED:
       yield chunks
 
 
+if __name__ == "__main__":
+    oled = OLED()
+    oled.write_str("Quadcopter v0.1");

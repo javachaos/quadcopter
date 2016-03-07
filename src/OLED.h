@@ -11,10 +11,10 @@
 #include <string>
 #include "Device.h"
 
-extern "C" void write_str(const char*);
-
 using namespace std;
 namespace Quadcopter {
+
+extern "C" void write_str(const char*);
 
 class OLED : public Device {
 public:
