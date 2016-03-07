@@ -1,7 +1,10 @@
 # exclude everything except directory /src
 /Default/src/*
 /Default/Quadcopter
+*/CMakeFiles/*
 quadcopter
+Makefile
+CMakeCache.txt
 
 #files being edited
 *~
@@ -13,3 +16,6 @@ quadcopter
 *.lss
 *.map
 *.sym
+*.cmake
+*.so
+*.a

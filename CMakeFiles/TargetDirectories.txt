@@ -1,2 +1,0 @@
-/root/quadcopter/src/c_drivers/CMakeFiles/c_drivers.dir
-/root/quadcopter/CMakeFiles/quadcopter.dir
