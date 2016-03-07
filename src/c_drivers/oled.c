@@ -14,7 +14,8 @@ void destroy_c(void) {
 }
 
 void write_str(const char* str) {
-
+    //Py_BEGIN_ALLOW_THREADS
+    PyGILState_STATE state = PyGILState_Ensure();
     PyObject *pName, *pModule, *pFunc, *pWrite, *pCons;
     pName = PyString_FromString("oled");
 
@@ -23,24 +24,17 @@ void write_str(const char* str) {
     Py_DECREF(pName);
 
     if (pModule != NULL) {
-        pFunc = PyObject_GetAttrString(pModule, "write_str");
+        pCons = PyObject_GetAttrString(pModule, "OLED");
+        pCons = PyObject_CallObject(pCons, NULL);
         /* pFunc is a new reference */
-
-        if (pFunc && PyCallable_Check(pFunc)) {
-            PyObject* string = PyString_FromString(str);
-            syslog (LOG_NOTICE, "OLED: %s\n", str);
-            PyObject_CallObject(pFunc, string);
-            Py_DECREF(string);
-        } else {
-            if (PyErr_Occurred())
-                PyErr_Print();
-            syslog (LOG_NOTICE, "Cannot find class OLED.\n");
-        }
-        Py_XDECREF(pFunc);
+        PyObject_CallMethod(pCons, "write_str", "s", str);
+        Py_DECREF(pCons);
         Py_DECREF(pModule);
     }
     else {
         PyErr_Print();
         syslog (LOG_NOTICE, "Failed to load OLED.\n");
     }
+    PyGILState_Release(state);
+    //Py_END_ALLOW_THREADS
 }
