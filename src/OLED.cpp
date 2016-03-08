@@ -24,8 +24,10 @@ void OLED::init() {
 }
 
 void OLED::update(string data) {
-    clog << kLogNotice << "pong." << endl;
-    OLED::write(data);
+    if (data.compare(prev_msg) != 0) {
+        OLED::write(data);
+        prev_msg = data;
+    }
 }
 
 void OLED::write(string data) {

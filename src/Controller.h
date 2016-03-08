@@ -13,12 +13,14 @@
 #include <vector>
 using std::string;
 using std::vector;
+
 namespace Quadcopter {
 class Controller: public Agent {
 public:
     Controller();
 	void update();
 	void addDevice(Device*);
+        Device* getDevice(int devId);
         void setExit(bool);
 	virtual ~Controller();
 protected:

@@ -4,9 +4,9 @@
  *  Created on: Feb 28, 2016
  *      Author: alfred
  */
-
+#include <sstream>
 #include "Controller.h"
-
+#include "QuadcopterConfig.h"
 #include <unistd.h>
 #include <iostream>
 #include <vector>
@@ -21,6 +21,7 @@ namespace Quadcopter {
 
 //Controller Ctor
 Controller::Controller() : Agent("Controller") {
+this->isExit = false;
 }
 
 void Controller::activate() {
@@ -39,17 +40,23 @@ void Controller::addDevice(Device *device) {
 	devices.push_back(device);
 }
 
+Device* Controller::getDevice(int devId) {
+        return devices.at(devId);
+}
+
 void Controller::update() {
 
 	for (vector<Device*>::iterator it = devices.begin(); it != devices.end();
 			++it) {
                 if (!this->isExit) {
-		    (*it)->update("ping");
+                    ostringstream os;
+                    os << "Quadcopter v" << Quadcopter_VERSION_MAJOR << "." << Quadcopter_VERSION_MINOR;
+                    (*it)->update(os.str());
                 } else {
                     (*it)->update("EXITED");
                 }
 	}
-        sleep(1);
+        //sleep(1);
 }
 
 void Controller::setExit(bool exit) {

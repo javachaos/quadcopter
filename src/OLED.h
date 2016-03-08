@@ -24,6 +24,7 @@ public:
 	~OLED();
 private:
 	void write(string data);
+        string prev_msg;
 };
 }
 #endif /* DEVICES_OLED_H_ */
