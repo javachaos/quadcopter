@@ -27,6 +27,7 @@ Modified By: Fred Laderoute 2016
 #include <fcntl.h>
 #include <unistd.h>
 #include <dirent.h>
+#include <time.h>
 #include "pwm.h"
 
 #define KEYLEN 7
@@ -35,6 +36,9 @@ Modified By: Fred Laderoute 2016
 #define DUTY 1
 
 int pwm_initialized = 0;
+
+char ctrl_dir[35];
+char ocp_dir[25];
 
 // pwm exports
 struct pwm_exp

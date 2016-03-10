@@ -43,8 +43,7 @@ int pwm_disable(const char *key);
 int pwm_set_frequency(const char *key, float freq);
 int pwm_set_duty_cycle(const char *key, float duty);
 void pwm_cleanup(void);
-char ctrl_dir[35];
-char ocp_dir[25];
+
 #ifdef __cplusplus
 }
 #endif

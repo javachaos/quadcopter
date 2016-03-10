@@ -1,22 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?fileVersion 5.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage2">
 	<storageModule moduleId="org.eclipse.cdt.core.settings">
-		<cconfiguration id="cdt.managedbuild.toolchain.gnu.base.49095745">
-			<storageModule externalCElementFile="cdt.managedbuild.toolchain.gnu.base.49095745_org.eclipse.cdt.core.settings" id="cdt.managedbuild.toolchain.gnu.base.49095745" name="Default"/>
-			<storageModule externalCElementFile="cdt.managedbuild.toolchain.gnu.base.49095745_cdtBuildSystem" version="4.0.0"/>
-			<storageModule externalCElementFile="cdt.managedbuild.toolchain.gnu.base.49095745_org.eclipse.cdt.core.externalSettings"/>
+		<cconfiguration id="cdt.managedbuild.toolchain.gnu.base.1454740932">
+			<storageModule externalCElementFile="cdt.managedbuild.toolchain.gnu.base.1454740932_org.eclipse.cdt.core.settings" id="cdt.managedbuild.toolchain.gnu.base.1454740932" name="Default"/>
+			<storageModule externalCElementFile="cdt.managedbuild.toolchain.gnu.base.1454740932_cdtBuildSystem" version="4.0.0"/>
+			<storageModule externalCElementFile="cdt.managedbuild.toolchain.gnu.base.1454740932_org.eclipse.cdt.core.externalSettings"/>
 		</cconfiguration>
 	</storageModule>
-	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-		<project id="quadcopter.null.1425837242" name="quadcopter"/>
-	</storageModule>
-	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
-	<storageModule moduleId="refreshScope" versionNumber="2">
-		<configuration configurationName="Default">
-			<resource resourceType="PROJECT" workspacePath="/quadcopter"/>
-		</configuration>
-	</storageModule>
-	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
 	<storageModule moduleId="scannerConfiguration">
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile"/>
 		<profile id="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile">
@@ -89,5 +79,14 @@
 			</profile>
 		</scannerConfigBuildInfo>
 	</storageModule>
-	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="quadcopter.null.636360509" name="quadcopter"/>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Default">
+			<resource resourceType="PROJECT" workspacePath="/quadcopter"/>
+		</configuration>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
 </cproject>

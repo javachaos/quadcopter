@@ -5,24 +5,26 @@
  *      Author: alfred
  */
 
-#include <string>
 
 #ifndef DEVICE_H_
 #define DEVICE_H_
-
+#include <string>
+#include "Blackboard.h"
 using std::string;
 namespace Quadcopter {
 
 class Device {
 	public:
-		Device(string n) : name(n) , isInit(true) {}
+		Device(int id, string n) : name(n) , isInit(true), id(id) {}
 		bool isInitialized() { return isInit; }
 		virtual void init() = 0;
 		string getName() const { return name; }
-		virtual void update(string value) = 0;
+		int getId() const { return id; }
+		virtual void update(Blackboard *bb) = 0;
 		virtual ~Device();
 	private:
 		string name;
+		int id;
 		bool isInit;
 };
 inline Device::~Device() {}

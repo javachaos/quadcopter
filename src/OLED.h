@@ -18,8 +18,8 @@ extern "C" void write_str(const char*);
 
 class OLED : public Device {
 public:
-	OLED();
-	void update(string data);
+	OLED(): Device(ID_OLED, "OLED") {}
+	void update(Blackboard *bb);
 	void init();
 	~OLED();
         void write(string data);

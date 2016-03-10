@@ -15,10 +15,11 @@
 #include <iostream>
 #include <string>
 
+#include "Blackboard.h"
 #include "Constants.h"
 #include "Controller.h"
 #include "OLED.h"
-#include "Log.h"
+#include "Motor.h"
 
 using std::string;
 using std::endl;
@@ -101,23 +102,34 @@ int main(int argc, char* argv[]) {
 	close(STDERR_FILENO);
 
 	create_pidfile();
-	/* Daemon-specific initialization goes here */
-        OLED *oled = new OLED;
-	Controller *controller = new Controller;
+
 	std::signal(SIGINT, signal_handler);
 	std::signal(SIGHUP, signal_handler);
 	std::signal(SIGTERM, signal_handler);
+
+	/* Daemon-specific initialization goes here */
+    OLED *oled = new OLED;
+	Blackboard *bb = Blackboard::Instance();
+	Controller *controller = new Controller(bb);
+    Motor *m1 = new Motor(MOTOR_1);
+    Motor *m2 = new Motor(MOTOR_2);
+    Motor *m3 = new Motor(MOTOR_3);
+    Motor *m4 = new Motor(MOTOR_4);
 	controller->addDevice(oled);
+	controller->addDevice(m1);
+	controller->addDevice(m2);
+	controller->addDevice(m3);
+	controller->addDevice(m4);
 	//TODO add more devices
 	controller->start();
-        oled->write("Controller started.");
+    oled->write("Controller started.");
+    bb->activate();
 	while (!term) {
 		controller->update();
 	}
-        oled->write("System shutting down...");
-        controller->setExit(true);
-        controller->update();
-
+    oled->write("System shutting down...");
+    controller->setExit(true);
+    controller->update();
 	controller->~Controller();
 	closelog();
 	exit(EXIT_SUCCESS);

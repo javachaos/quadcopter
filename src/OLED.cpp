@@ -10,20 +10,19 @@
 #include <iostream>
 #include "Log.h"
 #include "c_drivers/oled.h"
+#include "Constants.h"
 
 using namespace std;
 
 namespace Quadcopter {
-
-OLED::OLED() : Device("OLED") {
-}
 
 void OLED::init() {
     clog << kLogNotice << "OLED Device initialized." << endl;
     init_c();
 }
 
-void OLED::update(string data) {
+void OLED::update(Blackboard *bb) {
+	string data = bb->checkForMessage(getId());
     if (data.compare(prev_msg) != 0) {
         OLED::write(data);
         prev_msg = data;

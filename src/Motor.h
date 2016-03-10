@@ -8,13 +8,25 @@
 #ifndef SRC_MOTOR_H_
 #define SRC_MOTOR_H_
 
+#include <string>
+#include <time.h>
+#include "c_drivers/pwm.h"
+#include "MotorController.h"
+#include "Log.h"
+#include "Constants.h"
+#include "Device.h"
+using std::clog;
+using std::endl;
+using std::string;
+
 namespace Quadcopter {
-class Motor {
+
+class Motor : public Device {
 public:
-	Motor(int initialSpeed = 0);
+	Motor(string pname, int initialSpeed = 0);
 	//Create a motor, with initial speed of 0
 
-	bool Calibrate();
+	void init();
 	//Calibrate this motor, return true if calibration was a success.
 
 	void setSpeed(int speed);
@@ -26,10 +38,15 @@ public:
 	void decreaseSpeed(int stepping);
 	//Decressing the speed of the motor by stepping amount
 
+	void update(Blackboard *bb);
+
 	virtual ~Motor();
 	//De-allocate this motor.
 private:
+	float remap(float x);
+	//Remap x from [4,10] to [0,100]
 	int speed;
+	string pin_name;
 };
 }
 #endif /* SRC_MOTOR_H_ */

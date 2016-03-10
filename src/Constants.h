@@ -7,12 +7,31 @@
 
 #ifndef CONSTANTS_H_
 #define CONSTANTS_H_
+#include <string>
 
+using std::string;
 namespace Quadcopter {
 	#define DAEMON_NAME "quadcopter"
 	#define CWD         "/opt/"      + DAEMON_NAME
 	#define PIDFILE     "/var/run/quadcopter.pid"
 	#define LOCKFILE    "/var/lock/" + DAEMON_NAME
+    #define HIGH_DUTY 10.0
+    #define LOW_DUTY 4.0
+    #define FREQUENCY 50
+    #define POLARITY 0
+    #define MIN_SPEED 1.0
+    #define MAX_SPEED 1000.0
+    #define CALIBRATION_SLEEPTIME 500000000L
+
+    //Device ID's
+    enum DEVICE_ID {
+		 ID_OLED, ID_CONTROLLER, ID_BLACKBOARD, ID_MOTOR, NUM_DEVICES
+    };
+
+    const string MOTOR_1 = "P9_16";
+    const string MOTOR_2 = "P9_42";
+    const string MOTOR_3 = "P8_13";
+    const string MOTOR_4 = "P8_19";
 
 }
 #endif /* CONSTANTS_H_ */

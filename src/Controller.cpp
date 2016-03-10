@@ -21,8 +21,8 @@ using std::vector;
 namespace Quadcopter {
 
 //Controller Ctor
-Controller::Controller() : Agent("Controller") {
-this->isExit = false;
+Controller::Controller(Blackboard *inst) : Agent("Controller"), bb(inst){
+    this->isExit = false;
 }
 
 void Controller::activate() {
@@ -48,11 +48,9 @@ void Controller::update() {
 	for (vector<Device*>::iterator it = devices.begin(); it != devices.end();
 			++it) {
                 if (!this->isExit) {
-                    ostringstream os;
-                    os << "Quadcopter v" << Quadcopter_VERSION_MAJOR << "." << Quadcopter_VERSION_MINOR;
-                    (*it)->update(os.str());
+                    (*it)->update(bb);
                 } else {
-                    (*it)->update("EXITED");
+                    (*it)->update(bb);
                 }
 	}
 }
