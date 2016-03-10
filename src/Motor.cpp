@@ -14,20 +14,19 @@ Motor::Motor(string pname, int initialSpeed) : Device(ID_MOTOR,pname), speed(ini
 }
 
 void Motor::init() {
-	Blackboard::Instance()->addMessage(ID_OLED, getId(), "Starting motor connected at: " + pin_name);
-
+	clog << kLogDebug << "Starting motor connected at: " << pin_name << endl;
 	pwm_start(key, HIGH_DUTY, FREQUENCY, POLARITY);
 	struct timespec ts = {0};
 	ts.tv_sec  = 0;
 	ts.tv_nsec = CALIBRATION_SLEEPTIME;
 	nanosleep(&ts, (struct timespec *)NULL);
 	pwm_set_duty_cycle(key, LOW_DUTY);
-	Blackboard::Instance()->addMessage(ID_OLED, getId(), "Done.");
+	clog << kLogDebug << "Calibration complete for " << pin_name << "." << endl;
 }
 
 void Motor::setSpeed(int speed) {
 	if(speed > MAX_SPEED || speed < MIN_SPEED) {
-		clog << kLogNotice << "Motor speed out of range: " << speed << endl;
+		clog << kLogDebug << "Motor speed out of range: " << speed << endl;
 		return;
 	} else {
 		pwm_set_duty_cycle(key, remap(speed));
@@ -38,7 +37,7 @@ void Motor::increaseSpeed(int stepping) {
 	if(stepping + speed < MAX_SPEED && stepping + speed >= MIN_SPEED) {
 		setSpeed(speed + stepping);
 	} else {
-		clog << kLogNotice << "Attempting to increase speed out of range: " << stepping + speed << endl;
+		clog << kLogDebug << "Attempting to increase speed out of range: " << stepping + speed << endl;
 	}
 }
 
@@ -46,7 +45,7 @@ void Motor::decreaseSpeed(int stepping) {
 	if(speed - stepping < MAX_SPEED && speed - stepping >= MIN_SPEED) {
 		setSpeed(speed - stepping);
 	} else {
-		clog << kLogNotice << "Attempting to decrease speed out of range: " << speed - stepping << endl;
+		clog << kLogDebug << "Attempting to decrease speed out of range: " << speed - stepping << endl;
 	}
 }
 

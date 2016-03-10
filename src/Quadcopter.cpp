@@ -109,7 +109,7 @@ int main(int argc, char* argv[]) {
 
 	/* Daemon-specific initialization goes here */
     OLED *oled = new OLED;
-	Blackboard *bb = Blackboard::Instance();
+	Blackboard *bb = new Blackboard();
 	Controller *controller = new Controller(bb);
     Motor *m1 = new Motor(MOTOR_1);
     Motor *m2 = new Motor(MOTOR_2);

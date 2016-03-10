@@ -13,20 +13,7 @@ using std::string;
 
 namespace Quadcopter {
 
-// Global static pointer used to ensure a single instance of the class.
-Blackboard* Blackboard::m_pInstance = NULL;
-
-/** This function is called to create an instance of the class.
-    Calling the constructor publicly is not allowed. The constructor
-    is private and is only called by this Instance function.
-*/
-
-Blackboard* Blackboard::Instance()
-{
-   if (!m_pInstance)   // Only allow one instance of class to be generated.
-      m_pInstance = new Blackboard;
-
-   return m_pInstance;
+Blackboard::Blackboard() {
 }
 
 void Blackboard::activate() {
@@ -35,7 +22,7 @@ void Blackboard::activate() {
 }
 
 bool Blackboard::addMessage(int recieverId, BBMessage msg) {
-    if(m_pInstance->validateBBM(&msg)) {
+    if(validateBBM(&msg)) {
 		clog << kLogDebug << "DeviceID: " << msg.from << " added msg to blackboard." << endl;
 		clog << kLogDebug << msg.msg << endl;
         blackboard.insert(map<int,BBMessage>::value_type(recieverId, msg));
@@ -46,7 +33,7 @@ bool Blackboard::addMessage(int recieverId, BBMessage msg) {
 
 bool Blackboard::addMessage(int to, int from, string smsg) {
     BBMessage message = { smsg, to, from, time(NULL) };
-    return m_pInstance->addMessage(to, message);
+    return addMessage(to, message);
 }
 
 string Blackboard::checkForMessage(int id) {
@@ -71,7 +58,6 @@ bool Blackboard::validateBBM(BBMessage *bbmsg) {
 }
 
 Blackboard::~Blackboard() {
-    delete(m_pInstance);
 }
 }
 

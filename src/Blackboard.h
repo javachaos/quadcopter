@@ -14,7 +14,7 @@ namespace Quadcopter {
 
 class Blackboard {
 public:
-	static Blackboard* Instance();
+	Blackboard();
 
 	//Define a blackboard message
 	typedef struct {
@@ -24,12 +24,7 @@ public:
 	   time_t timestamp;
 	} BBMessage;
 
-	/**
-	 * Add a message to the blackboard given device id and msg.
-	 */
-	bool addMessage(int recieverId, BBMessage msg);
-
-	/**
+    /**
 	 * Add a message to the black board given two id's and a message.
 	 */
     bool addMessage(int to, int from, string msg);
@@ -42,13 +37,11 @@ public:
 
 	void activate();
 	virtual ~Blackboard();
-private:
+protected:
     bool validateBBM(BBMessage *msg);
+	bool addMessage(int recieverId, BBMessage msg);
+private:
 	multimap<int, BBMessage> blackboard;
-	Blackboard(){};
-	Blackboard(Blackboard const&){};
-	Blackboard& operator=(Blackboard const&){};
-	static Blackboard* m_pInstance;
 };
 }
 #endif /* BLACKBOARD_H_ */
