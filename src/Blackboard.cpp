@@ -37,6 +37,7 @@ void Blackboard::activate() {
 bool Blackboard::addMessage(int recieverId, BBMessage msg) {
     if(m_pInstance->validateBBM(&msg)) {
 		clog << kLogDebug << "DeviceID: " << msg.from << " added msg to blackboard." << endl;
+		clog << kLogDebug << msg.msg << endl;
         blackboard.insert(map<int,BBMessage>::value_type(recieverId, msg));
         return 1;
     }

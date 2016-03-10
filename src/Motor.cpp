@@ -10,17 +10,18 @@
 namespace Quadcopter {
 
 Motor::Motor(string pname, int initialSpeed) : Device(ID_MOTOR,pname), speed(initialSpeed), pin_name(pname) {
-
+	get_pwm_key(pin_name.c_str(), key);
 }
 
 void Motor::init() {
 	Blackboard::Instance()->addMessage(ID_OLED, getId(), "Starting motor connected at: " + pin_name);
-	pwm_start(pin_name.c_str(), HIGH_DUTY, FREQUENCY, POLARITY);
+
+	pwm_start(key, HIGH_DUTY, FREQUENCY, POLARITY);
 	struct timespec ts = {0};
 	ts.tv_sec  = 0;
 	ts.tv_nsec = CALIBRATION_SLEEPTIME;
 	nanosleep(&ts, (struct timespec *)NULL);
-	pwm_set_duty_cycle(pin_name.c_str(), LOW_DUTY);
+	pwm_set_duty_cycle(key, LOW_DUTY);
 	Blackboard::Instance()->addMessage(ID_OLED, getId(), "Done.");
 }
 
@@ -29,7 +30,7 @@ void Motor::setSpeed(int speed) {
 		clog << kLogNotice << "Motor speed out of range: " << speed << endl;
 		return;
 	} else {
-		pwm_set_duty_cycle(pin_name.c_str(), remap(speed));
+		pwm_set_duty_cycle(key, remap(speed));
 	}
 }
 
@@ -58,7 +59,7 @@ float Motor::remap(float x) {
 }
 
 Motor::~Motor() {
-	pwm_disable(pin_name.c_str());
+	pwm_disable(key);
 	pwm_cleanup();
 }
 

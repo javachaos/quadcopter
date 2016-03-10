@@ -47,6 +47,7 @@ private:
 	//Remap x from [4,10] to [0,100]
 	int speed;
 	string pin_name;
+	char key[8];
 };
 }
 #endif /* SRC_MOTOR_H_ */
