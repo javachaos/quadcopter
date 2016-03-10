@@ -39,7 +39,7 @@ public:
 	virtual ~Blackboard();
 protected:
     bool validateBBM(BBMessage *msg);
-	bool addMessage(int recieverId, BBMessage msg);
+	bool addMessage(BBMessage msg);
 private:
 	multimap<int, BBMessage> blackboard;
 };

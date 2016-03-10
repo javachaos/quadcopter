@@ -4,12 +4,14 @@
  *  Created on: Mar 9, 2016
  *      Author: fred
  */
-
+#include <iostream>
+#include <stdlib.h>
 #include "Motor.h"
 #include "Blackboard.h"
+
 namespace Quadcopter {
 
-Motor::Motor(string pname, int initialSpeed) : Device(ID_MOTOR,pname), speed(initialSpeed), pin_name(pname) {
+Motor::Motor(int devId, string pname, int initialSpeed) : Device(devId, pname), speed(initialSpeed), pin_name(pname) {
 	get_pwm_key(pin_name.c_str(), key);
 }
 
@@ -24,7 +26,7 @@ void Motor::init() {
 	clog << kLogDebug << "Calibration complete for " << pin_name << "." << endl;
 }
 
-void Motor::setSpeed(int speed) {
+void Motor::setSpeed(float speed) {
 	if(speed > MAX_SPEED || speed < MIN_SPEED) {
 		clog << kLogDebug << "Motor speed out of range: " << speed << endl;
 		return;
@@ -50,7 +52,8 @@ void Motor::decreaseSpeed(int stepping) {
 }
 
 void Motor::update(Blackboard *bb) {
-//TODO Complete
+	double speed = strtod(bb->checkForMessage(getId()).c_str(), NULL);
+	setSpeed(speed);
 }
 
 float Motor::remap(float x) {

@@ -9,7 +9,7 @@ SET(PY_INSTALL_HOME "/usr/local/lib/python2.7/dist-packages/")
 SET(SYSCTL "systemctl")
 SET(SERVICE_FILE "quadcopter.service")
 SET(SYSTEM_D_HOME   "/etc/systemd/system/")
-
+SET(DEBUG 1)
 project (Quadcopter)
 
 # The version number.

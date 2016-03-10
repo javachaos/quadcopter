@@ -25,7 +25,13 @@ namespace Quadcopter {
 
     //Device ID's
     enum DEVICE_ID {
-		 ID_OLED, ID_CONTROLLER, ID_BLACKBOARD, ID_MOTOR, NUM_DEVICES
+		 ID_OLED, ID_CONTROLLER,
+		 ID_BLACKBOARD,
+		 ID_MOTOR1,
+		 ID_MOTOR2,
+		 ID_MOTOR3,
+		 ID_MOTOR4,
+		 NUM_DEVICES
     };
 
     const string MOTOR_1 = "P9_14";

@@ -1,10 +1,11 @@
 #include <unistd.h>
 #include <iostream>
 #include <stddef.h>
+#include <time.h>
 #include "Log.h"
 #include "Blackboard.h"
 #include "Device.h"
-
+#include "QuadcopterConfig.h"
 using namespace std;
 using std::clog;
 using std::endl;
@@ -20,11 +21,17 @@ void Blackboard::activate() {
 	addMessage(ID_OLED, ID_BLACKBOARD, "Blackboard activated.");
 }
 
-bool Blackboard::addMessage(int recieverId, BBMessage msg) {
+bool Blackboard::addMessage(BBMessage msg) {
     if(validateBBM(&msg)) {
-		clog << kLogDebug << "DeviceID: " << msg.from << " added msg to blackboard." << endl;
+#ifdef DEBUG
+        struct tm * timeinfo;
+        time_t temp = msg.timestamp;
+        time(&temp);
+        timeinfo = localtime(&temp);
+		clog << kLogDebug << "DeviceID: " << msg.from << " added msg to blackboard. At: " << asctime(timeinfo) << endl;
+#endif //DEBUG
 		clog << kLogDebug << msg.msg << endl;
-        blackboard.insert(map<int,BBMessage>::value_type(recieverId, msg));
+        blackboard.insert(map<int,BBMessage>::value_type(msg.to, msg));
         return 1;
     }
     return 0;
@@ -32,7 +39,7 @@ bool Blackboard::addMessage(int recieverId, BBMessage msg) {
 
 bool Blackboard::addMessage(int to, int from, string smsg) {
     BBMessage message = { smsg, to, from, time(NULL) };
-    return addMessage(to, message);
+    return addMessage(message);
 }
 
 string Blackboard::checkForMessage(int id) {

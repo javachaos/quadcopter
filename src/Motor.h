@@ -23,13 +23,13 @@ namespace Quadcopter {
 
 class Motor : public Device {
 public:
-	Motor(string pname, int initialSpeed = 0);
+	Motor(int devId, string pname, int initialSpeed = 0);
 	//Create a motor, with initial speed of 0
 
 	void init();
 	//Calibrate this motor, return true if calibration was a success.
 
-	void setSpeed(int speed);
+	void setSpeed(float speed);
 	//set speed valid range is [0,1000] 0 is full stop
 
 	void increaseSpeed(int stepping);
