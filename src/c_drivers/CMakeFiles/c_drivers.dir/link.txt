@@ -1,0 +1,1 @@
+/usr/bin/g++  -fPIC    -shared -Wl,-soname,libc_drivers.so -o libc_drivers.so CMakeFiles/c_drivers.dir/oled.c.o CMakeFiles/c_drivers.dir/pwm.c.o -lpython2.7 

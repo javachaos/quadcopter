@@ -1,6 +1,7 @@
 cmake_minimum_required (VERSION 2.8.9)
 SET(CMAKE_BUILD_TYPE distribution)
-SET(CMAKE_CXX_FLAGS_DISTRIBUTION "-O3 -mcpu=cortex-a8 -mfpu=neon -mfloat-abi=hard")
+SET(CMAKE_CXX_FLAGS_DISTRIBUTION "-O3 -march=native -mtune=native")
+#-mfpu=neon -mfloat-abi=hard
 SET(CMAKE_C_FLAGS_DISTRIBUTION "-O3")
 SET(CMAKE_CXX_COMPILER "g++")
 SET(INSTALL_HOME "/usr/sbin/")
