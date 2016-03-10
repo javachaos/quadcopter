@@ -22,8 +22,8 @@ public:
 	void update(string data);
 	void init();
 	~OLED();
+        void write(string data);
 private:
-	void write(string data);
         string prev_msg;
 };
 }

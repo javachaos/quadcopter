@@ -35,7 +35,6 @@ void Controller::activate() {
 }
 
 void Controller::addDevice(Device *device) {
-
 	clog << kLogNotice << "Device: " << device->getName() << " added to Controller." << endl;
 	devices.push_back(device);
 }
@@ -45,7 +44,6 @@ Device* Controller::getDevice(int devId) {
 }
 
 void Controller::update() {
-
 	for (vector<Device*>::iterator it = devices.begin(); it != devices.end();
 			++it) {
                 if (!this->isExit) {
@@ -56,7 +54,6 @@ void Controller::update() {
                     (*it)->update("EXITED");
                 }
 	}
-        //sleep(1);
 }
 
 void Controller::setExit(bool exit) {
@@ -64,9 +61,9 @@ void Controller::setExit(bool exit) {
 }
 
 Controller::~Controller() {
-	for (vector<Device*>::iterator it = devices.begin(); it != devices.end();
-			++it) {
-		(*it)->~Device();
-	}
+    for (vector<Device*>::iterator it = devices.begin(); it != devices.end(); ++it) {
+        (*it)->~Device();
+    }
 }
+
 }

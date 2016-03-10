@@ -102,19 +102,19 @@ int main(int argc, char* argv[]) {
 
 	create_pidfile();
 	/* Daemon-specific initialization goes here */
+        OLED *oled = new OLED;
 	Controller *controller = new Controller;
-
 	std::signal(SIGINT, signal_handler);
 	std::signal(SIGHUP, signal_handler);
 	std::signal(SIGTERM, signal_handler);
-
-	Device *oled = new OLED;
 	controller->addDevice(oled);
 	//TODO add more devices
 	controller->start();
+        oled->write("Controller started.");
 	while (!term) {
 		controller->update();
 	}
+        oled->write("System shutting down...");
         controller->setExit(true);
         controller->update();
 
