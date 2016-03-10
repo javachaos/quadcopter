@@ -17,7 +17,6 @@ Blackboard::Blackboard() {
 }
 
 void Blackboard::activate() {
-	clog << kLogNotice << "Blackboard activated." << endl;
 	addMessage(ID_OLED, ID_BLACKBOARD, "Blackboard activated.");
 }
 

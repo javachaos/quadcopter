@@ -3,6 +3,7 @@
 	<name>Quadcopter@quadcopter</name>
 	<comment></comment>
 	<projects>
+		<project>RemoteSystemsTempFiles</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
