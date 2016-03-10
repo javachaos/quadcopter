@@ -3,6 +3,8 @@
 /Default/Quadcopter
 */CMakeFiles/*
 /build/*
+*.make
+*.mark
 quadcopter
 Makefile
 CMakeCache.txt
