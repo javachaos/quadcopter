@@ -108,14 +108,14 @@ int main(int argc, char* argv[]) {
 	std::signal(SIGTERM, signal_handler);
 
 	/* Daemon-specific initialization goes here */
-    OLED *oled = new OLED;
 	Blackboard *bb = new Blackboard();
 	Controller *controller = new Controller(bb);
+    OLED *oled = new OLED;
+	controller->addDevice(oled);
     Motor *m1 = new Motor(ID_MOTOR1, MOTOR_1);
     Motor *m2 = new Motor(ID_MOTOR2, MOTOR_2);
     Motor *m3 = new Motor(ID_MOTOR3, MOTOR_3);
     Motor *m4 = new Motor(ID_MOTOR4, MOTOR_4);
-	controller->addDevice(oled);
 	controller->addDevice(m1);
 	controller->addDevice(m2);
 	controller->addDevice(m3);

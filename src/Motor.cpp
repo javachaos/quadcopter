@@ -28,7 +28,6 @@ void Motor::init() {
 
 void Motor::setSpeed(float speed) {
 	if(speed > MAX_SPEED || speed < MIN_SPEED) {
-		clog << kLogDebug << "Motor speed out of range: " << speed << endl;
 		return;
 	} else {
 		pwm_set_duty_cycle(key, remap(speed));
@@ -38,22 +37,31 @@ void Motor::setSpeed(float speed) {
 void Motor::increaseSpeed(int stepping) {
 	if(stepping + speed < MAX_SPEED && stepping + speed >= MIN_SPEED) {
 		setSpeed(speed + stepping);
-	} else {
-		clog << kLogDebug << "Attempting to increase speed out of range: " << stepping + speed << endl;
 	}
 }
 
 void Motor::decreaseSpeed(int stepping) {
 	if(speed - stepping < MAX_SPEED && speed - stepping >= MIN_SPEED) {
 		setSpeed(speed - stepping);
-	} else {
-		clog << kLogDebug << "Attempting to decrease speed out of range: " << speed - stepping << endl;
 	}
 }
 
 void Motor::update(Blackboard *bb) {
-	double speed = strtod(bb->checkForMessage(getId()).c_str(), NULL);
-	setSpeed(speed);
+	Blackboard::BBMessage msg = bb->checkForMessage(getId());
+	if(msg != NULL) {
+		string str = msg.msg;
+		if (!str.empty()) {
+			double speed = strtod(str.c_str(), NULL);
+			if(speed > 0 && speed < MAX_SPEED) {
+				setSpeed(speed);
+			} else {
+				//Return a message to the sender, Value Out Of Range (VOOR)
+				bb->addMessage(msg.from, getId(), "VOOR");
+			}
+		} else {
+			bb->addMessage(msg.from, getId(), "FAIL");
+		}
+	}
 }
 
 float Motor::remap(float x) {

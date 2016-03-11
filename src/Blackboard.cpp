@@ -42,15 +42,15 @@ bool Blackboard::addMessage(int to, int from, string smsg) {
     return addMessage(message);
 }
 
-string Blackboard::checkForMessage(int id) {
-	BBMessage msg;
+Blackboard::BBMessage Blackboard::checkForMessage(int id) {
+	BBMessage msg = {0};
 	std::multimap<int,BBMessage>::iterator iter;
 	iter = blackboard.find(id);
 	if(iter != blackboard.end()) {
 		blackboard.erase(iter);
 		msg = iter->second;
 	}
-	return msg.msg;
+	return msg;
 }
 
 bool Blackboard::validateBBM(BBMessage *bbmsg) {

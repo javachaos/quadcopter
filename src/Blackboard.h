@@ -33,7 +33,7 @@ public:
      * Returns the first message for device d and returns it
      * then removes the msg from the Blackboard.
      */
-    string checkForMessage(int id);
+    BBMessage checkForMessage(int id);
 
 	void activate();
 	virtual ~Blackboard();
