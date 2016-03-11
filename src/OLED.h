@@ -10,7 +10,7 @@
 
 #include <string>
 #include "Device.h"
-
+#include "Blackboard.h"
 using namespace std;
 namespace Quadcopter {
 

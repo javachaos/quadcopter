@@ -17,12 +17,18 @@ public:
 	Blackboard();
 
 	//Define a blackboard message
-	typedef struct {
+        struct BBMessage {
 	   string msg;
 	   int to;
 	   int from;
 	   time_t timestamp;
-	} BBMessage;
+           bool operator==(const BBMessage& bb) const {
+               return (msg.compare(bb.msg) == 0 && to == bb.to && from == bb.from);
+           }
+           bool operator!=(const BBMessage& bb) const {
+               return !(msg.compare(bb.msg) == 0 || to == bb.to || from == bb.from);
+           }
+	};
 
     /**
 	 * Add a message to the black board given two id's and a message.
@@ -35,11 +41,11 @@ public:
      */
     BBMessage checkForMessage(int id);
 
-	void activate();
-	virtual ~Blackboard();
+    void activate();
+    virtual ~Blackboard();
 protected:
     bool validateBBM(BBMessage *msg);
-	bool addMessage(BBMessage msg);
+    bool addMessage(BBMessage msg);
 private:
 	multimap<int, BBMessage> blackboard;
 };

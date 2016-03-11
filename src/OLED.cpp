@@ -22,10 +22,14 @@ void OLED::init() {
 }
 
 void OLED::update(Blackboard *bb) {
-	string data = bb->checkForMessage(getId());
-    if (data.compare(prev_msg) != 0) {
-        OLED::write(data);
-        prev_msg = data;
+    Blackboard::BBMessage empty;
+    Blackboard::BBMessage data = bb->checkForMessage(getId());
+    if(data == empty) {
+        string datum = data.msg;
+        if (!datum.empty() && datum.compare(prev_msg) != 0) {
+            OLED::write(datum);
+            prev_msg = datum;
+        }
     }
 }
 

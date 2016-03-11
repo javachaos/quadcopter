@@ -37,9 +37,9 @@ namespace Quadcopter {
 
     const int    TCP_SERVER_PORT = 9999;
     const string MOTOR_1 = "P9_14";
-    const string MOTOR_2 = "P9_28";
+    const string MOTOR_2 = "P9_16";
     const string MOTOR_3 = "P8_19";
-    const string MOTOR_4 = "P9_42";
+    const string MOTOR_4 = "P8_13";
 
 }
 #endif /* CONSTANTS_H_ */

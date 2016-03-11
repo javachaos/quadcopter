@@ -323,7 +323,7 @@ int pwm_set_polarity(const char *key, int polarity) {
 
     len = snprintf(buffer, sizeof(buffer), "%d", polarity);
 
-    if(write(pwm->polarity_fd, buffer, len)) {}
+    write(pwm->polarity_fd, buffer, len);
 
     return 0;
 }
@@ -346,7 +346,7 @@ int pwm_set_duty_cycle(const char *key, float duty) {
 
     len = snprintf(buffer, sizeof(buffer), "%lu", pwm->duty);
 
-    if(write(pwm->duty_fd, buffer, len)) {}
+    write(pwm->duty_fd, buffer, len);
 
     return 0;
 }
@@ -522,6 +522,3 @@ void pwm_cleanup(void)
         pwm_disable(exported_pwms->key);
     }
 }
-
-
-

@@ -47,8 +47,9 @@ void Motor::decreaseSpeed(int stepping) {
 }
 
 void Motor::update(Blackboard *bb) {
-	Blackboard::BBMessage msg = bb->checkForMessage(getId());
-	if(msg != NULL) {
+	Blackboard::BBMessage empty;
+        Blackboard::BBMessage msg = bb->checkForMessage(getId());
+	if(msg != empty) {
 		string str = msg.msg;
 		if (!str.empty()) {
 			double speed = strtod(str.c_str(), NULL);
