@@ -8,7 +8,7 @@
 #include <iostream>
 #include <vector>
 #include <sstream>
-
+#include <time.h>
 #include "Controller.h"
 #include "QuadcopterConfig.h"
 #include "Log.h"
@@ -53,6 +53,9 @@ void Controller::update() {
                     (*it)->update(bb);
                 }
 	}
+	struct timespec ts = {0};
+	ts.tv_nsec = 100000;
+	nanosleep(&ts, NULL);
 }
 
 void Controller::setExit(bool exit) {
