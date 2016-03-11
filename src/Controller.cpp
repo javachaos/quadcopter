@@ -8,7 +8,7 @@
 #include <iostream>
 #include <vector>
 #include <sstream>
-#include <time.h>
+//#include <time.h>
 #include "Controller.h"
 #include "QuadcopterConfig.h"
 #include "Log.h"
@@ -37,7 +37,7 @@ void Controller::activate() {
 
 void Controller::addDevice(Device *device) {
 	clog << kLogNotice << "Device: " << device->getName() << " added to Controller." << endl;
-	devices[device->getId()] = device;
+	devices.push_back(device);
 }
 
 Device* Controller::getDevice(int devId) {
@@ -53,9 +53,9 @@ void Controller::update() {
                     (*it)->update(bb);
                 }
 	}
-	struct timespec ts = {0};
-	ts.tv_nsec = 100000;
-	nanosleep(&ts, NULL);
+//	struct timespec ts = {0};
+//	ts.tv_nsec = 100000;
+//	nanosleep(&ts, NULL);
 }
 
 void Controller::setExit(bool exit) {

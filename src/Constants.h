@@ -8,7 +8,7 @@
 #ifndef CONSTANTS_H_
 #define CONSTANTS_H_
 #include <string>
-
+#include "QuadcopterConfig.h"
 using std::string;
 namespace Quadcopter {
 	#define DAEMON_NAME "quadcopter"

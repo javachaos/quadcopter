@@ -8,6 +8,7 @@ PIDFile=/var/run/quadcopter.pid
 WorkingDirectory=/usr/sbin/
 ExecStart=/usr/sbin/quadcopter
 Restart=on-failure
+RestartSec=5s
 LimitNOFILE=10000
 
 [Install]
