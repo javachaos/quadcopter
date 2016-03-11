@@ -37,7 +37,7 @@ void Controller::activate() {
 
 void Controller::addDevice(Device *device) {
 	clog << kLogNotice << "Device: " << device->getName() << " added to Controller." << endl;
-	devices.push_back(device);
+	devices[device->getId()] = device;
 }
 
 Device* Controller::getDevice(int devId) {

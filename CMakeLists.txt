@@ -1,6 +1,10 @@
 cmake_minimum_required (VERSION 2.8.9)
 SET(CMAKE_BUILD_TYPE distribution)
-SET(CMAKE_CXX_FLAGS_DISTRIBUTION "-O3 -march=native -mtune=native")
+IF(${CMAKE_SYSTEM_PROCESSOR} MATCHES "Intel")
+    SET(CMAKE_CXX_FLAGS_DISTRIBUTION "-O3")
+ELSEIF(${CMAKE_SYSTEM_PROCESSOR} MATCHES "ARM")
+    SET(CMAKE_CXX_FLAGS_DISTRIBUTION "-O3 -mfpu=neon -mfloat-abi=hard")
+ENDIF()
 #-mfpu=neon -mfloat-abi=hard
 SET(CMAKE_C_FLAGS_DISTRIBUTION "-O3")
 SET(CMAKE_CXX_COMPILER "g++")
@@ -23,6 +27,8 @@ SET(SYSTEM_D_LOADER "${PROJECT_SOURCE_DIR}/src/${SERVICE_FILE}")
 SET(SHARED_LIBS "${PROJECT_BINARY_DIR}/src/c_drivers/libc_drivers.so")
 SET(LIB_INSTALL_HOME "/usr/local/lib/")
 
+find_package(Boost REQUIRED COMPONENTS system)
+
 configure_file (
   "${PROJECT_SOURCE_DIR}/src/QuadcopterConfig.h.in"
   "${PROJECT_BINARY_DIR}/QuadcopterConfig.h"
@@ -32,8 +38,10 @@ include_directories (
   BEFORE "${PROJECT_SOURCE_DIR}/src/c_drivers"
   AFTER  "${PROJECT_SOURCE_DIR}/src" 
   "${PROJECT_BINARY_DIR}"
+  "${Boost_INCLUDE_DIRS}"
 )
 
+link_directories(${Boost_LIBRARY_DIRS})
 
 
 add_subdirectory (src/c_drivers)
@@ -42,7 +50,7 @@ file(GLOB PY_SOURCES "src/python/*.py")
 set_source_files_properties(${SOURCES} PROPERTIES LANGUAGE CXX )
 add_executable (quadcopter ${SOURCES})
 target_link_libraries (quadcopter c_drivers)
-
+target_link_libraries (quadcopter ${Boost_LIBRARIES})
 set_target_properties(quadcopter PROPERTIES INSTALL_RPATH ${LIB_INSTALL_HOME})
 
 #install (CODE "execute_process(COMMAND \"${SYSCTL} stop ${SERVICE_FILE}\")")

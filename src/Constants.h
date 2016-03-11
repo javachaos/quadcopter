@@ -31,9 +31,11 @@ namespace Quadcopter {
 		 ID_MOTOR2,
 		 ID_MOTOR3,
 		 ID_MOTOR4,
+		 TCP_SERVER,
 		 NUM_DEVICES
     };
 
+    const int    TCP_SERVER_PORT = 9999;
     const string MOTOR_1 = "P9_14";
     const string MOTOR_2 = "P9_28";
     const string MOTOR_3 = "P8_19";

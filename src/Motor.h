@@ -11,7 +11,6 @@
 #include <string>
 #include <time.h>
 #include "c_drivers/pwm.h"
-#include "MotorController.h"
 #include "Log.h"
 #include "Constants.h"
 #include "Device.h"

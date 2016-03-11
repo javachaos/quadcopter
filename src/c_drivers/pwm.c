@@ -304,7 +304,7 @@ int pwm_set_frequency(const char *key, float freq) {
         pwm->period_ns = period_ns;
 
         len = snprintf(buffer, sizeof(buffer), "%lu", period_ns);
-        write(pwm->period_fd, buffer, len);
+        if(write(pwm->period_fd, buffer, len)){}
     }
 
     return 1;
@@ -322,7 +322,8 @@ int pwm_set_polarity(const char *key, int polarity) {
     }
 
     len = snprintf(buffer, sizeof(buffer), "%d", polarity);
-    write(pwm->polarity_fd, buffer, len);
+
+    if(write(pwm->polarity_fd, buffer, len)) {}
 
     return 0;
 }
@@ -344,7 +345,8 @@ int pwm_set_duty_cycle(const char *key, float duty) {
     pwm->duty = (unsigned long)(pwm->period_ns * (duty / 100.0));
 
     len = snprintf(buffer, sizeof(buffer), "%lu", pwm->duty);
-    write(pwm->duty_fd, buffer, len);
+
+    if(write(pwm->duty_fd, buffer, len)) {}
 
     return 0;
 }

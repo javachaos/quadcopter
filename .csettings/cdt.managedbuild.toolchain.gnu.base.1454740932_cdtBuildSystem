@@ -8,6 +8,9 @@
 					<builder arguments="-C ${workspace_loc:/quadcopter}/build -j2" command="make" id="cdt.managedbuild.target.gnu.builder.base.96007423" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" superClass="cdt.managedbuild.target.gnu.builder.base"/>
 					<tool id="cdt.managedbuild.tool.gnu.archiver.base.1878501922" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base"/>
 					<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.base.2061067539" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.base">
+						<option id="gnu.cpp.compiler.option.include.paths.1667252397" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+							<listOptionValue builtIn="false" value="/usr/include/boost"/>
+						</option>
 						<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.632346293" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 					</tool>
 					<tool id="cdt.managedbuild.tool.gnu.c.compiler.base.1722135305" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.base">
