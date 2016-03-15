@@ -47,21 +47,18 @@ void Motor::decreaseSpeed(int stepping) {
 }
 
 void Motor::update(Blackboard *bb) {
-	Blackboard::BBMessage empty;
         Blackboard::BBMessage msg = bb->checkForMessage(getId());
-	if(msg != empty) {
-		string str = msg.msg;
-		if (!str.empty()) {
-			double speed = strtod(str.c_str(), NULL);
-			if(speed > 0 && speed < MAX_SPEED) {
-				setSpeed(speed);
-			} else {
-				//Return a message to the sender, Value Out Of Range (VOOR)
-				bb->addMessage(msg.from, getId(), "VOOR");
-			}
+	string str = msg.msg;
+	if (!str.empty()) {
+		double speed = strtod(str.c_str(), NULL);
+		if(speed > 0 && speed < MAX_SPEED) {
+			setSpeed(speed);
 		} else {
-			bb->addMessage(msg.from, getId(), "FAIL");
+			//Return a message to the sender, Value Out Of Range (VOOR)
+			bb->addMessage(msg.from, getId(), "VOOR");
 		}
+	} else {
+		bb->addMessage(msg.from, getId(), "FAIL");
 	}
 }
 

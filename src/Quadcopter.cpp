@@ -110,26 +110,26 @@ int main(int argc, char* argv[]) {
 	/* Daemon-specific initialization goes here */
 	Blackboard *bb = new Blackboard();
 	Controller *controller = new Controller(bb);
-    OLED *oled = new OLED;
+        OLED *oled = new OLED;
 	controller->addDevice(oled);
-    Motor *m1 = new Motor(ID_MOTOR1, MOTOR_1);
-    Motor *m2 = new Motor(ID_MOTOR2, MOTOR_2);
-    Motor *m3 = new Motor(ID_MOTOR3, MOTOR_3);
-    Motor *m4 = new Motor(ID_MOTOR4, MOTOR_4);
+        Motor *m1 = new Motor(ID_MOTOR1, MOTOR_1);
+        Motor *m2 = new Motor(ID_MOTOR2, MOTOR_2);
+        Motor *m3 = new Motor(ID_MOTOR3, MOTOR_3);
+        Motor *m4 = new Motor(ID_MOTOR4, MOTOR_4);
 	controller->addDevice(m1);
 	controller->addDevice(m2);
 	controller->addDevice(m3);
 	controller->addDevice(m4);
 	//TODO add more devices
 	controller->start();
-    oled->write("Controller started.");
-    bb->activate();
+        oled->write("Controller started.");
+        bb->activate();
 	while (!term) {
 		controller->update();
 	}
-    oled->write("System shutting down...");
-    controller->setExit(true);
-    controller->update();
+        oled->write("System shutting down...");
+        controller->setExit(true);
+        controller->update();
 	controller->~Controller();
 	closelog();
 	exit(EXIT_SUCCESS);

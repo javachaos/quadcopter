@@ -24,6 +24,7 @@ class OLED:
       # RST is Beaglebone Black pin configuration:
       # 128x32 display with hardware I2C:
       self.__disp = Adafruit_SSD1306.SSD1306_128_32(rst=RST)
+      #self.__disp = Adafruit_SSD1306.SSD1306_128_32(rst=RST, i2c_bus=1)
       # Initialize library.
       self.__disp.begin()
       # Clear display.

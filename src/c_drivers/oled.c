@@ -4,8 +4,8 @@
 
 void init_c(void) {
     Py_Initialize();
-    openlog (DAEMON_NAME, LOG_CONS | LOG_PID | LOG_NDELAY, LOG_LOCAL1);
-    syslog (LOG_NOTICE, "oled.c initailized.");
+//    openlog (DAEMON_NAME, LOG_CONS | LOG_PID | LOG_NDELAY, LOG_LOCAL1);
+//    syslog (LOG_NOTICE, "oled.c initailized.");
 }
 
 void destroy_c(void) {

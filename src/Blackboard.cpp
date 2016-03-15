@@ -18,19 +18,17 @@ Blackboard::Blackboard() {
 }
 
 void Blackboard::activate() {
-	addMessage(ID_OLED, ID_BLACKBOARD, "Blackboard activated.");
+    addMessage(ID_OLED, ID_BLACKBOARD, "Blackboard activated.");
 }
 
 bool Blackboard::addMessage(BBMessage msg) {
     if(validateBBM(&msg)) {
-#ifdef DEBUG
         struct tm * timeinfo;
         time_t temp = msg.timestamp;
         time(&temp);
         timeinfo = localtime(&temp);
-		clog << kLogDebug << "DeviceID: " << msg.from << " added msg to blackboard. At: " << asctime(timeinfo) << endl;
-#endif //DEBUG
-		clog << kLogDebug << msg.msg << endl;
+	clog << kLogDebug << "DeviceID: " << msg.from << " added msg to blackboard. At: " << asctime(timeinfo) << endl;
+	clog << kLogDebug << msg.msg << endl;
         blackboard.insert(map<int,BBMessage>::value_type(msg.to, msg));
         return 1;
     }
@@ -43,7 +41,7 @@ bool Blackboard::addMessage(int to, int from, string smsg) {
 }
 
 Blackboard::BBMessage Blackboard::checkForMessage(int id) {
-	BBMessage msg = {0};
+	BBMessage msg;
 	std::multimap<int,BBMessage>::iterator iter;
 	iter = blackboard.find(id);
 	if(iter != blackboard.end()) {
