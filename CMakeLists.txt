@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 2.8.9)
-SET(CMAKE_BUILD_TYPE distribution)
-SET(CMAKE_CXX_COMPILER "g++")
 project (Quadcopter)
+
+SET(CMAKE_BUILD_TYPE distribution)
 
 SET(ARCH ${CMAKE_SYSTEM_PROCESSOR})
 IF(${ARCH} MATCHES "^x86_64$")
@@ -26,7 +26,9 @@ SET(Quadcopter_VERSION_PATCH 0)
 SET(Quadcopter_VERSION ${Quadcopter_VERSION_MAJOR}.${Quadcopter_VERSION_MINOR}.${Quadcopter_VERSION_PATCH})
 SET(DEBUG 1)
 MESSAGE("Arch: " ${ARCH})
+MESSAGE("Using compiler: " ${CMAKE_CXX_COMPILER})
 MESSAGE("Using GCC Options: " ${CMAKE_CXX_FLAGS_DISTRIBUTION})
+
 SET(CMAKE_VERBOSE_MAKEFILE 1)
 SET(SYSTEM_D_LOADER "${PROJECT_SOURCE_DIR}/src/${SERVICE_FILE}")
 SET(SHARED_LIBS "${PROJECT_BINARY_DIR}/src/c_drivers/libc_drivers.so")
@@ -48,7 +50,6 @@ include_directories (
 
 link_directories(${Boost_LIBRARY_DIRS})
 
-
 add_subdirectory (src/c_drivers)
 file(GLOB SOURCES "src/*.cpp")
 file(GLOB PY_SOURCES "src/python/*.py")
@@ -56,7 +57,6 @@ set_source_files_properties(${SOURCES} PROPERTIES LANGUAGE CXX )
 add_executable (quadcopter ${SOURCES})
 target_link_libraries (quadcopter ${Boost_LIBRARIES} c_drivers)
 set_target_properties(quadcopter PROPERTIES INSTALL_RPATH ${LIB_INSTALL_HOME})
-
 
 install (TARGETS quadcopter DESTINATION ${INSTALL_HOME})
 install (FILES ${SHARED_LIBS} DESTINATION ${LIB_INSTALL_HOME})
