@@ -18,47 +18,59 @@ Blackboard::Blackboard() {
 }
 
 void Blackboard::activate() {
-    addMessage(ID_OLED, ID_BLACKBOARD, "Blackboard activated.");
+	addMessage(ID_OLED, ID_BLACKBOARD, "Blackboard activated.");
 }
 
 bool Blackboard::addMessage(BBMessage msg) {
-    if(validateBBM(&msg)) {
-        struct tm * timeinfo;
-        time_t temp = msg.timestamp;
-        time(&temp);
-        timeinfo = localtime(&temp);
-	clog << kLogDebug << "DeviceID: " << msg.from << " added msg to blackboard. At: " << asctime(timeinfo) << endl;
-	clog << kLogDebug << msg.msg << endl;
-        blackboard.insert(map<int,BBMessage>::value_type(msg.to, msg));
-        return 1;
-    }
-    return 0;
+	if (validateBBM(&msg)) {
+		struct tm * timeinfo;
+		time_t temp = msg.timestamp;
+		time(&temp);
+		timeinfo = localtime(&temp);
+		clog << kLogDebug << "DeviceID: " << msg.from
+				<< " added msg to blackboard. At: " << asctime(timeinfo)
+				<< endl;
+		clog << kLogDebug << msg.msg << endl;
+		blackboard.insert(map<int, BBMessage>::value_type(msg.to, msg));
+		return 1;
+	}
+	return 0;
 }
 
 bool Blackboard::addMessage(int to, int from, string smsg) {
-    BBMessage message = { smsg, to, from, time(NULL) };
-    return addMessage(message);
+	BBMessage message = { smsg, to, from, time(NULL) };
+	return addMessage(message);
 }
 
 Blackboard::BBMessage Blackboard::checkForMessage(int id) {
 	BBMessage msg;
-	std::multimap<int,BBMessage>::iterator iter;
+	std::multimap<int, BBMessage>::iterator iter;
 	iter = blackboard.find(id);
-	if(iter != blackboard.end()) {
-		blackboard.erase(iter);
+	if (iter != blackboard.end()) {
 		msg = iter->second;
+		blackboard.erase(iter);
 	}
 	return msg;
 }
 
+void Blackboard::purge() {
+	std::multimap<int, BBMessage>::iterator iter;
+	for (iter = blackboard.begin(); iter != blackboard.end(); ++iter) {
+		blackboard.erase(iter);
+	}
+	clog << kLogNotice << "Blackboard purged." << endl;
+}
+
 bool Blackboard::validateBBM(BBMessage *bbmsg) {
-    if(bbmsg
-    && bbmsg->timestamp > 0
-    && !bbmsg->msg.empty()
-    && bbmsg->msg.length() >= 0) {
-        return true;
-    }
-    return false;
+	if (bbmsg && bbmsg->timestamp > 0 && !bbmsg->msg.empty()
+			&& bbmsg->msg.length() >= 0) {
+		return true;
+	}
+	return false;
+}
+
+int Blackboard::size() {
+	return blackboard.size();
 }
 
 Blackboard::~Blackboard() {

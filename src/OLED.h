@@ -16,15 +16,17 @@ namespace Quadcopter {
 
 extern "C" void write_str(const char*);
 
-class OLED : public Device {
+class OLED: public Device {
 public:
-	OLED(): Device(ID_OLED, "OLED") {}
+	OLED() :
+			Device(ID_OLED, "OLED") {
+	}
 	void update(Blackboard *bb);
-	void init();
+	void init(Blackboard *bb);
 	~OLED();
-        void write(string data);
+	void write(string data);
 private:
-        string prev_msg;
+	string prev_msg;
 };
 }
 #endif /* DEVICES_OLED_H_ */

@@ -17,11 +17,11 @@ using std::vector;
 namespace Quadcopter {
 class Controller: public Agent {
 public:
-    Controller(Blackboard *inst);
+	Controller(Blackboard *inst);
 	void update();
 	void addDevice(Device*);
-    Device* getDevice(int devId);
-    void setExit(bool);
+	Device* getDevice(int devId);
+	void setExit(bool);
 	virtual ~Controller();
 protected:
 	void init();
@@ -29,7 +29,7 @@ protected:
 private:
 	vector<Device*> devices;
 	Blackboard *bb;
-    bool isExit;
+	bool isExit;
 };
 }
 #endif /* CONTROLLER_H_ */

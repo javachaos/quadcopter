@@ -17,35 +17,48 @@ public:
 	Blackboard();
 
 	//Define a blackboard message
-        struct BBMessage {
-	   string msg;
-	   int to;
-	   int from;
-	   time_t timestamp;
-           bool operator==(const BBMessage& bb) const {
-               return (msg.compare(bb.msg) == 0 && to == bb.to && from == bb.from);
-           }
-           bool operator!=(const BBMessage& bb) const {
-               return !(msg.compare(bb.msg) == 0 || to == bb.to || from == bb.from);
-           }
+	struct BBMessage {
+		string msg;
+		int to;
+		int from;
+		double timestamp;
+
+		template<typename Archive>
+		void serialize(Archive& ar, const unsigned int version) {
+			ar & msg;
+			ar & to;
+			ar & from;
+			ar & timestamp;
+		}
 	};
 
-    /**
+	/**
 	 * Add a message to the black board given two id's and a message.
 	 */
-    bool addMessage(int to, int from, string msg);
+	bool addMessage(int to, int from, string msg);
 
-    /**
-     * Returns the first message for device d and returns it
-     * then removes the msg from the Blackboard.
-     */
-    BBMessage checkForMessage(int id);
+	/**
+	 * Returns the first message for device d and returns it
+	 * then removes the msg from the Blackboard.
+	 */
+	BBMessage checkForMessage(int id);
 
-    void activate();
-    virtual ~Blackboard();
+	void activate();
+
+	/**
+	 * Remove all blackboard entries
+	 */
+	void purge();
+
+	/**
+	 * Return the length of this multi map
+	 */
+	int size();
+
+	virtual ~Blackboard();
 protected:
-    bool validateBBM(BBMessage *msg);
-    bool addMessage(BBMessage msg);
+	bool validateBBM(BBMessage *msg);
+	bool addMessage(BBMessage msg);
 private:
 	multimap<int, BBMessage> blackboard;
 };

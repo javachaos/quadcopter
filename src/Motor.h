@@ -20,12 +20,12 @@ using std::string;
 
 namespace Quadcopter {
 
-class Motor : public Device {
+class Motor: public Device {
 public:
 	Motor(int devId, string pname, int initialSpeed = 0);
 	//Create a motor, with initial speed of 0
 
-	void init();
+	void init(Blackboard *bb);
 	//Calibrate this motor, return true if calibration was a success.
 
 	void setSpeed(float speed);

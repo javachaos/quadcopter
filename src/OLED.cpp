@@ -16,28 +16,26 @@ using namespace std;
 
 namespace Quadcopter {
 
-void OLED::init() {
-    clog << kLogNotice << "OLED Device initialized." << endl;
-    init_c();
+void OLED::init(Blackboard *bb) {
+	clog << kLogNotice << "OLED Device initialized." << endl;
+	init_c();
 }
 
 void OLED::update(Blackboard *bb) {
-//    Blackboard::BBMessage empty;
-    Blackboard::BBMessage data = bb->checkForMessage(getId());
-    //while(data = bb->checkForMessage(getId()) != empty) {
-    string datum = data.msg;
-    if (!datum.empty() && datum.compare(prev_msg) != 0) {
-        OLED::write(datum);
-        prev_msg = datum;
-    }
+	Blackboard::BBMessage data = bb->checkForMessage(getId());
+	string datum = data.msg;
+	if (!datum.empty() && datum.compare(prev_msg) != 0) {
+		OLED::write(datum);
+		prev_msg = datum;
+	}
 }
 
 void OLED::write(string data) {
-    write_str(data.c_str());
+	write_str(data.c_str());
 }
 
 OLED::~OLED() {
-    destroy_c();
+	destroy_c();
 }
 
 }
