@@ -51,9 +51,11 @@ void Controller::update() {
                     (*it)->update(bb);
                 } else {
                     (*it)->update(bb);
+                    break;
                 }
 	}
-	struct timespec ts;
+        //Sleep for 2000 microseconds before next update sequence
+        struct timespec ts;
 	ts.tv_nsec = 20000000;
 	nanosleep(&ts, NULL);
 }
