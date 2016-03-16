@@ -37,9 +37,11 @@ Blackboard::BBMessage Communicator::translateLocal(string msg) {
 	return message;
 }
 
-void Communicator::init() {
+void Communicator::init(Blackboard* bb) {
+	bb->addMessage(ID_LOG,ID_COMM,"Starting Communicator Listener.");
 	try {
 		io_service.run();
+		bb->addMessage(ID_LOG,ID_COMM,"Communicator Listening...");
 	} catch (exception& e) {
 		clog << kLogNotice << e.what() << endl;
 		cerr << e.what() << endl;

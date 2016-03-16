@@ -22,7 +22,7 @@ public:
 	}
 	string translateForeign(Blackboard::BBMessage msg);
 	Blackboard::BBMessage translateLocal(string msg);
-	void init();
+	void init(Blackboard* bb);
 	void update(Blackboard *bb);
 	virtual ~Communicator();
 private:
