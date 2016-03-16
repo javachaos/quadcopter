@@ -53,9 +53,9 @@ void Controller::update() {
                     (*it)->update(bb);
                 }
 	}
-//	struct timespec ts = {0};
-//	ts.tv_nsec = 20000000;
-//	nanosleep(&ts, NULL);
+	struct timespec ts;
+	ts.tv_nsec = 20000000;
+	nanosleep(&ts, NULL);
 }
 
 void Controller::setExit(bool exit) {
