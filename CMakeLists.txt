@@ -1,8 +1,8 @@
 cmake_minimum_required (VERSION 2.8.9)
 SET(CMAKE_BUILD_TYPE distribution)
+SET(CMAKE_CXX_COMPILER "g++")
 project (Quadcopter)
 
-SET(CMAKE_CXX_COMPILER "g++")
 SET(ARCH ${CMAKE_SYSTEM_PROCESSOR})
 IF(${ARCH} MATCHES "^x86_64$")
     SET(CMAKE_CXX_FLAGS_DISTRIBUTION "-O3")
