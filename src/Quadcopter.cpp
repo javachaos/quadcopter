@@ -106,13 +106,15 @@ int main(int argc, char* argv[]) {
 	std::signal(SIGINT, signal_handler);
 	std::signal(SIGHUP, signal_handler);
 	std::signal(SIGTERM, signal_handler);
-
+        boost::asio::io_service io_service;
 	/* Daemon-specific initialization goes here */
 	Blackboard *bb = new Blackboard();
 	Controller *controller = new Controller(bb);
 	OLED *oled = new OLED;
 	controller->addDevice(oled);
-	Communicator *comms = new Communicator;
+        TcpServer *srvr = new TcpServer(io_service, TCP_SERVER_PORT);
+//        std::thread t1(&TcpServer::init(), *this, io_service, TCP_SERVER_PORT);
+	Communicator *comms = new Communicator(srvr);
 	controller->addDevice(comms);
 	Motor *m1 = new Motor(ID_MOTOR1, MOTOR_1);
 	Motor *m2 = new Motor(ID_MOTOR2, MOTOR_2);
@@ -132,6 +134,7 @@ int main(int argc, char* argv[]) {
 	oled->write("System shutting down...");
 	controller->setExit(true);
 	controller->update();
+//        t1.join();
 	controller->~Controller();
 	closelog();
 	exit(EXIT_SUCCESS);

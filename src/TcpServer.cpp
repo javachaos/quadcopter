@@ -15,6 +15,9 @@
 #include "TcpConnection.cpp"
 #include "Blackboard.h"
 #include "Device.h"
+#include "Log.h"
+
+using namespace std;
 namespace Quadcopter {
 /// Serves system information to any client that connects to it.
 class TcpServer: Device {
@@ -22,9 +25,14 @@ public:
 	/// Constructor opens the acceptor and starts waiting for the first incoming
 	/// connection.
 	TcpServer(boost::asio::io_service& io_service, unsigned short port) :
-			Device(ID_TCPCLIENT, "TcpServer"), acceptor_(io_service,
-					boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(),
-							port)) {
+                  Device(ID_TCPCLIENT, "TcpServer"), acceptor_(io_service,
+                  boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), port)) {
+            try {
+                io_service.run();
+            } catch (exception& e) {
+                clog << kLogNotice << e.what() << endl;
+                cerr << e.what() << endl;
+            }
 	}
 
 	void init(Blackboard *bb) {

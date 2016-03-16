@@ -10,15 +10,13 @@
 
 #include <string>
 #include "Device.h"
-#include "TcpServer.cpp"
-
+#include "TcpServer.h"
 using Quadcopter::Blackboard;
 namespace Quadcopter {
-class Communicator: public Device {
+class Communicator : public Device {
 public:
-	Communicator() :
-			Device(ID_COMM, "Communicator"), tcpServer(io_service,
-					TCP_SERVER_PORT) {
+	Communicator(TcpServer* tcp) :
+			Device(ID_COMM, "Communicator"), tcpServer(tcp) {
 	}
 	string translateForeign(Blackboard::BBMessage msg);
 	Blackboard::BBMessage translateLocal(string msg);
@@ -26,8 +24,8 @@ public:
 	void update(Blackboard *bb);
 	virtual ~Communicator();
 private:
-	TcpServer tcpServer;
-	boost::asio::io_service io_service;
+	TcpServer* tcpServer;
 };
+
 }
 #endif /* SOURCE_DIRECTORY__COMMUNICATOR_H_ */

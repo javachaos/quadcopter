@@ -6,7 +6,6 @@
  */
 
 #include "Communicator.h"
-#include "Log.h"
 #include "Base64.h"
 using namespace std;
 namespace Quadcopter {
@@ -39,13 +38,6 @@ Blackboard::BBMessage Communicator::translateLocal(string msg) {
 
 void Communicator::init(Blackboard* bb) {
 	bb->addMessage(ID_LOG,ID_COMM,"Starting Communicator Listener.");
-	try {
-		io_service.run();
-		bb->addMessage(ID_LOG,ID_COMM,"Communicator Listening...");
-	} catch (exception& e) {
-		clog << kLogNotice << e.what() << endl;
-		cerr << e.what() << endl;
-	}
 }
 
 void Communicator::update(Blackboard* bb) {
@@ -54,4 +46,5 @@ void Communicator::update(Blackboard* bb) {
 
 Communicator::~Communicator() {
 }
+
 }
