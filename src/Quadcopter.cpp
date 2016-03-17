@@ -120,11 +120,11 @@ int main(int argc, char* argv[]) {
 	oled->write("Controller started.");
 	bb->activate();
 	while (!term) {
+		controller->update();
 		//Sleep for 20000 microseconds before next update sequence
 		struct timespec ts;
-		ts.tv_nsec = 200000000;
+		ts.tv_nsec = 20000000;
 		nanosleep(&ts, NULL);
-		controller->update();
 	}
 	oled->write("System shutting down...");
 	controller->setExit(true);

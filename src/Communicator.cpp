@@ -10,8 +10,9 @@ using namespace std;
 namespace Quadcopter {
 
 void Communicator::init(Blackboard* bb) {
-	bb->addMessage(ID_LOG,ID_COMM,"Starting Communicator Listener.");
+	bb->addMessage(ID_LOG,ID_COMM,"Initializing Communicator Listener.");
 	cinit();
+	bb->addMessage(ID_LOG,ID_COMM,"Communicator Initialized.");
 }
 
 void Communicator::update(Blackboard* bb) {
