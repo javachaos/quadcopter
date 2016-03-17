@@ -22,20 +22,14 @@ public:
 		int to;
 		int from;
 		double timestamp;
-
-		template<typename Archive>
-		void serialize(Archive& ar, const unsigned int version) {
-			ar & msg;
-			ar & to;
-			ar & from;
-			ar & timestamp;
-		}
 	};
 
 	/**
 	 * Add a message to the black board given two id's and a message.
 	 */
 	bool addMessage(int to, int from, string msg);
+
+	bool addMessage(int to, int from, double timestamp, string smsg);
 
 	/**
 	 * Returns the first message for device d and returns it

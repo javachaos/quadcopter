@@ -8,23 +8,26 @@
 #ifndef SOURCE_DIRECTORY__COMMUNICATOR_H_
 #define SOURCE_DIRECTORY__COMMUNICATOR_H_
 
-#include <string>
+#include "Constants.h"
 #include "Device.h"
-#include "TcpServer.h"
-using Quadcopter::Blackboard;
+
 namespace Quadcopter {
+
+extern "C" unsigned char* cupdate(const unsigned char*);
+extern "C" void cinit();
+extern "C" void cclose();
+extern "C" unsigned int pack(unsigned char *buf, char *format, ...);
+extern "C" void unpack(unsigned char *buf, char *format, ...);
+
 class Communicator : public Device {
 public:
-	Communicator(TcpServer* tcp) :
-			Device(ID_COMM, "Communicator"), tcpServer(tcp) {
+	Communicator() :
+			Device(ID_COMM, "Communicator") {
 	}
-	string translateForeign(Blackboard::BBMessage msg);
-	Blackboard::BBMessage translateLocal(string msg);
 	void init(Blackboard* bb);
 	void update(Blackboard *bb);
 	virtual ~Communicator();
 private:
-	TcpServer* tcpServer;
 };
 
 }

@@ -5,7 +5,7 @@
 // Copyright   : LGPLv3
 // Description : Quadcopter service in C++, Ansi-style
 //============================================================================
-
+#include <boost/asio/io_service.hpp>
 #include <sys/stat.h>
 #include <syslog.h>
 #include <unistd.h>
@@ -15,12 +15,13 @@
 #include <iostream>
 #include <string>
 
-#include "Blackboard.h"
-#include "Constants.h"
-#include "Controller.h"
-#include "OLED.h"
-#include "Motor.h"
-#include "Communicator.h"
+#include <Agent.h>
+#include <Blackboard.h>
+#include <Communicator.h>
+#include <Constants.h>
+#include <Controller.h>
+#include <Motor.h>
+#include <OLED.h>
 
 using std::string;
 using std::endl;
@@ -112,9 +113,7 @@ int main(int argc, char* argv[]) {
 	Controller *controller = new Controller(bb);
 	OLED *oled = new OLED;
 	controller->addDevice(oled);
-        TcpServer *srvr = new TcpServer(io_service, TCP_SERVER_PORT);
-//        std::thread t1(&TcpServer::init(), *this, io_service, TCP_SERVER_PORT);
-	Communicator *comms = new Communicator(srvr);
+	Communicator *comms = new Communicator;
 	controller->addDevice(comms);
 	Motor *m1 = new Motor(ID_MOTOR1, MOTOR_1);
 	Motor *m2 = new Motor(ID_MOTOR2, MOTOR_2);
@@ -134,7 +133,6 @@ int main(int argc, char* argv[]) {
 	oled->write("System shutting down...");
 	controller->setExit(true);
 	controller->update();
-//        t1.join();
 	controller->~Controller();
 	closelog();
 	exit(EXIT_SUCCESS);

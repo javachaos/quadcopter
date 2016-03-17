@@ -34,7 +34,7 @@ SET(SYSTEM_D_LOADER "${PROJECT_SOURCE_DIR}/${SERVICE_FILE}")
 SET(SHARED_LIBS "${PROJECT_BINARY_DIR}/c_drivers/libc_drivers.so")
 SET(LIB_INSTALL_HOME "/usr/local/lib/")
 
-find_package(Boost REQUIRED COMPONENTS system serialization)
+find_package(Boost 1.54.0 REQUIRED COMPONENTS system serialization)
 
 configure_file (
   "${PROJECT_SOURCE_DIR}/QuadcopterConfig.h.in"
