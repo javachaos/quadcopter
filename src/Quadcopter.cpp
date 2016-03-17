@@ -1,11 +1,5 @@
 //============================================================================
 // Name        : Quadcopter.cpp
-// Author      : Alfred Laderoute
-// Version     : v0.1
-// Copyright   : LGPLv3
-// Description : Quadcopter service in C++, Ansi-style
-//============================================================================
-#include <boost/asio/io_service.hpp>
 #include <sys/stat.h>
 #include <syslog.h>
 #include <unistd.h>
@@ -128,6 +122,10 @@ int main(int argc, char* argv[]) {
 	oled->write("Controller started.");
 	bb->activate();
 	while (!term) {
+		//Sleep for 20000 microseconds before next update sequence
+		struct timespec ts;
+		ts.tv_nsec = 200000000;
+		nanosleep(&ts, NULL);
 		controller->update();
 	}
 	oled->write("System shutting down...");

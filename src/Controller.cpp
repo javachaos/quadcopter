@@ -56,10 +56,6 @@ void Controller::update() {
 			break;
 		}
 	}
-	//Sleep for 2000 microseconds before next update sequence
-	struct timespec ts;
-	ts.tv_nsec = 20000000;
-	nanosleep(&ts, NULL);
 
 	//Purge the blackboard if it gets too large.
 	if (bb->size() > MAX_BLACKBOARD_LENGTH) {
