@@ -1,5 +1,3 @@
-//============================================================================
-// Name        : Quadcopter.cpp
 #include <sys/stat.h>
 #include <syslog.h>
 #include <unistd.h>
@@ -101,7 +99,7 @@ int main(int argc, char* argv[]) {
 	std::signal(SIGINT, signal_handler);
 	std::signal(SIGHUP, signal_handler);
 	std::signal(SIGTERM, signal_handler);
-        boost::asio::io_service io_service;
+
 	/* Daemon-specific initialization goes here */
 	Blackboard *bb = new Blackboard();
 	Controller *controller = new Controller(bb);
