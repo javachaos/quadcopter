@@ -19,10 +19,6 @@ Motor::Motor(int devId, string pname, int initialSpeed) :
 void Motor::init(Blackboard *bb) {
 	clog << kLogDebug << "Starting motor connected at: " << pin_name << endl;
 	pwm_start(key, HIGH_DUTY, FREQUENCY, POLARITY);
-	struct timespec ts = { 0 };
-	ts.tv_sec = 0;
-	ts.tv_nsec = CALIBRATION_SLEEPTIME;
-	nanosleep(&ts, (struct timespec *) NULL);
 	pwm_set_duty_cycle(key, LOW_DUTY);
 	clog << kLogDebug << "Calibration complete for " << pin_name << "." << endl;
 }
