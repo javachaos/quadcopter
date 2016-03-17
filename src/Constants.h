@@ -44,6 +44,7 @@ const string MOTOR_1 = "P9_14";
 const string MOTOR_2 = "P9_16";
 const string MOTOR_3 = "P8_19";
 const string MOTOR_4 = "P8_13";
+const int COMM_MSG_LENGTH = 256;
 
 }
 #endif /* CONSTANTS_H_ */
