@@ -34,12 +34,11 @@ enum DEVICE_ID {
 	ID_MOTOR3,
 	ID_MOTOR4,
 	ID_COMM,
-	ID_TCPCLIENT,
+	ID_CLIENT,
 	ID_LOG,
 	NUM_DEVICES
 };
 
-const int TCP_SERVER_PORT = 9999;
 const string MOTOR_1 = "P9_14";
 const string MOTOR_2 = "P9_16";
 const string MOTOR_3 = "P8_19";

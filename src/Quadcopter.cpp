@@ -106,7 +106,7 @@ int main(int argc, char* argv[]) {
 	OLED *oled = new OLED;
 	controller->addDevice(oled);
 	Communicator *comms = new Communicator;
-	controller->addDevice(comms);
+
 	Motor *m1 = new Motor(ID_MOTOR1, MOTOR_1);
 	Motor *m2 = new Motor(ID_MOTOR2, MOTOR_2);
 	Motor *m3 = new Motor(ID_MOTOR3, MOTOR_3);
@@ -115,16 +115,16 @@ int main(int argc, char* argv[]) {
 	controller->addDevice(m2);
 	controller->addDevice(m3);
 	controller->addDevice(m4);
-
+        controller->addDevice(comms);
 	controller->start();
 	oled->write("Controller started.");
 	bb->activate();
 	while (!term) {
 		controller->update();
 		//Sleep for 20000 microseconds before next update sequence
-		struct timespec ts;
-		ts.tv_nsec = 20000000;
-		nanosleep(&ts, NULL);
+		//struct timespec ts;
+		//ts.tv_nsec = 20000000;
+		//nanosleep(&ts, NULL);
 	}
 	oled->write("System shutting down...");
 	controller->setExit(true);

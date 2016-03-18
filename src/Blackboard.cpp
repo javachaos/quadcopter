@@ -22,18 +22,12 @@ void Blackboard::activate() {
 }
 
 bool Blackboard::addMessage(BBMessage msg) {
+
 	if (validateBBM(&msg)) {
-		struct tm * timeinfo;
-		time_t temp = msg.timestamp;
-		time(&temp);
-		timeinfo = localtime(&temp);
-		clog << kLogDebug << "DeviceID: " << msg.from
-				<< " added msg to blackboard. At: " << asctime(timeinfo)
-				<< endl;
-		clog << kLogDebug << msg.msg << endl;
-		blackboard.insert(map<int, BBMessage>::value_type(msg.to, msg));
-		return 1;
+            blackboard.insert(map<int, BBMessage>::value_type(msg.to, msg));
+            return 1;
 	}
+
 	return 0;
 }
 
@@ -43,7 +37,7 @@ bool Blackboard::addMessage(int to, int from, string smsg) {
 	double seconds;
 
 	y2k.tm_hour = 0;   y2k.tm_min = 0; y2k.tm_sec = 0;
-    y2k.tm_year = 100; y2k.tm_mon = 0; y2k.tm_mday = 1;
+        y2k.tm_year = 100; y2k.tm_mon = 0; y2k.tm_mday = 1;
 	time(&timer);  /* get current time; same as: timer = time(NULL)  */
 
 	seconds = difftime(timer,mktime(&y2k));
@@ -88,6 +82,7 @@ int Blackboard::size() {
 }
 
 Blackboard::~Blackboard() {
+    Blackboard::purge();
 }
 }
 

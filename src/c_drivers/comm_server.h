@@ -11,36 +11,34 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <unistd.h>
+#include <errno.h>
+#include <string.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
-#include <arpa/inet.h>
 #include <netdb.h>
-#define PORT "9034"   // port we're listening on
+#include <arpa/inet.h>
+#include <sys/wait.h>
+#include <signal.h>
+#include <fcntl.h>
 
-fd_set master;    // master file descriptor list
-fd_set read_fds;  // temp file descriptor list for select()
-int fdmax;        // maximum file descriptor number
+#define PORT "22200"
+#define DAEMON_NAME "quadcopter"
+#define BACKLOG 10
 
-int listener;     // listening socket descriptor
-int newfd;        // newly accept()ed socket descriptor
-struct sockaddr_storage remoteaddr; // client address
-socklen_t addrlen;
-
-unsigned char buf[256];    // buffer for client data
-int nbytes;
-
-char remoteIP[INET6_ADDRSTRLEN];
-
-int yes=1;        // for setsockopt() SO_REUSEADDR, below
-int i, j, rv;
-struct timeval timeout;
-struct addrinfo hints, *ai, *p;
-unsigned char* cupdate(const unsigned char* data);
+int sockfd, new_fd;  // listen on sock_fd, new connection on new_fd
+struct addrinfo hints, *servinfo, *p;
+struct sockaddr_storage their_addr; // connector's address information
+socklen_t sin_size;
+struct sigaction sa;
+int yes=1;
+char s[INET6_ADDRSTRLEN];
+int rv;
+char* cupdate(const char* data);
 void cinit();
 void cclose();
 

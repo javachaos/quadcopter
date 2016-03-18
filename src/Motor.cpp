@@ -21,6 +21,7 @@ void Motor::init(Blackboard *bb) {
 	pwm_start(key, HIGH_DUTY, FREQUENCY, POLARITY);
 	pwm_set_duty_cycle(key, LOW_DUTY);
 	clog << kLogDebug << "Calibration complete for " << pin_name << "." << endl;
+        sleep(1);
 }
 
 void Motor::setSpeed(float speed) {
@@ -54,8 +55,6 @@ void Motor::update(Blackboard *bb) {
 			//Return a message to the sender, Value Out Of Range (VOOR)
 			bb->addMessage(msg.from, getId(), "VOOR");
 		}
-	} else {
-		bb->addMessage(msg.from, getId(), "FAIL");
 	}
 }
 

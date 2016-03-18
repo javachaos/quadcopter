@@ -13,11 +13,10 @@
 
 namespace Quadcopter {
 
-extern "C" unsigned char* cupdate(const unsigned char*);
+extern "C" char* cupdate(const char*);
 extern "C" void cinit();
 extern "C" void cclose();
-extern "C" unsigned int pack(unsigned char *buf, char *format, ...);
-extern "C" void unpack(unsigned char *buf, char *format, ...);
+
 
 class Communicator : public Device {
 public:
