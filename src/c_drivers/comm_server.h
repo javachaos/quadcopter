@@ -25,6 +25,7 @@ extern "C" {
 #include <sys/wait.h>
 #include <signal.h>
 #include <fcntl.h>
+#include "parse.h"
 
 #define PORT "22200"
 #define DAEMON_NAME "quadcopter"

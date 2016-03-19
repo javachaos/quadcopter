@@ -71,11 +71,6 @@ void cinit() {
     syslog(LOG_NOTICE, "COMM_SERVER: waiting for connections...\n");
 }
 
-//Ensure string is a valid string.
-char* parse(char* s) {
-    return s;//TODO Complete
-}
-
 char* cupdate(const char* d) {
 
     read_fd_set = active_fd_set;

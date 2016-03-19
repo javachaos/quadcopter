@@ -2,15 +2,17 @@
 #define PARSE_H_
 
 #include <stdio.h>
+#include <string.h>
 
-typedef enum { false, true } bool;
-/* bool type used for boolean operations */
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 const char COLON = ':';
-const char NL = '\n';
+const char NL    = '\n';
 const char SPACE = ' ';
-const char PER = '.';
-const char EOL = '\0';
+const char PER   = '.';
+const char EOL   = '\0';
 
 /**
  * Parse a string and ensure it is
@@ -20,4 +22,7 @@ const char EOL = '\0';
  */
 char* parse(char* s);
 
+#ifdef __cplusplus
+}
+#endif
 #endif
