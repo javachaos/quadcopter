@@ -7,15 +7,6 @@
 #include <comm_server.h>
 #include <syslog.h>
 
-void sigchld_handler(int s)
-{
-    // waitpid() might overwrite errno, so we save and restore it:
-    int saved_errno = errno;
-    while(waitpid(-1, NULL, WNOHANG) > 0);
-    errno = saved_errno;
-}
-
-
 // get sockaddr, IPv4 or IPv6:
 void *get_in_addr(struct sockaddr *sa)
 {
@@ -72,41 +63,87 @@ void cinit() {
         return;
     }
 
-//    sa.sa_handler = sigchld_handler; // reap all dead processes
-//    sigemptyset(&sa.sa_mask);
-//    sa.sa_flags = SA_RESTART;
-//    if (sigaction(SIGCHLD, &sa, NULL) == -1) {
-//        perror("sigaction");
-//        syslog(LOG_NOTICE, "COMM_SERVER: stop signal recieved.\n");
-//        return;
-//    }
+    /* Initialize the set of active sockets. */
+    FD_ZERO (&active_fd_set);
+    FD_SET (sockfd, &active_fd_set);
+    fdmax = sockfd;
     fcntl(sockfd, F_SETFL, O_NONBLOCK);
     syslog(LOG_NOTICE, "COMM_SERVER: waiting for connections...\n");
 }
 
+//Ensure string is a valid string.
+char* parse(char* s) {
+    return s;//TODO Complete
+}
+
 char* cupdate(const char* d) {
 
-    sin_size = sizeof their_addr;
-    new_fd = accept(sockfd, (struct sockaddr *)&their_addr, &sin_size);
-    if (new_fd == -1) {
-        perror("accept");
-        return 0;
+    read_fd_set = active_fd_set;
+    if (select (fdmax+1, &read_fd_set, NULL, NULL, &tv) < 0) {
+      perror ("select");
+      return 0;
     }
 
-    inet_ntop(their_addr.ss_family,
-        get_in_addr((struct sockaddr *)&their_addr),
-        s, sizeof s);
-    syslog(LOG_NOTICE, "COMM_SERVER: new connection from %s.\n", s);
-    send(new_fd, d, sizeof d, MSG_DONTWAIT);
-    //if (!fork()) { // this is the child process
-    //    if (send(new_fd, "Quadcopter Responce...", 13, 0) == -1) {
-    //        perror("send");
-    //        syslog(LOG_NOTICE, "COMM_SERVER: failed to Send.\n");
-    //    }
-    //    close(new_fd);
-    //    exit(0);
-    //}
-    close(new_fd);
+    char sbuf[MAX_MSG_LENGTH];
+    int MSG_LEN = strlen(d)+1;
+
+    memcpy(sbuf, d, MSG_LEN);//Copy data to send to clients into send buffer.
+    if(sbuf[MSG_LEN] != '\0') {//Add null terminator if it's not there.
+        sbuf[MSG_LEN] = '\0';
+    }
+    char rbuf[MAX_MSG_LENGTH];//Initialize recieve buffer.
+    int i;
+    for(i = 0; i <= fdmax; i++) {
+        if (FD_ISSET(i, &read_fd_set)) { // we got one!!
+            if (i == sockfd) {//Listen socket, add new fd to active fd set
+                sin_size = sizeof their_addr;
+                new_fd = accept(sockfd, (struct sockaddr *)&their_addr, &sin_size);
+                fcntl(new_fd, F_SETFL, O_NONBLOCK);
+                if (new_fd == -1) {
+                    perror("accept");
+                    continue;
+                } else {
+                    FD_SET(new_fd, &active_fd_set); // add to the active fd set
+                    if (new_fd > fdmax) {    // keep track of the max
+                        fdmax = new_fd;
+                    }
+                    syslog(LOG_NOTICE, "COMM_SERVER: new connection from %s on "
+                        "socket %d\n",
+                    inet_ntop(their_addr.ss_family,get_in_addr((struct sockaddr*)&their_addr),s, sizeof s),
+                    new_fd);
+                }
+            } else {//Handle client data from active socket.
+                int nbytes;
+                if ((nbytes = recv(i, rbuf, sizeof rbuf, 0)) <= 0) {
+                    // got error or connection closed by client
+                    if (nbytes == 0) {
+                        // connection closed
+                        syslog(LOG_NOTICE, "COMM_SERVER: socket %d hung up.\n", i);
+                    } else {
+                        perror("recv");
+                    }
+                    close(i);
+                    FD_CLR(i, &active_fd_set); // remove from active fd set
+                } else {
+                    syslog(LOG_NOTICE, "COMM_SERVER: recieved &d bytes from socket %d.\n", nbytes, i);
+                    // we got some data from a client
+                    int j;
+                    for(j = 0; j <= fdmax; j++) {
+                        // send data to all active fd's
+                        if (FD_ISSET(j, &active_fd_set)) {
+                            // except the listener and ourselves
+                            if (j != sockfd && j != i) {
+                                if (send(j, sbuf, sizeof sbuf, 0) == -1) {
+                                    perror("send");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return parse(rbuf);
 }
 
 void cclose() {

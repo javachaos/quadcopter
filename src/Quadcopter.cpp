@@ -119,12 +119,19 @@ int main(int argc, char* argv[]) {
 	controller->start();
 	oled->write("Controller started.");
 	bb->activate();
+        int heartbeat = 10000;
+        int h = 0;
 	while (!term) {
 		controller->update();
-		//Sleep for 20000 microseconds before next update sequence
-		//struct timespec ts;
-		//ts.tv_nsec = 20000000;
-		//nanosleep(&ts, NULL);
+                if(--heartbeat == 0) {
+                    heartbeat = 10000;
+                    clog << kLogNotice << "Heartbeat " << ++h << endl;
+                }
+		//Sleep for 2000 microseconds before next update sequence
+		struct timespec ts;
+                ts.tv_sec = 0;
+		ts.tv_nsec = 2000000;
+		nanosleep(&ts, NULL);
 	}
 	oled->write("System shutting down...");
 	controller->setExit(true);

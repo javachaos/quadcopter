@@ -5,11 +5,11 @@ SET(CMAKE_BUILD_TYPE distribution)
 
 SET(ARCH ${CMAKE_SYSTEM_PROCESSOR})
 IF(${ARCH} MATCHES "^x86_64$")
-    SET(CMAKE_CXX_FLAGS_DISTRIBUTION "-g")
+    SET(CMAKE_CXX_FLAGS_DISTRIBUTION "-g -std=c++0x")
     SET(CMAKE_C_FLAGS_DISTRIBUTION "-g")
 ENDIF(${ARCH} MATCHES "^x86_64$")
 IF(${ARCH} MATCHES "^armv7l$")
-    SET(CMAKE_CXX_FLAGS_DISTRIBUTION "-g -mfpu=neon -mfloat-abi=hard")
+    SET(CMAKE_CXX_FLAGS_DISTRIBUTION "-g -std=c++0x -mfpu=neon -mfloat-abi=hard")
     SET(CMAKE_C_FLAGS_DISTRIBUTION "-g -mfpu=neon -mfloat-abi=hard")
 ENDIF(${ARCH} MATCHES "^armv7l$")
 

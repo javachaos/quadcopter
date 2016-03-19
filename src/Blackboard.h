@@ -1,6 +1,8 @@
 #ifndef BLACKBOARD_H_
 #define BLACKBOARD_H_
-#include <string.h>
+#include <iostream>
+#include <string>
+#include <sstream>
 #include <map>
 #include <utility>
 #include <time.h>
@@ -10,7 +12,7 @@
 
 using std::string;
 using std::multimap;
-
+using std::ostringstream;
 namespace Quadcopter {
 
 class Blackboard {
@@ -23,6 +25,11 @@ public:
 		int to;
 		int from;
 		double timestamp;
+                string toStr() {
+                    ostringstream os;
+                    os << to << ":" << from << ":" << timestamp << ":" << msg;
+                    return os.str();
+                }
 	};
 
 	/**

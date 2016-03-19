@@ -28,14 +28,19 @@ extern "C" {
 
 #define PORT "22200"
 #define DAEMON_NAME "quadcopter"
-#define BACKLOG 10
-
+#define BACKLOG        10
+#define MAX_MSG_LENGTH 256
+#define MAX_FDS        1024
 int sockfd, new_fd;  // listen on sock_fd, new connection on new_fd
+int fdmax = 0;
 struct addrinfo hints, *servinfo, *p;
 struct sockaddr_storage their_addr; // connector's address information
 socklen_t sin_size;
 struct sigaction sa;
 int yes=1;
+struct timeval tv = {0, 2000};
+fd_set active_fd_set, read_fd_set;
+
 char s[INET6_ADDRSTRLEN];
 int rv;
 char* cupdate(const char* data);
