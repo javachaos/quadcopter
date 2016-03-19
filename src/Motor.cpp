@@ -58,9 +58,10 @@ void Motor::update(Blackboard *bb) {
 	}
 }
 
-float Motor::remap(float x) {
-	return (x - MIN_SPEED) * (HIGH_DUTY - LOW_DUTY) / (MAX_SPEED - MIN_SPEED)
-			+ HIGH_DUTY;
+float Motor::remap(double x) {
+        double oldRange = (MAX_SPEED - MIN_SPEED);
+        double newRange = (HIGH_DUTY - LOW_DUTY);
+        return (((x - MIN_SPEED) * newRange) / oldRange) + LOW_DUTY;
 }
 
 Motor::~Motor() {

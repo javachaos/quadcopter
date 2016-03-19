@@ -86,6 +86,7 @@ char* cupdate(const char* d) {
     if(sbuf[MSG_LEN] != '\0') {//Add null terminator if it's not there.
         sbuf[MSG_LEN] = '\0';
     }
+    char* rets = 0;
     char rbuf[MAX_MSG_LENGTH];//Initialize recieve buffer.
     int i;
     for(i = 0; i <= fdmax; i++) {
@@ -106,10 +107,13 @@ char* cupdate(const char* d) {
                         "socket %d\n",
                     inet_ntop(their_addr.ss_family,get_in_addr((struct sockaddr*)&their_addr),s, sizeof s),
                     new_fd);
+                    if (send(new_fd, sbuf, sizeof sbuf, 0) == -1) {
+                        perror("send");
+                    }
                 }
             } else {//Handle client data from active socket.
                 int nbytes;
-                if ((nbytes = recv(i, rbuf, sizeof rbuf, 0)) <= 0) {
+                if ((nbytes = recv(i, rbuf, sizeof(rbuf), 0)) <= 0) {
                     // got error or connection closed by client
                     if (nbytes == 0) {
                         // connection closed
@@ -120,7 +124,10 @@ char* cupdate(const char* d) {
                     close(i);
                     FD_CLR(i, &active_fd_set); // remove from active fd set
                 } else {
-                    syslog(LOG_NOTICE, "COMM_SERVER: recieved &d bytes from socket %d.\n", nbytes, i);
+                    rbuf[nbytes] = '\0';
+                    rets = parse(rbuf);
+                    syslog(LOG_NOTICE, "COMM_SERVER: recieved %d bytes from socket %d.\n", nbytes, i);
+                    syslog(LOG_NOTICE, "COMM_SERVER: %s", rets);
                     // we got some data from a client
                     int j;
                     for(j = 0; j <= fdmax; j++) {
@@ -138,7 +145,7 @@ char* cupdate(const char* d) {
             }
         }
     }
-    return parse(rbuf);
+    return rets;
 }
 
 void cclose() {

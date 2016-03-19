@@ -42,7 +42,7 @@ public:
 	virtual ~Motor();
 	//De-allocate this motor.
 private:
-	float remap(float x);
+	float remap(double x);
 	//Remap x from [4,10] to [0,100]
 	int speed;
 	string pin_name;
