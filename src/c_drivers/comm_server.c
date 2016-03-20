@@ -71,7 +71,7 @@ void cinit() {
     syslog(LOG_NOTICE, "COMM_SERVER: waiting for connections...\n");
 }
 
-char* cupdate(const char* d) {
+char const * cupdate(char const * d) {
 
     read_fd_set = active_fd_set;
     if (select (fdmax+1, &read_fd_set, NULL, NULL, &tv) < 0) {

@@ -7,19 +7,16 @@
 #include <iostream>
 #include <string>
 
-#include <Agent.h>
 #include <Blackboard.h>
-#include <Communicator.h>
 #include <Constants.h>
 #include <Controller.h>
-#include <Motor.h>
-#include <OLED.h>
-
 using std::string;
 using std::endl;
 using std::clog;
 using std::sig_atomic_t;
 using std::ofstream;
+using std::to_string;
+
 using namespace Quadcopter;
 
 static void create_pidfile(void);
@@ -101,24 +98,8 @@ int main(int argc, char* argv[]) {
 	std::signal(SIGTERM, signal_handler);
 
 	/* Daemon-specific initialization goes here */
-	Blackboard *bb = new Blackboard();
-	Controller *controller = new Controller(bb);
-	OLED *oled = new OLED;
-	controller->addDevice(oled);
-	Communicator *comms = new Communicator;
-
-	Motor *m1 = new Motor(ID_MOTOR1, MOTOR_1);
-	Motor *m2 = new Motor(ID_MOTOR2, MOTOR_2);
-	Motor *m3 = new Motor(ID_MOTOR3, MOTOR_3);
-	Motor *m4 = new Motor(ID_MOTOR4, MOTOR_4);
-	controller->addDevice(m1);
-	controller->addDevice(m2);
-	controller->addDevice(m3);
-	controller->addDevice(m4);
-        controller->addDevice(comms);
+	Controller *controller = new Controller();
 	controller->start();
-	oled->write("Controller started.");
-	bb->activate();
         int heartbeat = 10000;
         int h = 0;
 	while (!term) {
@@ -126,6 +107,8 @@ int main(int argc, char* argv[]) {
                 if(--heartbeat == 0) {
                     heartbeat = 10000;
                     clog << kLogNotice << "Heartbeat " << ++h << endl;
+                    controller->display("Heartbeat: " + std::to_string(h)
+                      +"\n "+ controller->getDisplay());
                 }
 		//Sleep for 2000 microseconds before next update sequence
 		struct timespec ts;
@@ -133,10 +116,10 @@ int main(int argc, char* argv[]) {
 		ts.tv_nsec = 2000000;
 		nanosleep(&ts, NULL);
 	}
-	oled->write("System shutting down...");
+	controller->display("System shutting down...");
 	controller->setExit(true);
 	controller->update();
-	controller->~Controller();
+        delete(controller);
 	closelog();
 	exit(EXIT_SUCCESS);
 }

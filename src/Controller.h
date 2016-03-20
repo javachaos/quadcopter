@@ -8,20 +8,31 @@
 #ifndef CONTROLLER_H_
 #define CONTROLLER_H_
 #include <string.h>
+#include <vector>
+#include <unistd.h>
+#include <iostream>
+#include <sstream>
+
 #include "Device.h"
 #include "Agent.h"
-#include <vector>
+#include "Motor.h"
+#include "OLED.h"
+#include "Communicator.h"
+#include "QuadcopterConfig.h"
+
 using std::string;
 using std::vector;
 
 namespace Quadcopter {
 class Controller: public Agent {
 public:
-	Controller(Blackboard *inst);
+	Controller();
 	void update();
 	void addDevice(Device*);
 	Device* getDevice(int devId);
 	void setExit(bool);
+        void display(string s);
+        string getDisplay();
 	virtual ~Controller();
 protected:
 	void init();
@@ -29,6 +40,8 @@ protected:
 private:
 	vector<Device*> devices;
 	Blackboard *bb;
+        OLED *oled;
+        string disp;
 	bool isExit;
 };
 }

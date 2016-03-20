@@ -17,7 +17,7 @@
 
 namespace Quadcopter {
 
-extern "C" char* cupdate(const char*);
+extern "C" char const * cupdate(char const *);
 extern "C" void cinit();
 extern "C" void cclose();
 
@@ -30,7 +30,7 @@ public:
     void update(Blackboard *bb);
     virtual ~Communicator();
 private:
-    void addReply(char* reply, Blackboard* bb);
+    void addReply(char const * reply, Blackboard* bb);
 };
 
 }

@@ -44,7 +44,7 @@ fd_set active_fd_set, read_fd_set;
 
 char s[INET6_ADDRSTRLEN];
 int rv;
-char* cupdate(const char* data);
+char const * cupdate(char const * data);
 void cinit();
 void cclose();
 

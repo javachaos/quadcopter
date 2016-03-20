@@ -16,56 +16,47 @@ void Communicator::init(Blackboard* bb) {
 	bb->addMessage(ID_LOG,ID_COMM,"Communicator Initialized.");
 }
 
-std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems) {
-   std::stringstream ss(s);
-    std::string item;
-    while (std::getline(ss, item, delim)) {
-        elems.push_back(item);
-    }
-    return elems;
-}
+const vector<string> explode(const string& s, const char& c) {
+    string buff{""};
+    vector<string> v;
 
-
-std::vector<std::string> split(const std::string &s, char delim) {
-    std::vector<std::string> elems;
-    split(s, delim, elems);
-    return elems;
-}
-
-template <typename T>
-T lexical_cast(const std::string& s)
-{
-    std::stringstream ss(s);
-
-    T result;
-    if ((ss >> result).fail() || !(ss >> std::ws).eof())
-    {
-        return -1;
+    for(auto n:s) {
+        if(n != c) {
+            buff+=n;
+        } else {
+            if(n == c && buff != "") {
+                v.push_back(buff); buff = "";
+            }
+        }
     }
 
-    return result;
+    if(buff != "") {
+        v.push_back(buff);
+    }
+
+    return v;
 }
 
 void Communicator::update(Blackboard* bb) {
 	Blackboard::BBMessage m = bb->checkForMessage(this->getId());
 
 	if(m.to == ID_COMM) {
-	    char* reply = cupdate(m.toStr().c_str());
+	    char const * reply = cupdate(m.toStr().c_str());
             addReply(reply,bb);
         } else {//Querry client for data.
-	    char* tmp = ":::";
-	    char* reply = cupdate(tmp);
+	    char const * tmp = ":::";
+	    char const * reply = cupdate(tmp);
             addReply(reply,bb);
         }
 }
 
-void Communicator::addReply(char* reply, Blackboard* bb) {
+void Communicator::addReply(char const * reply, Blackboard* bb) {
     if (reply) {
         string s = string(reply);
-        vector<string> x = split(s, ':');
-        int to = lexical_cast<int>(x[0]);
-        int from = lexical_cast<int>(x[1]);
-        double timestamp = lexical_cast<double>(x[2]);
+        vector<string> x{explode(s, ':')};
+        int to = std::stoi(x[0]);
+        int from = std::stoi(x[1]);
+        double timestamp = std::stod(x[2]);
         string msg = x[3];
         if(to == -1 || from == -1 || timestamp == -1) {
            bb->addMessage(ID_LOG, ID_COMM, time(NULL), "COMM_SERVER: msg recv failed bad data.");

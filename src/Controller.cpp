@@ -4,14 +4,7 @@
  *  Created on: Feb 28, 2016
  *      Author: alfred
  */
-#include <unistd.h>
-#include <iostream>
-#include <vector>
-#include <sstream>
-//#include <time.h>
 #include "Controller.h"
-#include "QuadcopterConfig.h"
-#include "Log.h"
 
 using namespace std;
 using std::clog;
@@ -21,14 +14,25 @@ using std::vector;
 namespace Quadcopter {
 
 //Controller Ctor
-Controller::Controller(Blackboard *inst) :
-		Agent("Controller"), bb(inst) {
-	this->isExit = false;
+Controller::Controller() :
+        Agent("Controller"), bb(new Blackboard), oled(new OLED), disp("Quadcopter v1.0") {
+    this->isExit = false;
+    addDevice(oled);
+    Communicator *comms = new Communicator;
+    Motor *m1 = new Motor(ID_MOTOR1, MOTOR_1);
+    Motor *m2 = new Motor(ID_MOTOR2, MOTOR_2);
+    Motor *m3 = new Motor(ID_MOTOR3, MOTOR_3);
+    Motor *m4 = new Motor(ID_MOTOR4, MOTOR_4);
+    addDevice(m1);
+    addDevice(m2);
+    addDevice(m3);
+    addDevice(m4);
+    addDevice(comms);
 }
 
 void Controller::activate() {
+        bb->activate();
 	clog << kLogNotice << "Controller activated." << endl;
-
 	//Initialize devices
 	for (vector<Device*>::iterator it = devices.begin(); it != devices.end();
 			++it) {
@@ -67,11 +71,19 @@ void Controller::setExit(bool exit) {
 	this->isExit = exit;
 }
 
+void Controller::display(string s) {
+    oled->write(s);
+}
+
+string Controller::getDisplay() {
+    return disp;
+}
+
 Controller::~Controller() {
 	for (vector<Device*>::iterator it = devices.begin(); it != devices.end();
 			++it) {
-		(*it)->~Device();
+                delete(*it);
 	}
+        delete(bb);
 }
-
 }
