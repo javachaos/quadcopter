@@ -11,6 +11,7 @@
 #include "QuadcopterConfig.h"
 using std::string;
 namespace Quadcopter {
+
 #define DAEMON_NAME "quadcopter"
 #define CWD         "/opt/"      + DAEMON_NAME
 #define PIDFILE     "/var/run/quadcopter.pid"
@@ -28,13 +29,16 @@ namespace Quadcopter {
 enum DEVICE_ID {
 	ID_OLED,
 	ID_CONTROLLER,
-	ID_BLACKBOARD,
 	ID_MOTOR1,
 	ID_MOTOR2,
 	ID_MOTOR3,
 	ID_MOTOR4,
 	ID_COMM,
 	ID_MEMS,
+        ID_GPS,
+        ID_PRESSURE,
+        ID_TEMPURATURE,
+        ID_PUSHBUTTON,
 	ID_LOG,
 	NUM_DEVICES
 };

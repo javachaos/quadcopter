@@ -51,6 +51,11 @@ Device* Controller::getDevice(int devId) {
 }
 
 void Controller::update() {
+        Blackboard::BBMessage data = bb->checkForMessage(ID_CONTROLLER);
+        string datum = data.msg;
+	if (!datum.empty()) {
+	    display(datum);
+        }
 	for (vector<Device*>::iterator it = devices.begin(); it != devices.end();
 			++it) {
 		if (!this->isExit) {

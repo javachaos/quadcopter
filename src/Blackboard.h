@@ -24,20 +24,24 @@ public:
 		string msg;
 		int to;
 		int from;
-		double timestamp;
+		unsigned long timestamp;
                 string toStr() {
                     ostringstream os;
                     os << to << ":" << from << ":" << timestamp << ":" << msg;
                     return os.str();
                 }
 	};
+        /**
+         * Return the timestamp as a double.
+         */
+        unsigned long getTimestamp();
 
 	/**
 	 * Add a message to the black board given two id's and a message.
 	 */
 	bool addMessage(int to, int from, string msg);
 
-	bool addMessage(int to, int from, double timestamp, string smsg);
+	bool addMessage(int to, int from, unsigned long timestamp, string smsg);
 
 	/**
 	 * Returns the first message for device d and returns it

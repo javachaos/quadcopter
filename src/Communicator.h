@@ -8,16 +8,20 @@
 #ifndef SOURCE_DIRECTORY__COMMUNICATOR_H_
 #define SOURCE_DIRECTORY__COMMUNICATOR_H_
 
-#include "Constants.h"
-#include "Device.h"
 #include <string>
 #include <vector>
 #include <sstream>
-#include <stdlib.h>
+#include <cstdlib>
+#include "lzma.h"
+#include "Constants.h"
+#include "Device.h"
+#include "c_drivers/comm_server.h"
+#include "c_drivers/parse.h"
 
 namespace Quadcopter {
 
-extern "C" char const * cupdate(char const *);
+extern "C" bool parse(const char* s);
+extern "C" const Data cupdate(const Data d);
 extern "C" void cinit();
 extern "C" void cclose();
 
@@ -28,9 +32,12 @@ public:
     }
     void init(Blackboard* bb);
     void update(Blackboard *bb);
+    string compressWithLzma(const std::string& in, int level);
+    string decompressWithLzma(const std::string& in);
     virtual ~Communicator();
 private:
-    void addReply(char const * reply, Blackboard* bb);
+    void addReply(const Data reply, Blackboard* bb);
+    bool validateData(const Data reply);
 };
 
 }

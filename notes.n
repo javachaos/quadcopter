@@ -1,0 +1,2 @@
+Might need libi2c-dev, in CMake when linking with LSM sensor connected.
+

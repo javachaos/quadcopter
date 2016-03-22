@@ -11,9 +11,8 @@ void destroy_c(void) {
 }
 
 void write_str(const char* str) {
-//Py_BEGIN_ALLOW_THREADS
 	PyGILState_STATE state = PyGILState_Ensure();
-	PyObject *pName, *pModule, *pFunc, *pWrite, *pCons;
+	PyObject *pName, *pModule, *pCons;
 	pName = PyString_FromString("oled");
 
 	/* Error checking of pName left out */
@@ -27,14 +26,11 @@ void write_str(const char* str) {
 		char string[] = "s";
 		/* pFunc is a new reference */
 		PyObject_CallMethod(pCons, func, string, str);
-//	        Py_BLOCK_THREADS
         	Py_XDECREF(pCons);
 		Py_XDECREF(pModule);
-//              Py_UNBLOCK_THREADS
 	} else {
 		PyErr_Print();
 		syslog(LOG_NOTICE, "Failed to load OLED.\n");
 	}
 	PyGILState_Release(state);
-//	Py_END_ALLOW_THREADS
 }

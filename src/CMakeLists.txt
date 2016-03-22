@@ -9,8 +9,8 @@ IF(${ARCH} MATCHES "^x86_64$")
     SET(CMAKE_C_FLAGS_DISTRIBUTION "-g")
 ENDIF(${ARCH} MATCHES "^x86_64$")
 IF(${ARCH} MATCHES "^armv7l$")
-    SET(CMAKE_CXX_FLAGS_DISTRIBUTION "-g -std=c++0x -mfpu=neon -mfloat-abi=hard")
-    SET(CMAKE_C_FLAGS_DISTRIBUTION "-g -mfpu=neon -mfloat-abi=hard")
+    SET(CMAKE_CXX_FLAGS_DISTRIBUTION "-Wall -O3 -std=c++0x -mfpu=neon -mfloat-abi=hard")
+    SET(CMAKE_C_FLAGS_DISTRIBUTION "-Wall -O3 -mfpu=neon -mfloat-abi=hard")
 ENDIF(${ARCH} MATCHES "^armv7l$")
 
 SET(INSTALL_HOME "/usr/sbin/")
@@ -18,6 +18,8 @@ SET(PY_INSTALL_HOME "/usr/local/lib/python2.7/dist-packages/")
 SET(SYSCTL "systemctl")
 SET(SERVICE_FILE "quadcopter.service")
 SET(SYSTEM_D_HOME   "/etc/systemd/system/")
+
+LIST(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/../cmake")
 
 # The version number.
 SET(Quadcopter_VERSION_MAJOR 0)
@@ -34,7 +36,7 @@ SET(SYSTEM_D_LOADER "${PROJECT_SOURCE_DIR}/${SERVICE_FILE}")
 SET(SHARED_LIBS "${PROJECT_BINARY_DIR}/c_drivers/libc_drivers.so")
 SET(LIB_INSTALL_HOME "/usr/local/lib/")
 
-#find_package(Boost 1.54.0 REQUIRED COMPONENTS system serialization)
+find_package(LZMA)
 
 configure_file (
   "${PROJECT_SOURCE_DIR}/QuadcopterConfig.h.in"
@@ -45,17 +47,15 @@ include_directories (
   BEFORE "${PROJECT_SOURCE_DIR}/c_drivers"
   AFTER  "${PROJECT_SOURCE_DIR}" 
   "${PROJECT_BINARY_DIR}"
-  #"${Boost_INCLUDE_DIRS}"
+  "${LZMA_INCLUDE_DIR}"
 )
-
-link_directories(${Boost_LIBRARY_DIRS})
 
 add_subdirectory (c_drivers)
 file(GLOB SOURCES "*.cpp")
 file(GLOB PY_SOURCES "python/*.py")
 set_source_files_properties(${SOURCES} PROPERTIES LANGUAGE CXX )
 add_executable (quadcopter ${SOURCES})
-target_link_libraries (quadcopter ${Boost_LIBRARIES} c_drivers)
+target_link_libraries (quadcopter ${LZMA_LIBRARIES} c_drivers)
 set_target_properties(quadcopter PROPERTIES INSTALL_RPATH ${LIB_INSTALL_HOME})
 
 install (TARGETS quadcopter DESTINATION ${INSTALL_HOME})

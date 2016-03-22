@@ -6,6 +6,20 @@
  */
 #include <comm_server.h>
 #include <syslog.h>
+#include <base64.h>
+
+int sockfd, new_fd;  // listen on sock_fd, new connection on new_fd
+int fdmax = 0;
+struct addrinfo hints, *servinfo, *p;
+struct sockaddr_storage their_addr; // connector's address information
+socklen_t sin_size;
+struct sigaction sa;
+int yes=1;
+struct timeval tv = {0, 2000};
+fd_set active_fd_set, read_fd_set;
+char gmsg_buff[MAX_MSG_SIZE]; // Message buffer.
+char s[INET6_ADDRSTRLEN];
+int rv;
 
 // get sockaddr, IPv4 or IPv6:
 void *get_in_addr(struct sockaddr *sa)
@@ -14,6 +28,53 @@ void *get_in_addr(struct sockaddr *sa)
         return &(((struct sockaddr_in*)sa)->sin_addr);
     }
     return &(((struct sockaddr_in6*)sa)->sin6_addr);
+}
+
+char* packMessage(const Data data) {
+    char *p = gmsg_buff;                   // Set a pointer to our msg.
+    memcpy(p, &data.msg_len, sizeof(char));// Copy our message length to the message.
+    p += sizeof(char);                     // advance msg pointer
+    memcpy(p, &data.to, sizeof(char));     // Copy our to byte
+    p += sizeof(char);                     // advance msg pointer
+    memcpy(p, &data.from, sizeof(char));   // Copy our from byte
+    p+= sizeof(char);                      // advance msg pointer
+    memcpy(p, &data.timestamp, sizeof(unsigned long));// Copy our timestamp
+    p += sizeof(unsigned long);            // advance msg pointer
+    memcpy(p, &data.payload, MAX_DATA_SIZE);// Copy our payload string
+    gmsg_buff[MAX_DATA_SIZE] = '\0';             // Add null terminator byte
+    p = NULL;                              // Set pointer to null
+
+    return gmsg_buff;                      // return global msg buffer.
+}
+
+const Data unpackMessage(const char* msg) {
+    unsigned long timestamp = 0;
+    char tmp_msg[MAX_MSG_SIZE];            // Read msg into a local mutable copy.
+    memcpy(tmp_msg, &msg, MAX_MSG_SIZE);   //
+    char payload[MAX_DATA_SIZE];           // Initialize payload array.
+    const char * t = &tmp_msg[DATA_OFFSET];// Set pointer to the data offset within our local copy of msg.
+    char * p = &payload[0];                // Set pointer to the start of our payload.
+
+    timestamp += (double) tmp_msg[3];      // Convert our unsigned long portion of the string into an unsigned long.
+    timestamp  = timestamp << BITS_PER_CHAR;// Bit shift left by 8,
+    timestamp += (double) tmp_msg[4];      // Add next byte,
+    timestamp  = timestamp << BITS_PER_CHAR;// Bit shift left by 8,
+    timestamp += (double) tmp_msg[5];      // Add next byte,
+    timestamp  = timestamp << BITS_PER_CHAR;// Bit shift left by 8,
+    timestamp += (double) tmp_msg[6];      // Add last byte
+    int i;
+
+    for(i = 0; i < MAX_DATA_SIZE; ++i) {
+        memcpy(p, t++, sizeof(char));      // Fill the payload string.
+    }
+    payload[MAX_DATA_SIZE] = '\0';         // Null terminate the payload.
+    Data d = { tmp_msg[0],                 // Place data into packed struct.
+               tmp_msg[1],
+               tmp_msg[2],
+               timestamp,
+               {*payload}
+             };
+   return d;                               // Return data.
 }
 
 void cinit() {
@@ -71,27 +132,30 @@ void cinit() {
     syslog(LOG_NOTICE, "COMM_SERVER: waiting for connections...\n");
 }
 
-char const * cupdate(char const * d) {
-
+/**
+ * Accept and handle client connections asychroniously.
+ * 1. Packs data payload into 32 byte messages.
+ * 2. Accepts new connection if socket has a waiting
+ *    connection adds client to file descriptor set.
+ * 3. Closes client file descriptors who HUPed.
+ * 4. If clients are connected sends 32 data payload.
+ */
+const Data cupdate(const Data data) {
+    char* d = packMessage(data);        //Pack data into char*
     read_fd_set = active_fd_set;
     if (select (fdmax+1, &read_fd_set, NULL, NULL, &tv) < 0) {
       perror ("select");
-      return 0;
+      return data;
     }
 
-    char sbuf[MAX_MSG_LENGTH];
-    int MSG_LEN = strlen(d)+1;
-
-    memcpy(sbuf, d, MSG_LEN);//Copy data to send to clients into send buffer.
-    if(sbuf[MSG_LEN] != '\0') {//Add null terminator if it's not there.
-        sbuf[MSG_LEN] = '\0';
-    }
-    char* rets = 0;
-    char rbuf[MAX_MSG_LENGTH];//Initialize recieve buffer.
+    char sbuf[MAX_MSG_SIZE];            //Initialize send buffer.
+    Base64encode(sbuf, d, MAX_MSG_SIZE);//Encode send buffer data to Base64.
+    char* rets = 0;                     //Setup return string.
+    char rbuf[MAX_MSG_SIZE];            //Initialize recieve buffer.
     int i;
     for(i = 0; i <= fdmax; i++) {
-        if (FD_ISSET(i, &read_fd_set)) { // we got one!!
-            if (i == sockfd) {//Listen socket, add new fd to active fd set
+        if (FD_ISSET(i, &read_fd_set)) {// we got one!!
+            if (i == sockfd) {          //Listen socket, add new fd to active fd set
                 sin_size = sizeof their_addr;
                 new_fd = accept(sockfd, (struct sockaddr *)&their_addr, &sin_size);
                 fcntl(new_fd, F_SETFL, O_NONBLOCK);
@@ -100,7 +164,7 @@ char const * cupdate(char const * d) {
                     continue;
                 } else {
                     FD_SET(new_fd, &active_fd_set); // add to the active fd set
-                    if (new_fd > fdmax) {    // keep track of the max
+                    if (new_fd > fdmax) {           // keep track of the max
                         fdmax = new_fd;
                     }
                     syslog(LOG_NOTICE, "COMM_SERVER: new connection from %s on "
@@ -124,8 +188,7 @@ char const * cupdate(char const * d) {
                     close(i);
                     FD_CLR(i, &active_fd_set); // remove from active fd set
                 } else {
-                    rbuf[nbytes] = '\0';
-                    rets = parse(rbuf);
+                    Base64decode(rets, rbuf);
                     syslog(LOG_NOTICE, "COMM_SERVER: recieved %d bytes from socket %d.\n", nbytes, i);
                     syslog(LOG_NOTICE, "COMM_SERVER: %s", rets);
                     // we got some data from a client
@@ -145,7 +208,7 @@ char const * cupdate(char const * d) {
             }
         }
     }
-    return rets;
+    return unpackMessage(rets);
 }
 
 void cclose() {

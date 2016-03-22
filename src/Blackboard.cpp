@@ -18,7 +18,7 @@ Blackboard::Blackboard() {
 }
 
 void Blackboard::activate() {
-	addMessage(ID_OLED, ID_BLACKBOARD, "Blackboard activated.");
+	addMessage(ID_OLED, 1, "Blackboard activated.");
 }
 
 bool Blackboard::addMessage(BBMessage msg) {
@@ -31,21 +31,24 @@ bool Blackboard::addMessage(BBMessage msg) {
 	return 0;
 }
 
-bool Blackboard::addMessage(int to, int from, string smsg) {
-	time_t timer;
-	struct tm y2k = {0};
-	double seconds;
-
-	y2k.tm_hour = 0;   y2k.tm_min = 0; y2k.tm_sec = 0;
+unsigned long Blackboard::getTimestamp() {
+        time_t timer;
+        struct tm y2k = {0};
+        unsigned long seconds;
+        y2k.tm_hour = 0;   y2k.tm_min = 0; y2k.tm_sec = 0;
         y2k.tm_year = 100; y2k.tm_mon = 0; y2k.tm_mday = 1;
-	time(&timer);  /* get current time; same as: timer = time(NULL)  */
+        time(&timer);  /* get current time; same as: timer = time(NULL)  */
+        seconds = (unsigned long) difftime(timer,mktime(&y2k));
+        return seconds;
+}
 
-	seconds = difftime(timer,mktime(&y2k));
+bool Blackboard::addMessage(int to, int from, string smsg) {
+	unsigned long seconds = getTimestamp();
 	BBMessage message = { smsg, to, from, seconds };
 	return addMessage(message);
 }
 
-bool Blackboard::addMessage(int to, int from, double timestamp, string smsg) {
+bool Blackboard::addMessage(int to, int from, unsigned long timestamp, string smsg) {
 	BBMessage message = { smsg, to, from, timestamp };
 	return addMessage(message);
 }

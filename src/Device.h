@@ -31,8 +31,8 @@ public:
 	virtual ~Device();
 private:
 	string name;
-	int id;
 	bool isInit;
+        int id;
 };
 inline Device::~Device() {
 }
