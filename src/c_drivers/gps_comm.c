@@ -1,12 +1,17 @@
 #include "gps_comm.h"
 
-//Setup global storage for 10 NMEA sentences.
-char GPSData[GPS_DATA_SIZE+1];
-bool ready = false;
-char empty[1] = {'\0'};
-
-void cinit() {
+void gps_init() {
     openlog (DAEMON_NAME, LOG_CONS | LOG_PID | LOG_NDELAY, LOG_LOCAL1);
+    int fd = open (PORTNAME, O_RDWR | O_NOCTTY | O_SYNC);
+    if (fd < 0) {
+        syslog(LOG_NOTICE, "COMM_GPS: error %d opening %s: %s", errno, PORTNAME, strerror (errno));
+        return;
+    }
+
+    set_interface_attribs (fd, B9600, 0);  // set speed to 115,200 bps, 8n1 (no parity)
+    set_blocking (fd, 0);                  // set no blocking
+    bufp = buf;//Set buffer pointer to start of the buffer.
+    gfd = fd;  //Set the global file descriptor.
     syslog(LOG_NOTICE, "COMM_GPS: GPS initialized.\n");
 }
 
@@ -57,44 +62,28 @@ set_blocking (int fd, int should_block)
                 return;
         }
         tty.c_cc[VMIN]  = should_block ? 1 : 0;
-        tty.c_cc[VTIME] = 5;            // 0.5 seconds read timeout
+        tty.c_cc[VTIME] = 1;            // 0.1 seconds read timeout
         if (tcsetattr (fd, TCSANOW, &tty) != 0)
             syslog(LOG_NOTICE, "COMM_GPS: error %d setting term attributes", errno);
 }
 
-int
-setup() {
-    int fd = open (PORTNAME, O_RDWR | O_NOCTTY | O_SYNC);
-    if (fd < 0) {
-        syslog(LOG_NOTICE, "COMM_GPS: error %d opening %s: %s", errno, PORTNAME, strerror (errno));
-        return fd;
-    }
-
-    set_interface_attribs (fd, B9600, 0);  // set speed to 115,200 bps, 8n1 (no parity)
-    set_blocking (fd, 0);                    // set no blocking
-
-    return fd;
-}
-
+// Get next valid NMEA Sentence. 
+// Returns empty string until a valid sentence is constructed.
 char* getData() {
-
-    int fd = setup();
-    char * p = GPSData;
-    char * end = &GPSData[sizeof(GPSData)];
-    if(p >= end) {
-        p = GPSData;
-        GPSData[GPS_DATA_SIZE+1] = '\0';
+    if(buf[0] == '$') {
         ready = true;
     } else {
-        char buf [NMEA_SENTENCE_LENGTH];
-        int n = read (fd, buf, NMEA_SENTENCE_LENGTH);
-        strncpy(p,buf, n);
-        p += NMEA_SENTENCE_LENGTH;
+        int n = read (gfd, bufp++, sizeof(char));
+        if(n < 1) {
+          syslog(LOG_NOTICE, "COMM_GPS: read error.");
+          return empty;
+        }
     }
 
     if(ready) {
         ready = false;
-        return GPSData;
+        bufp = buf;
+        return buf;
     }
     return empty;
 }

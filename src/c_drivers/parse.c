@@ -15,7 +15,7 @@ bool isAlpha(char c) {
 
 bool parse(const char* str) {
     int len = strlen(str);
-    if(len < 21 || len > 21) {
+    if(len < 1 || len > 21) {
         return 0;
     }
     char s[21];
@@ -29,5 +29,5 @@ bool parse(const char* str) {
         || s[i] == SPACE
         || s[i] == PER
         || i > 20);
-    return s[++i] == EOL;
+    return s[i] == EOL;
 }
