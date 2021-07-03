@@ -25,7 +25,7 @@ public:
 	Motor(int devId, string pname, int initialSpeed = 0);
 	//Create a motor, with initial speed of 0
 
-	void init(Blackboard *bb);
+	void init(shared_ptr<Blackboard> bb);
 	//Calibrate this motor, return true if calibration was a success.
 
 	void setSpeed(float speed);
@@ -37,7 +37,7 @@ public:
 	void decreaseSpeed(int stepping);
 	//Decressing the speed of the motor by stepping amount
 
-	void update(Blackboard *bb);
+	void update(shared_ptr<Blackboard> bb);
 
 	virtual ~Motor();
 	//De-allocate this motor.

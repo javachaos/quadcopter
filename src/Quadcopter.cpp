@@ -99,7 +99,7 @@ int main(int argc, char* argv[]) {
 	std::signal(SIGTERM, signal_handler);
 
 	/* Daemon-specific initialization goes here */
-	Controller *controller = new Controller();
+	auto controller = make_unique<Controller>();
 	controller->start();
         int heartbeat = 10000;
         int h = 0;
@@ -120,7 +120,6 @@ int main(int argc, char* argv[]) {
 	controller->display("System shutting down...");
 	controller->setExit(true);
 	controller->update();
-        delete(controller);
 	closelog();
 	exit(EXIT_SUCCESS);
 }

@@ -173,7 +173,7 @@ int initialize_pwm(void) {
 
 int load_device_tree(const char *name) {
 	FILE *file = NULL;
-	char slots[40];
+	char slots[45];
 	char line[256];
 
 	build_path("/sys/devices", "bone_capemgr", ctrl_dir, sizeof(ctrl_dir));
@@ -207,7 +207,7 @@ int load_device_tree(const char *name) {
 
 int unload_device_tree(const char *name) {
 	FILE *file = NULL;
-	char slots[40];
+	char slots[45];
 	char line[256];
 	char *slot_line;
 
@@ -312,7 +312,7 @@ int pwm_start(const char *key, float duty, float freq, int polarity) {
 	char fragment[18];
 	char pwm_test_fragment[20];
 	char pwm_test_path[45];
-	char period_path[50];
+	char period_path[55];
 	char duty_path[50];
 	char polarity_path[55];
 	int period_fd, duty_fd, polarity_fd;

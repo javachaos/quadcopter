@@ -12,6 +12,7 @@
 #include <unistd.h>
 #include <iostream>
 #include <sstream>
+#include <memory>
 
 #include "Device.h"
 #include "Agent.h"
@@ -28,8 +29,8 @@ class Controller: public Agent {
 public:
 	Controller();
 	void update();
-	void addDevice(Device*);
-	Device* getDevice(int devId);
+	void addDevice(shared_ptr<Device>);
+	shared_ptr<Device> getDevice(int devId);
 	void setExit(bool);
         void display(string s);
         string getDisplay();
@@ -38,9 +39,9 @@ protected:
 	void init();
 	void activate();
 private:
-	vector<Device*> devices;
-	Blackboard *bb;
-        OLED *oled;
+	vector<shared_ptr<Device>> devices;
+	shared_ptr<Blackboard> bb;
+	shared_ptr<OLED> oled;
         string disp;
 	bool isExit;
 };

@@ -4,17 +4,18 @@
 #include <string>
 #include <sstream>
 #include <map>
-#include <utility>
 #include <time.h>
 #include "Constants.h"
 #include "Agent.h"
-
 
 using std::string;
 using std::multimap;
 using std::ostringstream;
 namespace Quadcopter {
 
+/*
+ * Blackboard agent to facilitate the communication of agents in this multi-agent system.
+ */
 class Blackboard {
 public:
 	Blackboard();

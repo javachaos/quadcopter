@@ -8,8 +8,12 @@
 #ifndef DEVICE_H_
 #define DEVICE_H_
 #include <string>
+#include <memory>
 #include "Blackboard.h"
 using std::string;
+using std::shared_ptr;
+using std::unique_ptr;
+
 namespace Quadcopter {
 
 class Device {
@@ -20,19 +24,19 @@ public:
 	bool isInitialized() {
 		return isInit;
 	}
-	virtual void init(Blackboard *bb) = 0;
+	virtual void init(shared_ptr<Blackboard> bb) = 0;
 	string getName() const {
 		return name;
 	}
 	int getId() const {
 		return id;
 	}
-	virtual void update(Blackboard *bb) = 0;
+	virtual void update(shared_ptr<Blackboard> bb) = 0;
 	virtual ~Device();
 private:
 	string name;
-	bool isInit;
-        int id;
+	  bool isInit;
+       int id;
 };
 inline Device::~Device() {
 }

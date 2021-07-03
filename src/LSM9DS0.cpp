@@ -6,21 +6,26 @@ Implements the LSM9DS0 functions on Beaglebone Black
 ******************************************************************************/
 
 #include "LSM9DS0.h"
-
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <linux/i2c-dev.h>
 #include <sys/ioctl.h>
+#if HAVE_STROPTS_H
 #include <stropts.h>
+#endif
 #include <stdio.h>
 #include <iostream>
 #include <math.h>
+
+extern "C" {
+#include <linux/i2c-dev.h>
+#include <linux/i2c.h>
+}
 using namespace std;
 namespace Quadcopter {
 #define MAX_BUS 64
 
-LSM9DS0::LSM9DS0(int bus, unsigned char gAddr, unsigned char xmAddr)
+LSM9DS0::LSM9DS0(int bus, unsigned char gAddr, unsigned char xmAddr) // @suppress("Class members should be properly initialized")
 {
 	// interfaceMode will keep track of whether we're using SPI or I2C:
 	I2CBus = bus;
@@ -561,10 +566,10 @@ void LSM9DS0::I2CwriteByte(unsigned char address, unsigned char subAddress, unsi
 	if (ioctl(file, I2C_SLAVE, address) < 0) {
 		cout << "I2C_SLAVE address " << address << " failed..." << endl;
 	}
-	int result = i2c_smbus_write_byte_data(file, subAddress, data);
-	if (result == -1) {
-		printf("Failed to write byte to " + subAddress);
-	}
+	//int result = i2c_smbus_write_byte_data(file, subAddress, data);
+	//if (result == -1) {
+	//	printf("Failed to write byte to " + subAddress);
+	//} TODO Fix this.
 }
 
 unsigned char LSM9DS0::I2CreadByte(unsigned char address, unsigned char subAddress)
@@ -572,7 +577,9 @@ unsigned char LSM9DS0::I2CreadByte(unsigned char address, unsigned char subAddre
 	if (ioctl(file, I2C_SLAVE, address) < 0) {
 		cout << "I2C_SLAVE address " << address << " failed..." << endl;
 	}
-	return i2c_smbus_read_byte_data(file, subAddress);
+	//return i2c_smbus_read_byte_data(file, subAddress);
+	// TODO Fix this.
+	return 0;
 }
 
 void LSM9DS0::I2CreadBytes(unsigned char address, unsigned char subAddress, unsigned char * dest, unsigned char count)
@@ -581,10 +588,10 @@ void LSM9DS0::I2CreadBytes(unsigned char address, unsigned char subAddress, unsi
 		cout << "I2C_SLAVE address " << address << " failed..." << endl;
 	}
 	unsigned char sAddr = subAddress | 0x80; // or with 0x80 to indicate multi-read
-	int result = i2c_smbus_read_i2c_block_data(file, sAddr, count, dest);
-	if (result != count) {
-		printf("Failed to read block from I2C");
-	}
+	//int result = i2c_smbus_read_i2c_block_data(file, sAddr, count, dest);
+	//if (result != count) {
+	//	printf("Failed to read block from I2C");
+	//} TODO Fix this.
 }
 }
 

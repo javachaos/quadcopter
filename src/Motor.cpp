@@ -8,6 +8,10 @@
 #include <stdlib.h>
 #include "Motor.h"
 #include "Blackboard.h"
+#include "Constants.h"
+#include <thread>
+#include <chrono>
+using std::shared_ptr;
 
 namespace Quadcopter {
 
@@ -16,12 +20,12 @@ Motor::Motor(int devId, string pname, int initialSpeed) :
 	get_pwm_key(pin_name.c_str(), key);
 }
 
-void Motor::init(Blackboard *bb) {
+void Motor::init(shared_ptr<Blackboard> bb) {
 	clog << kLogDebug << "Starting motor connected at: " << pin_name << endl;
 	pwm_start(key, HIGH_DUTY, FREQUENCY, POLARITY);
 	pwm_set_duty_cycle(key, LOW_DUTY);
 	clog << kLogDebug << "Calibration complete for " << pin_name << "." << endl;
-        sleep(1);
+	std::this_thread::sleep_for (std::chrono::seconds(ONE_SEC));
 }
 
 void Motor::setSpeed(float speed) {
@@ -44,11 +48,11 @@ void Motor::decreaseSpeed(int stepping) {
 	}
 }
 
-void Motor::update(Blackboard *bb) {
+void Motor::update(shared_ptr<Blackboard> bb) {
 	Blackboard::BBMessage msg = bb->checkForMessage(getId());
 	string str = msg.msg;
 	if (!str.empty()) {
-		double speed = strtod(str.c_str(), NULL);
+		auto speed = strtod(str.c_str(), NULL);
 		if (speed > 0 && speed < MAX_SPEED) {
 			setSpeed(speed);
 		} else {
@@ -59,8 +63,8 @@ void Motor::update(Blackboard *bb) {
 }
 
 float Motor::remap(double x) {
-        double oldRange = (MAX_SPEED - MIN_SPEED);
-        double newRange = (HIGH_DUTY - LOW_DUTY);
+        auto oldRange = (MAX_SPEED - MIN_SPEED);
+        auto newRange = (HIGH_DUTY - LOW_DUTY);
         return (((x - MIN_SPEED) * newRange) / oldRange) + LOW_DUTY;
 }
 

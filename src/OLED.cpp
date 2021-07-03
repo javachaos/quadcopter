@@ -16,12 +16,12 @@ using namespace std;
 
 namespace Quadcopter {
 
-void OLED::init(Blackboard *bb) {
+void OLED::init(shared_ptr<Blackboard> bb) {
 	clog << kLogNotice << "OLED Device initialized." << endl;
 	init_c();
 }
 
-void OLED::update(Blackboard *bb) {
+void OLED::update(shared_ptr<Blackboard> bb) {
 	Blackboard::BBMessage data = bb->checkForMessage(getId());
 	string datum = data.msg;
 	if (!datum.empty() && datum.compare(prev_msg) != 0) {

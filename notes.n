@@ -1,2 +1,2 @@
-Might need libi2c-dev, in CMake when linking with LSM sensor connected.
+Will need libi2c-dev when building on Ubuntu 20.04, in CMake when linking with LSM sensor connected.
 

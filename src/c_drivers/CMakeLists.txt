@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8.9)
+cmake_minimum_required(VERSION 3.20.5)
 project(c_drivers)
 file(GLOB CSOURCES "*.c")
 find_package(PythonLibs 2.7 REQUIRED)

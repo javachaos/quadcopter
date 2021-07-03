@@ -1,15 +1,15 @@
-cmake_minimum_required (VERSION 2.8.9)
+cmake_minimum_required (VERSION 3.20.5)
 project (Quadcopter)
 
 SET(CMAKE_BUILD_TYPE distribution)
 
 SET(ARCH ${CMAKE_SYSTEM_PROCESSOR})
 IF(${ARCH} MATCHES "^x86_64$")
-    SET(CMAKE_CXX_FLAGS_DISTRIBUTION "-g -std=c++0x")
+    SET(CMAKE_CXX_FLAGS_DISTRIBUTION "-g -std=c++17")
     SET(CMAKE_C_FLAGS_DISTRIBUTION "-g")
 ENDIF(${ARCH} MATCHES "^x86_64$")
 IF(${ARCH} MATCHES "^armv7l$")
-    SET(CMAKE_CXX_FLAGS_DISTRIBUTION "-Wall -O3 -std=c++0x -mfpu=neon -mfloat-abi=hard")
+    SET(CMAKE_CXX_FLAGS_DISTRIBUTION "-Wall -O3 -std=c++17 -mfpu=neon -mfloat-abi=hard")
     SET(CMAKE_C_FLAGS_DISTRIBUTION "-Wall -O3 -mfpu=neon -mfloat-abi=hard")
 ENDIF(${ARCH} MATCHES "^armv7l$")
 
@@ -36,7 +36,7 @@ SET(SYSTEM_D_LOADER "${PROJECT_SOURCE_DIR}/${SERVICE_FILE}")
 SET(SHARED_LIBS "${PROJECT_BINARY_DIR}/c_drivers/libc_drivers.so")
 SET(LIB_INSTALL_HOME "/usr/local/lib/")
 
-find_package(LZMA)
+#find_package(LZMA)
 
 configure_file (
   "${PROJECT_SOURCE_DIR}/QuadcopterConfig.h.in"
@@ -47,7 +47,7 @@ include_directories (
   BEFORE "${PROJECT_SOURCE_DIR}/c_drivers"
   AFTER  "${PROJECT_SOURCE_DIR}" 
   "${PROJECT_BINARY_DIR}"
-  "${LZMA_INCLUDE_DIR}"
+#  "${LZMA_INCLUDE_DIR}"
 )
 
 add_subdirectory (c_drivers)

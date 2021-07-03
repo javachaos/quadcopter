@@ -2,6 +2,7 @@
 #define GPSSENSOR_H_
 
 #include <string>
+#include <bits/shared_ptr.h>
 
 using namespace std;
 namespace Quadcopter {
@@ -20,8 +21,8 @@ public:
     };
 
     GPSSensor() : Device(ID_GPS,"GPS Sensor"), nmea("") {}
-    void init(Blackboard* bb);
-    void update(Blackboard* bb);    
+    void init(shared_ptr<Blackboard> bb);
+    void update(shared_ptr<Blackboard> bb);
     virtual ~GPSSensor();
     NMEAData parse(string s);
 

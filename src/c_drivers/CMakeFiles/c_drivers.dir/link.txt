@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -g -std=c++17 -shared -Wl,-soname,libc_drivers.so -o libc_drivers.so CMakeFiles/c_drivers.dir/base64.c.o CMakeFiles/c_drivers.dir/comm_server.c.o CMakeFiles/c_drivers.dir/gps_comm.c.o CMakeFiles/c_drivers.dir/oled.c.o CMakeFiles/c_drivers.dir/parse.c.o CMakeFiles/c_drivers.dir/pwm.c.o  -lpython2.7 

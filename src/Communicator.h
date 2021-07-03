@@ -30,13 +30,13 @@ public:
     Communicator() :
         Device(ID_COMM, "Communicator") {
     }
-    void init(Blackboard* bb);
-    void update(Blackboard *bb);
-    string compressWithLzma(const std::string& in, int level);
-    string decompressWithLzma(const std::string& in);
+    void init(shared_ptr<Blackboard> bb);
+    void update(shared_ptr<Blackboard> bb);
+    //string compressWithLzma(const std::string& in, int level);
+    //string decompressWithLzma(const std::string& in);
     virtual ~Communicator();
 private:
-    void addReply(const Data reply, Blackboard* bb);
+    void addReply(const Data reply, shared_ptr<Blackboard> bb);
     bool validateData(const Data reply);
 };
 

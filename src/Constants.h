@@ -43,11 +43,15 @@ enum DEVICE_ID {
 	NUM_DEVICES
 };
 
+//Motor ID's
 const string MOTOR_1 = "P9_14";
 const string MOTOR_2 = "P9_16";
 const string MOTOR_3 = "P8_19";
 const string MOTOR_4 = "P8_13";
+
+//Communication messages length
 const int COMM_MSG_LENGTH = 256;
+const unsigned int ONE_SEC = 1;
 
 }
 #endif /* CONSTANTS_H_ */

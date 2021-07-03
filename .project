@@ -3,6 +3,7 @@
 	<name>quadcopter</name>
 	<comment></comment>
 	<projects>
+		<project>Quadcopter@src</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

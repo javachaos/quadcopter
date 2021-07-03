@@ -21,8 +21,8 @@ public:
 	OLED() :
 			Device(ID_OLED, "OLED") {
 	}
-	void update(Blackboard *bb);
-	void init(Blackboard *bb);
+	void update(shared_ptr<Blackboard> bb);
+	void init(shared_ptr<Blackboard> bb);
 	~OLED();
 	void write(string data);
 private:
